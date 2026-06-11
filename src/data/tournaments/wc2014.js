@@ -1,0 +1,105 @@
+const standings = {
+  A: [
+    { team: "Brazil", code: "BRA", played: 3, won: 2, drawn: 1, lost: 0, gf: 7, ga: 2, gd: 5, points: 7 },
+    { team: "Mexico", code: "MEX", played: 3, won: 2, drawn: 0, lost: 1, gf: 4, ga: 1, gd: 3, points: 6 },
+    { team: "Croatia", code: "CRO", played: 3, won: 1, drawn: 0, lost: 2, gf: 6, ga: 6, gd: 0, points: 3 },
+    { team: "Cameroon", code: "CMR", played: 3, won: 0, drawn: 1, lost: 2, gf: 1, ga: 9, gd: -8, points: 1 },
+  ],
+  B: [
+    { team: "Netherlands", code: "NED", played: 3, won: 3, drawn: 0, lost: 0, gf: 10, ga: 3, gd: 7, points: 9 },
+    { team: "Chile", code: "CHI", played: 3, won: 2, drawn: 0, lost: 1, gf: 6, ga: 4, gd: 2, points: 6 },
+    { team: "Spain", code: "ESP", played: 3, won: 1, drawn: 0, lost: 2, gf: 4, ga: 7, gd: -3, points: 3 },
+    { team: "Australia", code: "AUS", played: 3, won: 0, drawn: 0, lost: 3, gf: 3, ga: 9, gd: -6, points: 0 },
+  ],
+  C: [
+    { team: "Colombia", code: "COL", played: 3, won: 3, drawn: 0, lost: 0, gf: 9, ga: 2, gd: 7, points: 9 },
+    { team: "Greece", code: "GRE", played: 3, won: 1, drawn: 1, lost: 1, gf: 2, ga: 4, gd: -2, points: 4 },
+    { team: "Ivory Coast", code: "CIV", played: 3, won: 1, drawn: 0, lost: 2, gf: 4, ga: 5, gd: -1, points: 3 },
+    { team: "Japan", code: "JPN", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 6, gd: -4, points: 1 },
+  ],
+  D: [
+    { team: "Costa Rica", code: "CRC", played: 3, won: 2, drawn: 1, lost: 0, gf: 4, ga: 1, gd: 3, points: 7 },
+    { team: "Uruguay", code: "URU", played: 3, won: 2, drawn: 0, lost: 1, gf: 4, ga: 4, gd: 0, points: 6 },
+    { team: "Italy", code: "ITA", played: 3, won: 1, drawn: 0, lost: 2, gf: 2, ga: 3, gd: -1, points: 3 },
+    { team: "England", code: "ENG", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 4, gd: -2, points: 1 },
+  ],
+  E: [
+    { team: "France", code: "FRA", played: 3, won: 2, drawn: 1, lost: 0, gf: 8, ga: 2, gd: 6, points: 7 },
+    { team: "Switzerland", code: "SUI", played: 3, won: 2, drawn: 0, lost: 1, gf: 7, ga: 6, gd: 1, points: 6 },
+    { team: "Ecuador", code: "ECU", played: 3, won: 1, drawn: 0, lost: 2, gf: 3, ga: 6, gd: -3, points: 3 },
+    { team: "Honduras", code: "HND", played: 3, won: 0, drawn: 1, lost: 2, gf: 1, ga: 5, gd: -4, points: 1 },
+  ],
+  F: [
+    { team: "Argentina", code: "ARG", played: 3, won: 3, drawn: 0, lost: 0, gf: 6, ga: 3, gd: 3, points: 9 },
+    { team: "Nigeria", code: "NGA", played: 3, won: 1, drawn: 1, lost: 1, gf: 3, ga: 3, gd: 0, points: 4 },
+    { team: "Bosnia", code: "BIH", played: 3, won: 1, drawn: 0, lost: 2, gf: 4, ga: 4, gd: 0, points: 3 },
+    { team: "Iran", code: "IRN", played: 3, won: 0, drawn: 1, lost: 2, gf: 1, ga: 4, gd: -3, points: 1 },
+  ],
+  G: [
+    { team: "Germany", code: "GER", played: 3, won: 2, drawn: 0, lost: 1, gf: 7, ga: 2, gd: 5, points: 6 },
+    { team: "United States", code: "USA", played: 3, won: 1, drawn: 1, lost: 1, gf: 4, ga: 3, gd: 1, points: 4 },
+    { team: "Portugal", code: "POR", played: 3, won: 1, drawn: 0, lost: 2, gf: 4, ga: 7, gd: -3, points: 3 },
+    { team: "Ghana", code: "GHA", played: 3, won: 0, drawn: 1, lost: 2, gf: 4, ga: 7, gd: -3, points: 1 },
+  ],
+  H: [
+    { team: "Belgium", code: "BEL", played: 3, won: 3, drawn: 0, lost: 0, gf: 4, ga: 1, gd: 3, points: 9 },
+    { team: "Algeria", code: "ALG", played: 3, won: 1, drawn: 1, lost: 1, gf: 6, ga: 5, gd: 1, points: 4 },
+    { team: "Russia", code: "RUS", played: 3, won: 0, drawn: 2, lost: 1, gf: 2, ga: 3, gd: -1, points: 2 },
+    { team: "South Korea", code: "KOR", played: 3, won: 0, drawn: 1, lost: 2, gf: 0, ga: 3, gd: -3, points: 1 },
+  ],
+};
+
+const knockout = [
+  { id: "2014-r16-1", stage: "Round of 16", date: "2014-06-28", homeTeam: "Brazil", awayTeam: "Chile", homeCode: "BRA", awayCode: "CHI", homeScore: 1, awayScore: 1, pens: "3-2" },
+  { id: "2014-r16-2", stage: "Round of 16", date: "2014-06-28", homeTeam: "Colombia", awayTeam: "Uruguay", homeCode: "COL", awayCode: "URU", homeScore: 2, awayScore: 0 },
+  { id: "2014-r16-3", stage: "Round of 16", date: "2014-06-30", homeTeam: "France", awayTeam: "Nigeria", homeCode: "FRA", awayCode: "NGA", homeScore: 2, awayScore: 0 },
+  { id: "2014-r16-4", stage: "Round of 16", date: "2014-06-30", homeTeam: "Germany", awayTeam: "Algeria", homeCode: "GER", awayCode: "ALG", homeScore: 2, awayScore: 1, extra: "ET" },
+  { id: "2014-r16-5", stage: "Round of 16", date: "2014-06-29", homeTeam: "Netherlands", awayTeam: "Mexico", homeCode: "NED", awayCode: "MEX", homeScore: 2, awayScore: 1 },
+  { id: "2014-r16-6", stage: "Round of 16", date: "2014-06-29", homeTeam: "Costa Rica", awayTeam: "Greece", homeCode: "CRC", awayCode: "GRE", homeScore: 1, awayScore: 1, pens: "5-3" },
+  { id: "2014-r16-7", stage: "Round of 16", date: "2014-07-01", homeTeam: "Argentina", awayTeam: "Switzerland", homeCode: "ARG", awayCode: "SUI", homeScore: 1, awayScore: 0, extra: "ET" },
+  { id: "2014-r16-8", stage: "Round of 16", date: "2014-07-01", homeTeam: "Belgium", awayTeam: "United States", homeCode: "BEL", awayCode: "USA", homeScore: 2, awayScore: 1, extra: "ET" },
+  { id: "2014-qf-1", stage: "Quarter-final", date: "2014-07-04", homeTeam: "France", awayTeam: "Germany", homeCode: "FRA", awayCode: "GER", homeScore: 0, awayScore: 1 },
+  { id: "2014-qf-2", stage: "Quarter-final", date: "2014-07-04", homeTeam: "Brazil", awayTeam: "Colombia", homeCode: "BRA", awayCode: "COL", homeScore: 2, awayScore: 1 },
+  { id: "2014-qf-3", stage: "Quarter-final", date: "2014-07-05", homeTeam: "Argentina", awayTeam: "Belgium", homeCode: "ARG", awayCode: "BEL", homeScore: 1, awayScore: 0 },
+  { id: "2014-qf-4", stage: "Quarter-final", date: "2014-07-05", homeTeam: "Netherlands", awayTeam: "Costa Rica", homeCode: "NED", awayCode: "CRC", homeScore: 0, awayScore: 0, pens: "4-3" },
+  { id: "2014-sf-1", stage: "Semi-final", date: "2014-07-08", homeTeam: "Brazil", awayTeam: "Germany", homeCode: "BRA", awayCode: "GER", homeScore: 1, awayScore: 7 },
+  { id: "2014-sf-2", stage: "Semi-final", date: "2014-07-09", homeTeam: "Netherlands", awayTeam: "Argentina", homeCode: "NED", awayCode: "ARG", homeScore: 0, awayScore: 0, pens: "2-4" },
+  { id: "2014-3rd", stage: "Third place", date: "2014-07-12", homeTeam: "Netherlands", awayTeam: "Brazil", homeCode: "NED", awayCode: "BRA", homeScore: 3, awayScore: 0 },
+  { id: "2014-final", stage: "Final", date: "2014-07-13", homeTeam: "Germany", awayTeam: "Argentina", homeCode: "GER", awayCode: "ARG", homeScore: 1, awayScore: 0, extra: "ET" },
+];
+
+const groupHighlights = [
+  { id: "2014-g-a-1", stage: "Group", group: "A", date: "2014-06-12", homeTeam: "Brazil", awayTeam: "Croatia", homeCode: "BRA", awayCode: "CRO", homeScore: 3, awayScore: 1 },
+  { id: "2014-g-b-1", stage: "Group", group: "B", date: "2014-06-13", homeTeam: "Spain", awayTeam: "Netherlands", homeCode: "ESP", awayCode: "NED", homeScore: 1, awayScore: 5 },
+  { id: "2014-g-c-1", stage: "Group", group: "C", date: "2014-06-14", homeTeam: "Colombia", awayTeam: "Greece", homeCode: "COL", awayCode: "GRE", homeScore: 3, awayScore: 0 },
+  { id: "2014-g-d-1", stage: "Group", group: "D", date: "2014-06-14", homeTeam: "England", awayTeam: "Italy", homeCode: "ENG", awayCode: "ITA", homeScore: 1, awayScore: 2 },
+  { id: "2014-g-e-1", stage: "Group", group: "E", date: "2014-06-15", homeTeam: "Switzerland", awayTeam: "Ecuador", homeCode: "SUI", awayCode: "ECU", homeScore: 2, awayScore: 1 },
+  { id: "2014-g-f-1", stage: "Group", group: "F", date: "2014-06-15", homeTeam: "Argentina", awayTeam: "Bosnia", homeCode: "ARG", awayCode: "BIH", homeScore: 2, awayScore: 1 },
+  { id: "2014-g-g-1", stage: "Group", group: "G", date: "2014-06-16", homeTeam: "Germany", awayTeam: "Portugal", homeCode: "GER", awayCode: "POR", homeScore: 4, awayScore: 0 },
+  { id: "2014-g-h-1", stage: "Group", group: "H", date: "2014-06-17", homeTeam: "Belgium", awayTeam: "Algeria", homeCode: "BEL", awayCode: "ALG", homeScore: 2, awayScore: 1 },
+];
+
+export const wc2014 = {
+  year: 2014,
+  host: "Brazil",
+  hosts: ["Brazil"],
+  winner: "Germany",
+  winnerCode: "GER",
+  runnerUp: "Argentina",
+  runnerUpCode: "ARG",
+  topScorer: "James Rodriguez (6 goals)",
+  teamsCount: 32,
+  format: "32 teams, 8 groups of 4, knockout",
+  cities: ["Rio de Janeiro", "Sao Paulo", "Brasilia", "Belo Horizonte", "Fortaleza"],
+  attendance: "3.43 million",
+  fact: "Germany's 7-1 semi-final win over hosts Brazil is one of the most shocking results in World Cup history.",
+  detailLevel: "full",
+  standings,
+  matches: [...groupHighlights, ...knockout],
+  bracket: [
+    { round: "Round of 16", matches: knockout.slice(0, 8).map((m) => m.id) },
+    { round: "Quarter-final", matches: knockout.slice(8, 12).map((m) => m.id) },
+    { round: "Semi-final", matches: ["2014-sf-1", "2014-sf-2"] },
+    { round: "Final", matches: ["2014-final"] },
+  ],
+};

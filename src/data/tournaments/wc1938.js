@@ -1,0 +1,42 @@
+export const wc1938 = {
+  year: 1938,
+  host: "France",
+  hosts: ["France"],
+  winner: "Italy",
+  winnerCode: "ITA",
+  runnerUp: "Hungary",
+  runnerUpCode: "HUN",
+  topScorer: "Leonidas (7 goals)",
+  teamsCount: 15,
+  format: "15 teams, straight knockout (drawn ties replayed)",
+  cities: ["Paris", "Marseille", "Bordeaux", "Strasbourg", "Lille"],
+  attendance: "0.48 million",
+  fact: "Italy became the first team to defend the title, with Leonidas's Brazil taking third. Austria withdrew after the Anschluss, giving Sweden a bye; drawn ties went to replays.",
+  detailLevel: "full",
+  matches: [
+    { id: "1938-r16-1", stage: "Round of 16", date: "1938-06-04", homeTeam: "Switzerland", awayTeam: "Germany", homeCode: "SUI", awayCode: "GER", homeScore: 1, awayScore: 1, extra: "AET" },
+    { id: "1938-r16-1r", stage: "Round of 16", date: "1938-06-09", homeTeam: "Switzerland", awayTeam: "Germany", homeCode: "SUI", awayCode: "GER", homeScore: 4, awayScore: 2, extra: "Replay" },
+    { id: "1938-r16-2", stage: "Round of 16", date: "1938-06-04", homeTeam: "Cuba", awayTeam: "Romania", homeCode: "CUB", awayCode: "ROU", homeScore: 3, awayScore: 3, extra: "AET" },
+    { id: "1938-r16-2r", stage: "Round of 16", date: "1938-06-09", homeTeam: "Cuba", awayTeam: "Romania", homeCode: "CUB", awayCode: "ROU", homeScore: 2, awayScore: 1, extra: "Replay" },
+    { id: "1938-r16-3", stage: "Round of 16", date: "1938-06-05", homeTeam: "Hungary", awayTeam: "Dutch East Indies", homeCode: "HUN", awayCode: "DEI", homeScore: 6, awayScore: 0 },
+    { id: "1938-r16-4", stage: "Round of 16", date: "1938-06-05", homeTeam: "France", awayTeam: "Belgium", homeCode: "FRA", awayCode: "BEL", homeScore: 3, awayScore: 1 },
+    { id: "1938-r16-5", stage: "Round of 16", date: "1938-06-05", homeTeam: "Czechoslovakia", awayTeam: "Netherlands", homeCode: "TCH", awayCode: "NED", homeScore: 3, awayScore: 0, extra: "AET" },
+    { id: "1938-r16-6", stage: "Round of 16", date: "1938-06-05", homeTeam: "Brazil", awayTeam: "Poland", homeCode: "BRA", awayCode: "POL", homeScore: 6, awayScore: 5, extra: "AET" },
+    { id: "1938-r16-7", stage: "Round of 16", date: "1938-06-05", homeTeam: "Italy", awayTeam: "Norway", homeCode: "ITA", awayCode: "NOR", homeScore: 2, awayScore: 1, extra: "AET" },
+    { id: "1938-qf-1", stage: "Quarter-final", date: "1938-06-12", homeTeam: "Sweden", awayTeam: "Cuba", homeCode: "SWE", awayCode: "CUB", homeScore: 8, awayScore: 0 },
+    { id: "1938-qf-2", stage: "Quarter-final", date: "1938-06-12", homeTeam: "Hungary", awayTeam: "Switzerland", homeCode: "HUN", awayCode: "SUI", homeScore: 2, awayScore: 0 },
+    { id: "1938-qf-3", stage: "Quarter-final", date: "1938-06-12", homeTeam: "Italy", awayTeam: "France", homeCode: "ITA", awayCode: "FRA", homeScore: 3, awayScore: 1 },
+    { id: "1938-qf-4", stage: "Quarter-final", date: "1938-06-12", homeTeam: "Brazil", awayTeam: "Czechoslovakia", homeCode: "BRA", awayCode: "TCH", homeScore: 1, awayScore: 1, extra: "AET" },
+    { id: "1938-qf-4r", stage: "Quarter-final", date: "1938-06-14", homeTeam: "Brazil", awayTeam: "Czechoslovakia", homeCode: "BRA", awayCode: "TCH", homeScore: 2, awayScore: 1, extra: "Replay" },
+    { id: "1938-sf-1", stage: "Semi-final", date: "1938-06-16", homeTeam: "Italy", awayTeam: "Brazil", homeCode: "ITA", awayCode: "BRA", homeScore: 2, awayScore: 1 },
+    { id: "1938-sf-2", stage: "Semi-final", date: "1938-06-16", homeTeam: "Hungary", awayTeam: "Sweden", homeCode: "HUN", awayCode: "SWE", homeScore: 5, awayScore: 1 },
+    { id: "1938-3rd", stage: "Third place", date: "1938-06-19", homeTeam: "Brazil", awayTeam: "Sweden", homeCode: "BRA", awayCode: "SWE", homeScore: 4, awayScore: 2 },
+    { id: "1938-final", stage: "Final", date: "1938-06-19", homeTeam: "Italy", awayTeam: "Hungary", homeCode: "ITA", awayCode: "HUN", homeScore: 4, awayScore: 2 }
+  ],
+  bracket: [
+    { round: "Round of 16", matches: ["1938-r16-1r", "1938-r16-2r", "1938-r16-3", "1938-r16-4", "1938-r16-5", "1938-r16-6", "1938-r16-7"] },
+    { round: "Quarter-final", matches: ["1938-qf-1", "1938-qf-2", "1938-qf-3", "1938-qf-4r"] },
+    { round: "Semi-final", matches: ["1938-sf-1", "1938-sf-2"] },
+    { round: "Final", matches: ["1938-final"] }
+  ]
+};

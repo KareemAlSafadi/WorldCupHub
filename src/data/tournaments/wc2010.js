@@ -1,0 +1,105 @@
+const standings = {
+  A: [
+    { team: "Uruguay", code: "URU", played: 3, won: 2, drawn: 1, lost: 0, gf: 4, ga: 0, gd: 4, points: 7 },
+    { team: "Mexico", code: "MEX", played: 3, won: 1, drawn: 1, lost: 1, gf: 3, ga: 2, gd: 1, points: 4 },
+    { team: "South Africa", code: "RSA", played: 3, won: 1, drawn: 1, lost: 1, gf: 3, ga: 5, gd: -2, points: 4 },
+    { team: "France", code: "FRA", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 5, gd: -3, points: 1 },
+  ],
+  B: [
+    { team: "Argentina", code: "ARG", played: 3, won: 3, drawn: 0, lost: 0, gf: 7, ga: 1, gd: 6, points: 9 },
+    { team: "South Korea", code: "KOR", played: 3, won: 1, drawn: 1, lost: 1, gf: 6, ga: 6, gd: 0, points: 4 },
+    { team: "Greece", code: "GRE", played: 3, won: 1, drawn: 0, lost: 2, gf: 2, ga: 5, gd: -3, points: 3 },
+    { team: "Nigeria", code: "NGA", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 5, gd: -3, points: 1 },
+  ],
+  C: [
+    { team: "United States", code: "USA", played: 3, won: 1, drawn: 2, lost: 0, gf: 4, ga: 3, gd: 1, points: 5 },
+    { team: "England", code: "ENG", played: 3, won: 1, drawn: 2, lost: 0, gf: 2, ga: 1, gd: 1, points: 5 },
+    { team: "Slovenia", code: "SVN", played: 3, won: 1, drawn: 1, lost: 1, gf: 3, ga: 3, gd: 0, points: 4 },
+    { team: "Algeria", code: "ALG", played: 3, won: 0, drawn: 1, lost: 2, gf: 0, ga: 2, gd: -2, points: 1 },
+  ],
+  D: [
+    { team: "Germany", code: "GER", played: 3, won: 2, drawn: 0, lost: 1, gf: 5, ga: 1, gd: 4, points: 6 },
+    { team: "Ghana", code: "GHA", played: 3, won: 1, drawn: 1, lost: 1, gf: 5, ga: 5, gd: 0, points: 4 },
+    { team: "Serbia", code: "SRB", played: 3, won: 1, drawn: 0, lost: 2, gf: 2, ga: 3, gd: -1, points: 3 },
+    { team: "Australia", code: "AUS", played: 3, won: 0, drawn: 2, lost: 1, gf: 3, ga: 6, gd: -3, points: 2 },
+  ],
+  E: [
+    { team: "Netherlands", code: "NED", played: 3, won: 3, drawn: 0, lost: 0, gf: 5, ga: 1, gd: 4, points: 9 },
+    { team: "Japan", code: "JPN", played: 3, won: 2, drawn: 0, lost: 1, gf: 4, ga: 1, gd: 3, points: 6 },
+    { team: "Denmark", code: "DEN", played: 3, won: 1, drawn: 0, lost: 2, gf: 2, ga: 3, gd: -1, points: 3 },
+    { team: "Cameroon", code: "CMR", played: 3, won: 0, drawn: 0, lost: 3, gf: 2, ga: 5, gd: -3, points: 0 },
+  ],
+  F: [
+    { team: "Paraguay", code: "PAR", played: 3, won: 1, drawn: 2, lost: 0, gf: 3, ga: 1, gd: 2, points: 5 },
+    { team: "Slovakia", code: "SVK", played: 3, won: 1, drawn: 1, lost: 1, gf: 3, ga: 3, gd: 0, points: 4 },
+    { team: "New Zealand", code: "NZL", played: 3, won: 0, drawn: 3, lost: 0, gf: 2, ga: 2, gd: 0, points: 3 },
+    { team: "Italy", code: "ITA", played: 3, won: 0, drawn: 2, lost: 1, gf: 4, ga: 5, gd: -1, points: 2 },
+  ],
+  G: [
+    { team: "Brazil", code: "BRA", played: 3, won: 2, drawn: 1, lost: 0, gf: 5, ga: 2, gd: 3, points: 7 },
+    { team: "Portugal", code: "POR", played: 3, won: 1, drawn: 2, lost: 0, gf: 7, ga: 0, gd: 7, points: 5 },
+    { team: "Ivory Coast", code: "CIV", played: 3, won: 1, drawn: 1, lost: 1, gf: 4, ga: 3, gd: 1, points: 4 },
+    { team: "North Korea", code: "PRK", played: 3, won: 0, drawn: 0, lost: 3, gf: 1, ga: 12, gd: -11, points: 0 },
+  ],
+  H: [
+    { team: "Spain", code: "ESP", played: 3, won: 2, drawn: 0, lost: 1, gf: 4, ga: 2, gd: 2, points: 6 },
+    { team: "Chile", code: "CHI", played: 3, won: 2, drawn: 0, lost: 1, gf: 3, ga: 2, gd: 1, points: 6 },
+    { team: "Switzerland", code: "SUI", played: 3, won: 1, drawn: 1, lost: 1, gf: 1, ga: 1, gd: 0, points: 4 },
+    { team: "Honduras", code: "HND", played: 3, won: 0, drawn: 2, lost: 1, gf: 0, ga: 3, gd: -3, points: 2 },
+  ],
+};
+
+const knockout = [
+  { id: "2010-r16-1", stage: "Round of 16", date: "2010-06-26", homeTeam: "Uruguay", awayTeam: "South Korea", homeCode: "URU", awayCode: "KOR", homeScore: 2, awayScore: 1 },
+  { id: "2010-r16-2", stage: "Round of 16", date: "2010-06-26", homeTeam: "United States", awayTeam: "Ghana", homeCode: "USA", awayCode: "GHA", homeScore: 1, awayScore: 2, extra: "ET" },
+  { id: "2010-r16-3", stage: "Round of 16", date: "2010-06-27", homeTeam: "Germany", awayTeam: "England", homeCode: "GER", awayCode: "ENG", homeScore: 4, awayScore: 1 },
+  { id: "2010-r16-4", stage: "Round of 16", date: "2010-06-27", homeTeam: "Argentina", awayTeam: "Mexico", homeCode: "ARG", awayCode: "MEX", homeScore: 3, awayScore: 1 },
+  { id: "2010-r16-5", stage: "Round of 16", date: "2010-06-28", homeTeam: "Netherlands", awayTeam: "Slovakia", homeCode: "NED", awayCode: "SVK", homeScore: 2, awayScore: 1 },
+  { id: "2010-r16-6", stage: "Round of 16", date: "2010-06-28", homeTeam: "Brazil", awayTeam: "Chile", homeCode: "BRA", awayCode: "CHI", homeScore: 3, awayScore: 0 },
+  { id: "2010-r16-7", stage: "Round of 16", date: "2010-06-29", homeTeam: "Paraguay", awayTeam: "Japan", homeCode: "PAR", awayCode: "JPN", homeScore: 0, awayScore: 0, pens: "5-3" },
+  { id: "2010-r16-8", stage: "Round of 16", date: "2010-06-29", homeTeam: "Spain", awayTeam: "Portugal", homeCode: "ESP", awayCode: "POR", homeScore: 1, awayScore: 0 },
+  { id: "2010-qf-1", stage: "Quarter-final", date: "2010-07-02", homeTeam: "Netherlands", awayTeam: "Brazil", homeCode: "NED", awayCode: "BRA", homeScore: 2, awayScore: 1 },
+  { id: "2010-qf-2", stage: "Quarter-final", date: "2010-07-02", homeTeam: "Uruguay", awayTeam: "Ghana", homeCode: "URU", awayCode: "GHA", homeScore: 1, awayScore: 1, pens: "4-2" },
+  { id: "2010-qf-3", stage: "Quarter-final", date: "2010-07-03", homeTeam: "Argentina", awayTeam: "Germany", homeCode: "ARG", awayCode: "GER", homeScore: 0, awayScore: 4 },
+  { id: "2010-qf-4", stage: "Quarter-final", date: "2010-07-03", homeTeam: "Paraguay", awayTeam: "Spain", homeCode: "PAR", awayCode: "ESP", homeScore: 0, awayScore: 1 },
+  { id: "2010-sf-1", stage: "Semi-final", date: "2010-07-06", homeTeam: "Uruguay", awayTeam: "Netherlands", homeCode: "URU", awayCode: "NED", homeScore: 2, awayScore: 3 },
+  { id: "2010-sf-2", stage: "Semi-final", date: "2010-07-07", homeTeam: "Germany", awayTeam: "Spain", homeCode: "GER", awayCode: "ESP", homeScore: 0, awayScore: 1 },
+  { id: "2010-3rd", stage: "Third place", date: "2010-07-10", homeTeam: "Uruguay", awayTeam: "Germany", homeCode: "URU", awayCode: "GER", homeScore: 2, awayScore: 3 },
+  { id: "2010-final", stage: "Final", date: "2010-07-11", homeTeam: "Spain", awayTeam: "Netherlands", homeCode: "ESP", awayCode: "NED", homeScore: 1, awayScore: 0, extra: "ET" },
+];
+
+const groupHighlights = [
+  { id: "2010-g-a-1", stage: "Group", group: "A", date: "2010-06-11", homeTeam: "South Africa", awayTeam: "Mexico", homeCode: "RSA", awayCode: "MEX", homeScore: 1, awayScore: 1 },
+  { id: "2010-g-b-1", stage: "Group", group: "B", date: "2010-06-12", homeTeam: "Argentina", awayTeam: "Nigeria", homeCode: "ARG", awayCode: "NGA", homeScore: 1, awayScore: 0 },
+  { id: "2010-g-c-1", stage: "Group", group: "C", date: "2010-06-12", homeTeam: "England", awayTeam: "United States", homeCode: "ENG", awayCode: "USA", homeScore: 1, awayScore: 1 },
+  { id: "2010-g-d-1", stage: "Group", group: "D", date: "2010-06-13", homeTeam: "Germany", awayTeam: "Australia", homeCode: "GER", awayCode: "AUS", homeScore: 4, awayScore: 0 },
+  { id: "2010-g-e-1", stage: "Group", group: "E", date: "2010-06-14", homeTeam: "Netherlands", awayTeam: "Denmark", homeCode: "NED", awayCode: "DEN", homeScore: 2, awayScore: 0 },
+  { id: "2010-g-f-1", stage: "Group", group: "F", date: "2010-06-14", homeTeam: "Italy", awayTeam: "Paraguay", homeCode: "ITA", awayCode: "PAR", homeScore: 1, awayScore: 1 },
+  { id: "2010-g-g-1", stage: "Group", group: "G", date: "2010-06-15", homeTeam: "Ivory Coast", awayTeam: "Portugal", homeCode: "CIV", awayCode: "POR", homeScore: 0, awayScore: 0 },
+  { id: "2010-g-h-1", stage: "Group", group: "H", date: "2010-06-16", homeTeam: "Spain", awayTeam: "Switzerland", homeCode: "ESP", awayCode: "SUI", homeScore: 0, awayScore: 1 },
+];
+
+export const wc2010 = {
+  year: 2010,
+  host: "South Africa",
+  hosts: ["South Africa"],
+  winner: "Spain",
+  winnerCode: "ESP",
+  runnerUp: "Netherlands",
+  runnerUpCode: "NED",
+  topScorer: "Thomas Muller (5 goals)",
+  teamsCount: 32,
+  format: "32 teams, 8 groups of 4, knockout",
+  cities: ["Johannesburg", "Cape Town", "Durban", "Pretoria", "Port Elizabeth"],
+  attendance: "3.18 million",
+  fact: "Spain won their first World Cup with tiki-taka football, beating Netherlands 1-0 in a physical final.",
+  detailLevel: "full",
+  standings,
+  matches: [...groupHighlights, ...knockout],
+  bracket: [
+    { round: "Round of 16", matches: knockout.slice(0, 8).map((m) => m.id) },
+    { round: "Quarter-final", matches: knockout.slice(8, 12).map((m) => m.id) },
+    { round: "Semi-final", matches: ["2010-sf-1", "2010-sf-2"] },
+    { round: "Final", matches: ["2010-final"] },
+  ],
+};

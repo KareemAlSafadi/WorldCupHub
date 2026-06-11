@@ -1,0 +1,105 @@
+const standings = {
+  A: [
+    { team: "Germany", code: "GER", played: 3, won: 2, drawn: 1, lost: 0, gf: 8, ga: 2, gd: 6, points: 7 },
+    { team: "Ecuador", code: "ECU", played: 3, won: 2, drawn: 0, lost: 1, gf: 5, ga: 3, gd: 2, points: 6 },
+    { team: "Poland", code: "POL", played: 3, won: 1, drawn: 0, lost: 2, gf: 2, ga: 4, gd: -2, points: 3 },
+    { team: "Costa Rica", code: "CRC", played: 3, won: 0, drawn: 1, lost: 2, gf: 3, ga: 9, gd: -6, points: 1 },
+  ],
+  B: [
+    { team: "England", code: "ENG", played: 3, won: 2, drawn: 1, lost: 0, gf: 5, ga: 2, gd: 3, points: 7 },
+    { team: "Sweden", code: "SWE", played: 3, won: 1, drawn: 2, lost: 0, gf: 3, ga: 2, gd: 1, points: 5 },
+    { team: "Paraguay", code: "PAR", played: 3, won: 1, drawn: 1, lost: 1, gf: 2, ga: 2, gd: 0, points: 4 },
+    { team: "Trinidad and Tobago", code: "TRI", played: 3, won: 0, drawn: 1, lost: 2, gf: 0, ga: 4, gd: -4, points: 1 },
+  ],
+  C: [
+    { team: "Argentina", code: "ARG", played: 3, won: 3, drawn: 0, lost: 0, gf: 8, ga: 1, gd: 7, points: 9 },
+    { team: "Netherlands", code: "NED", played: 3, won: 2, drawn: 0, lost: 1, gf: 3, ga: 2, gd: 1, points: 6 },
+    { team: "Ivory Coast", code: "CIV", played: 3, won: 1, drawn: 0, lost: 2, gf: 5, ga: 6, gd: -1, points: 3 },
+    { team: "Serbia", code: "SRB", played: 3, won: 0, drawn: 0, lost: 3, gf: 2, ga: 9, gd: -7, points: 0 },
+  ],
+  D: [
+    { team: "Portugal", code: "POR", played: 3, won: 2, drawn: 1, lost: 0, gf: 7, ga: 2, gd: 5, points: 7 },
+    { team: "Mexico", code: "MEX", played: 3, won: 1, drawn: 1, lost: 1, gf: 4, ga: 4, gd: 0, points: 4 },
+    { team: "Angola", code: "ANG", played: 3, won: 0, drawn: 2, lost: 1, gf: 2, ga: 3, gd: -1, points: 2 },
+    { team: "Iran", code: "IRN", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 6, gd: -4, points: 1 },
+  ],
+  E: [
+    { team: "Italy", code: "ITA", played: 3, won: 2, drawn: 1, lost: 0, gf: 5, ga: 1, gd: 4, points: 7 },
+    { team: "Ghana", code: "GHA", played: 3, won: 2, drawn: 0, lost: 1, gf: 4, ga: 3, gd: 1, points: 6 },
+    { team: "Czech Republic", code: "CZE", played: 3, won: 1, drawn: 0, lost: 2, gf: 3, ga: 4, gd: -1, points: 3 },
+    { team: "United States", code: "USA", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 6, gd: -4, points: 1 },
+  ],
+  F: [
+    { team: "Brazil", code: "BRA", played: 3, won: 3, drawn: 0, lost: 0, gf: 7, ga: 1, gd: 6, points: 9 },
+    { team: "Australia", code: "AUS", played: 3, won: 1, drawn: 1, lost: 1, gf: 5, ga: 5, gd: 0, points: 4 },
+    { team: "Croatia", code: "CRO", played: 3, won: 0, drawn: 2, lost: 1, gf: 2, ga: 3, gd: -1, points: 2 },
+    { team: "Japan", code: "JPN", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 7, gd: -5, points: 1 },
+  ],
+  G: [
+    { team: "Switzerland", code: "SUI", played: 3, won: 2, drawn: 1, lost: 0, gf: 4, ga: 0, gd: 4, points: 7 },
+    { team: "France", code: "FRA", played: 3, won: 1, drawn: 1, lost: 1, gf: 2, ga: 2, gd: 0, points: 4 },
+    { team: "South Korea", code: "KOR", played: 3, won: 1, drawn: 1, lost: 1, gf: 3, ga: 4, gd: -1, points: 4 },
+    { team: "Togo", code: "TOG", played: 3, won: 0, drawn: 1, lost: 2, gf: 1, ga: 6, gd: -5, points: 1 },
+  ],
+  H: [
+    { team: "Spain", code: "ESP", played: 3, won: 1, drawn: 2, lost: 0, gf: 4, ga: 3, gd: 1, points: 5 },
+    { team: "Ukraine", code: "UKR", played: 3, won: 1, drawn: 1, lost: 1, gf: 4, ga: 4, gd: 0, points: 4 },
+    { team: "Tunisia", code: "TUN", played: 3, won: 0, drawn: 2, lost: 1, gf: 2, ga: 3, gd: -1, points: 2 },
+    { team: "Saudi Arabia", code: "KSA", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 5, gd: -3, points: 1 },
+  ],
+};
+
+const knockout = [
+  { id: "2006-r16-1", stage: "Round of 16", date: "2006-06-24", homeTeam: "Germany", awayTeam: "Sweden", homeCode: "GER", awayCode: "SWE", homeScore: 2, awayScore: 0 },
+  { id: "2006-r16-2", stage: "Round of 16", date: "2006-06-24", homeTeam: "Argentina", awayTeam: "Mexico", homeCode: "ARG", awayCode: "MEX", homeScore: 2, awayScore: 1, extra: "ET" },
+  { id: "2006-r16-3", stage: "Round of 16", date: "2006-06-25", homeTeam: "England", awayTeam: "Ecuador", homeCode: "ENG", awayCode: "ECU", homeScore: 1, awayScore: 0 },
+  { id: "2006-r16-4", stage: "Round of 16", date: "2006-06-25", homeTeam: "Portugal", awayTeam: "Netherlands", homeCode: "POR", awayCode: "NED", homeScore: 1, awayScore: 0 },
+  { id: "2006-r16-5", stage: "Round of 16", date: "2006-06-26", homeTeam: "Italy", awayTeam: "Australia", homeCode: "ITA", awayCode: "AUS", homeScore: 1, awayScore: 0 },
+  { id: "2006-r16-6", stage: "Round of 16", date: "2006-06-26", homeTeam: "Switzerland", awayTeam: "Ukraine", homeCode: "SUI", awayCode: "UKR", homeScore: 0, awayScore: 0, pens: "0-3" },
+  { id: "2006-r16-7", stage: "Round of 16", date: "2006-06-27", homeTeam: "Brazil", awayTeam: "Ghana", homeCode: "BRA", awayCode: "GHA", homeScore: 3, awayScore: 0 },
+  { id: "2006-r16-8", stage: "Round of 16", date: "2006-06-27", homeTeam: "Spain", awayTeam: "France", homeCode: "ESP", awayCode: "FRA", homeScore: 1, awayScore: 3 },
+  { id: "2006-qf-1", stage: "Quarter-final", date: "2006-06-30", homeTeam: "Germany", awayTeam: "Argentina", homeCode: "GER", awayCode: "ARG", homeScore: 1, awayScore: 1, pens: "4-2" },
+  { id: "2006-qf-2", stage: "Quarter-final", date: "2006-06-30", homeTeam: "Italy", awayTeam: "Ukraine", homeCode: "ITA", awayCode: "UKR", homeScore: 3, awayScore: 0 },
+  { id: "2006-qf-3", stage: "Quarter-final", date: "2006-07-01", homeTeam: "England", awayTeam: "Portugal", homeCode: "ENG", awayCode: "POR", homeScore: 0, awayScore: 0, pens: "1-3" },
+  { id: "2006-qf-4", stage: "Quarter-final", date: "2006-07-01", homeTeam: "Brazil", awayTeam: "France", homeCode: "BRA", awayCode: "FRA", homeScore: 0, awayScore: 1 },
+  { id: "2006-sf-1", stage: "Semi-final", date: "2006-07-04", homeTeam: "Germany", awayTeam: "Italy", homeCode: "GER", awayCode: "ITA", homeScore: 0, awayScore: 2, extra: "ET" },
+  { id: "2006-sf-2", stage: "Semi-final", date: "2006-07-05", homeTeam: "Portugal", awayTeam: "France", homeCode: "POR", awayCode: "FRA", homeScore: 0, awayScore: 1 },
+  { id: "2006-3rd", stage: "Third place", date: "2006-07-08", homeTeam: "Germany", awayTeam: "Portugal", homeCode: "GER", awayCode: "POR", homeScore: 3, awayScore: 1 },
+  { id: "2006-final", stage: "Final", date: "2006-07-09", homeTeam: "Italy", awayTeam: "France", homeCode: "ITA", awayCode: "FRA", homeScore: 1, awayScore: 1, pens: "5-3" },
+];
+
+const groupHighlights = [
+  { id: "2006-g-a-1", stage: "Group", group: "A", date: "2006-06-09", homeTeam: "Germany", awayTeam: "Costa Rica", homeCode: "GER", awayCode: "CRC", homeScore: 4, awayScore: 2 },
+  { id: "2006-g-b-1", stage: "Group", group: "B", date: "2006-06-10", homeTeam: "England", awayTeam: "Paraguay", homeCode: "ENG", awayCode: "PAR", homeScore: 1, awayScore: 0 },
+  { id: "2006-g-c-1", stage: "Group", group: "C", date: "2006-06-10", homeTeam: "Argentina", awayTeam: "Ivory Coast", homeCode: "ARG", awayCode: "CIV", homeScore: 2, awayScore: 1 },
+  { id: "2006-g-d-1", stage: "Group", group: "D", date: "2006-06-11", homeTeam: "Mexico", awayTeam: "Iran", homeCode: "MEX", awayCode: "IRN", homeScore: 3, awayScore: 1 },
+  { id: "2006-g-e-1", stage: "Group", group: "E", date: "2006-06-12", homeTeam: "Italy", awayTeam: "Ghana", homeCode: "ITA", awayCode: "GHA", homeScore: 2, awayScore: 0 },
+  { id: "2006-g-f-1", stage: "Group", group: "F", date: "2006-06-13", homeTeam: "Brazil", awayTeam: "Croatia", homeCode: "BRA", awayCode: "CRO", homeScore: 1, awayScore: 0 },
+  { id: "2006-g-g-1", stage: "Group", group: "G", date: "2006-06-13", homeTeam: "France", awayTeam: "Switzerland", homeCode: "FRA", awayCode: "SUI", homeScore: 0, awayScore: 0 },
+  { id: "2006-g-h-1", stage: "Group", group: "H", date: "2006-06-14", homeTeam: "Spain", awayTeam: "Ukraine", homeCode: "ESP", awayCode: "UKR", homeScore: 4, awayScore: 0 },
+];
+
+export const wc2006 = {
+  year: 2006,
+  host: "Germany",
+  hosts: ["Germany"],
+  winner: "Italy",
+  winnerCode: "ITA",
+  runnerUp: "France",
+  runnerUpCode: "FRA",
+  topScorer: "Miroslav Klose (5 goals)",
+  teamsCount: 32,
+  format: "32 teams, 8 groups of 4, knockout",
+  cities: ["Berlin", "Munich", "Dortmund", "Hamburg", "Cologne"],
+  attendance: "3.36 million",
+  fact: "Italy won on penalties after Zidane was sent off for headbutting Materazzi in the final.",
+  detailLevel: "full",
+  standings,
+  matches: [...groupHighlights, ...knockout],
+  bracket: [
+    { round: "Round of 16", matches: knockout.slice(0, 8).map((m) => m.id) },
+    { round: "Quarter-final", matches: knockout.slice(8, 12).map((m) => m.id) },
+    { round: "Semi-final", matches: ["2006-sf-1", "2006-sf-2"] },
+    { round: "Final", matches: ["2006-final"] },
+  ],
+};

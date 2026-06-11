@@ -1,0 +1,105 @@
+const standings = {
+  A: [
+    { team: "Denmark", code: "DEN", played: 3, won: 2, drawn: 1, lost: 0, gf: 5, ga: 2, gd: 3, points: 7 },
+    { team: "Senegal", code: "SEN", played: 3, won: 1, drawn: 2, lost: 0, gf: 7, ga: 4, gd: 3, points: 5 },
+    { team: "Uruguay", code: "URU", played: 3, won: 0, drawn: 2, lost: 1, gf: 4, ga: 6, gd: -2, points: 2 },
+    { team: "France", code: "FRA", played: 3, won: 0, drawn: 1, lost: 2, gf: 0, ga: 3, gd: -3, points: 1 },
+  ],
+  B: [
+    { team: "Spain", code: "ESP", played: 3, won: 1, drawn: 2, lost: 0, gf: 6, ga: 4, gd: 2, points: 5 },
+    { team: "Paraguay", code: "PAR", played: 3, won: 1, drawn: 2, lost: 0, gf: 6, ga: 6, gd: 0, points: 5 },
+    { team: "South Africa", code: "RSA", played: 3, won: 1, drawn: 1, lost: 1, gf: 5, ga: 5, gd: 0, points: 4 },
+    { team: "Slovenia", code: "SVN", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 4, gd: -2, points: 1 },
+  ],
+  C: [
+    { team: "Brazil", code: "BRA", played: 3, won: 3, drawn: 0, lost: 0, gf: 11, ga: 3, gd: 8, points: 9 },
+    { team: "Turkey", code: "TUR", played: 3, won: 1, drawn: 1, lost: 1, gf: 5, ga: 4, gd: 1, points: 4 },
+    { team: "Costa Rica", code: "CRC", played: 3, won: 1, drawn: 1, lost: 1, gf: 7, ga: 7, gd: 0, points: 4 },
+    { team: "China", code: "CHN", played: 3, won: 0, drawn: 0, lost: 3, gf: 0, ga: 9, gd: -9, points: 0 },
+  ],
+  D: [
+    { team: "South Korea", code: "KOR", played: 3, won: 2, drawn: 1, lost: 0, gf: 4, ga: 1, gd: 3, points: 7 },
+    { team: "United States", code: "USA", played: 3, won: 1, drawn: 1, lost: 1, gf: 5, ga: 3, gd: 2, points: 4 },
+    { team: "Portugal", code: "POR", played: 3, won: 1, drawn: 0, lost: 2, gf: 6, ga: 6, gd: 0, points: 3 },
+    { team: "Poland", code: "POL", played: 3, won: 0, drawn: 1, lost: 2, gf: 3, ga: 8, gd: -5, points: 1 },
+  ],
+  E: [
+    { team: "Germany", code: "GER", played: 3, won: 2, drawn: 1, lost: 0, gf: 11, ga: 1, gd: 10, points: 7 },
+    { team: "Ireland", code: "IRL", played: 3, won: 0, drawn: 3, lost: 0, gf: 5, ga: 5, gd: 0, points: 3 },
+    { team: "Cameroon", code: "CMR", played: 3, won: 0, drawn: 2, lost: 1, gf: 2, ga: 4, gd: -2, points: 2 },
+    { team: "Saudi Arabia", code: "KSA", played: 3, won: 0, drawn: 2, lost: 1, gf: 2, ga: 6, gd: -4, points: 2 },
+  ],
+  F: [
+    { team: "Sweden", code: "SWE", played: 3, won: 1, drawn: 2, lost: 0, gf: 4, ga: 3, gd: 1, points: 5 },
+    { team: "England", code: "ENG", played: 3, won: 1, drawn: 2, lost: 0, gf: 2, ga: 1, gd: 1, points: 5 },
+    { team: "Nigeria", code: "NGA", played: 3, won: 1, drawn: 0, lost: 2, gf: 2, ga: 3, gd: -1, points: 3 },
+    { team: "Argentina", code: "ARG", played: 3, won: 1, drawn: 0, lost: 2, gf: 2, ga: 3, gd: -1, points: 3 },
+  ],
+  G: [
+    { team: "Mexico", code: "MEX", played: 3, won: 2, drawn: 1, lost: 0, gf: 5, ga: 3, gd: 2, points: 7 },
+    { team: "Italy", code: "ITA", played: 3, won: 1, drawn: 1, lost: 1, gf: 3, ga: 2, gd: 1, points: 4 },
+    { team: "Croatia", code: "CRO", played: 3, won: 0, drawn: 2, lost: 1, gf: 2, ga: 3, gd: -1, points: 2 },
+    { team: "Ecuador", code: "ECU", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 4, gd: -2, points: 1 },
+  ],
+  H: [
+    { team: "Japan", code: "JPN", played: 3, won: 2, drawn: 1, lost: 0, gf: 5, ga: 2, gd: 3, points: 7 },
+    { team: "Belgium", code: "BEL", played: 3, won: 1, drawn: 2, lost: 0, gf: 6, ga: 3, gd: 3, points: 5 },
+    { team: "Russia", code: "RUS", played: 3, won: 0, drawn: 2, lost: 1, gf: 3, ga: 4, gd: -1, points: 2 },
+    { team: "Tunisia", code: "TUN", played: 3, won: 0, drawn: 1, lost: 2, gf: 3, ga: 6, gd: -3, points: 1 },
+  ],
+};
+
+const knockout = [
+  { id: "2002-r16-1", stage: "Round of 16", date: "2002-06-15", homeTeam: "Germany", awayTeam: "Paraguay", homeCode: "GER", awayCode: "PAR", homeScore: 1, awayScore: 0 },
+  { id: "2002-r16-2", stage: "Round of 16", date: "2002-06-15", homeTeam: "England", awayTeam: "Denmark", homeCode: "ENG", awayCode: "DEN", homeScore: 3, awayScore: 0 },
+  { id: "2002-r16-3", stage: "Round of 16", date: "2002-06-16", homeTeam: "Spain", awayTeam: "Ireland", homeCode: "ESP", awayCode: "IRL", homeScore: 1, awayScore: 1, pens: "3-2" },
+  { id: "2002-r16-4", stage: "Round of 16", date: "2002-06-16", homeTeam: "South Korea", awayTeam: "Italy", homeCode: "KOR", awayCode: "ITA", homeScore: 2, awayScore: 1, extra: "ET" },
+  { id: "2002-r16-5", stage: "Round of 16", date: "2002-06-17", homeTeam: "Senegal", awayTeam: "Sweden", homeCode: "SEN", awayCode: "SWE", homeScore: 2, awayScore: 1, extra: "ET" },
+  { id: "2002-r16-6", stage: "Round of 16", date: "2002-06-17", homeTeam: "Brazil", awayTeam: "Belgium", homeCode: "BRA", awayCode: "BEL", homeScore: 2, awayScore: 0 },
+  { id: "2002-r16-7", stage: "Round of 16", date: "2002-06-18", homeTeam: "Turkey", awayTeam: "Japan", homeCode: "TUR", awayCode: "JPN", homeScore: 1, awayScore: 0 },
+  { id: "2002-r16-8", stage: "Round of 16", date: "2002-06-18", homeTeam: "United States", awayTeam: "Mexico", homeCode: "USA", awayCode: "MEX", homeScore: 2, awayScore: 0 },
+  { id: "2002-qf-1", stage: "Quarter-final", date: "2002-06-21", homeTeam: "South Korea", awayTeam: "Spain", homeCode: "KOR", awayCode: "ESP", homeScore: 0, awayScore: 0, pens: "5-3" },
+  { id: "2002-qf-2", stage: "Quarter-final", date: "2002-06-21", homeTeam: "Germany", awayTeam: "United States", homeCode: "GER", awayCode: "USA", homeScore: 1, awayScore: 0 },
+  { id: "2002-qf-3", stage: "Quarter-final", date: "2002-06-22", homeTeam: "Senegal", awayTeam: "Turkey", homeCode: "SEN", awayCode: "TUR", homeScore: 0, awayScore: 1, extra: "ET" },
+  { id: "2002-qf-4", stage: "Quarter-final", date: "2002-06-22", homeTeam: "Brazil", awayTeam: "England", homeCode: "BRA", awayCode: "ENG", homeScore: 2, awayScore: 1 },
+  { id: "2002-sf-1", stage: "Semi-final", date: "2002-06-25", homeTeam: "Germany", awayTeam: "South Korea", homeCode: "GER", awayCode: "KOR", homeScore: 1, awayScore: 0 },
+  { id: "2002-sf-2", stage: "Semi-final", date: "2002-06-26", homeTeam: "Brazil", awayTeam: "Turkey", homeCode: "BRA", awayCode: "TUR", homeScore: 1, awayScore: 0 },
+  { id: "2002-3rd", stage: "Third place", date: "2002-06-29", homeTeam: "South Korea", awayTeam: "Turkey", homeCode: "KOR", awayCode: "TUR", homeScore: 2, awayScore: 3 },
+  { id: "2002-final", stage: "Final", date: "2002-06-30", homeTeam: "Brazil", awayTeam: "Germany", homeCode: "BRA", awayCode: "GER", homeScore: 2, awayScore: 0 },
+];
+
+const groupHighlights = [
+  { id: "2002-g-a-1", stage: "Group", group: "A", date: "2002-05-31", homeTeam: "France", awayTeam: "Senegal", homeCode: "FRA", awayCode: "SEN", homeScore: 0, awayScore: 1 },
+  { id: "2002-g-b-1", stage: "Group", group: "B", date: "2002-06-02", homeTeam: "Paraguay", awayTeam: "South Africa", homeCode: "PAR", awayCode: "RSA", homeScore: 2, awayScore: 2 },
+  { id: "2002-g-c-1", stage: "Group", group: "C", date: "2002-06-03", homeTeam: "Brazil", awayTeam: "Turkey", homeCode: "BRA", awayCode: "TUR", homeScore: 2, awayScore: 1 },
+  { id: "2002-g-d-1", stage: "Group", group: "D", date: "2002-06-04", homeTeam: "South Korea", awayTeam: "Poland", homeCode: "KOR", awayCode: "POL", homeScore: 2, awayScore: 0 },
+  { id: "2002-g-e-1", stage: "Group", group: "E", date: "2002-06-05", homeTeam: "Germany", awayTeam: "Saudi Arabia", homeCode: "GER", awayCode: "KSA", homeScore: 8, awayScore: 0 },
+  { id: "2002-g-f-1", stage: "Group", group: "F", date: "2002-06-07", homeTeam: "Argentina", awayTeam: "England", homeCode: "ARG", awayCode: "ENG", homeScore: 0, awayScore: 1 },
+  { id: "2002-g-g-1", stage: "Group", group: "G", date: "2002-06-08", homeTeam: "Italy", awayTeam: "Ecuador", homeCode: "ITA", awayCode: "ECU", homeScore: 2, awayScore: 0 },
+  { id: "2002-g-h-1", stage: "Group", group: "H", date: "2002-06-09", homeTeam: "Japan", awayTeam: "Belgium", homeCode: "JPN", awayCode: "BEL", homeScore: 2, awayScore: 2 },
+];
+
+export const wc2002 = {
+  year: 2002,
+  host: "South Korea & Japan",
+  hosts: ["South Korea", "Japan"],
+  winner: "Brazil",
+  winnerCode: "BRA",
+  runnerUp: "Germany",
+  runnerUpCode: "GER",
+  topScorer: "Ronaldo (8 goals)",
+  teamsCount: 32,
+  format: "32 teams, 8 groups of 4, knockout",
+  cities: ["Seoul", "Tokyo", "Yokohama", "Saitama", "Busan"],
+  attendance: "2.7 million",
+  fact: "Ronaldo scored twice in the final as Brazil won a record fifth title. Co-host South Korea reached the semi-finals.",
+  detailLevel: "full",
+  standings,
+  matches: [...groupHighlights, ...knockout],
+  bracket: [
+    { round: "Round of 16", matches: knockout.slice(0, 8).map((m) => m.id) },
+    { round: "Quarter-final", matches: knockout.slice(8, 12).map((m) => m.id) },
+    { round: "Semi-final", matches: ["2002-sf-1", "2002-sf-2"] },
+    { round: "Final", matches: ["2002-final"] },
+  ],
+};

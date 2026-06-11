@@ -1,0 +1,41 @@
+export const wc1934 = {
+  year: 1934,
+  host: "Italy",
+  hosts: ["Italy"],
+  winner: "Italy",
+  winnerCode: "ITA",
+  runnerUp: "Czechoslovakia",
+  runnerUpCode: "TCH",
+  topScorer: "Oldrich Nejedly (5 goals)",
+  teamsCount: 16,
+  format: "16 teams, straight knockout (drawn ties replayed)",
+  cities: ["Rome", "Milan", "Naples", "Turin", "Florence"],
+  attendance: "0.36 million",
+  fact: "The first World Cup hosted and won by Italy — and the only one where the holders (Uruguay) refused to defend their title. A straight knockout from the round of 16.",
+  detailLevel: "full",
+  matches: [
+    { id: "1934-r16-1", stage: "Round of 16", date: "1934-05-27", homeTeam: "Italy", awayTeam: "United States", homeCode: "ITA", awayCode: "USA", homeScore: 7, awayScore: 1 },
+    { id: "1934-r16-2", stage: "Round of 16", date: "1934-05-27", homeTeam: "Czechoslovakia", awayTeam: "Romania", homeCode: "TCH", awayCode: "ROU", homeScore: 2, awayScore: 1 },
+    { id: "1934-r16-3", stage: "Round of 16", date: "1934-05-27", homeTeam: "Germany", awayTeam: "Belgium", homeCode: "GER", awayCode: "BEL", homeScore: 5, awayScore: 2 },
+    { id: "1934-r16-4", stage: "Round of 16", date: "1934-05-27", homeTeam: "Austria", awayTeam: "France", homeCode: "AUT", awayCode: "FRA", homeScore: 3, awayScore: 2, extra: "AET" },
+    { id: "1934-r16-5", stage: "Round of 16", date: "1934-05-27", homeTeam: "Spain", awayTeam: "Brazil", homeCode: "ESP", awayCode: "BRA", homeScore: 3, awayScore: 1 },
+    { id: "1934-r16-6", stage: "Round of 16", date: "1934-05-27", homeTeam: "Switzerland", awayTeam: "Netherlands", homeCode: "SUI", awayCode: "NED", homeScore: 3, awayScore: 2 },
+    { id: "1934-r16-7", stage: "Round of 16", date: "1934-05-27", homeTeam: "Sweden", awayTeam: "Argentina", homeCode: "SWE", awayCode: "ARG", homeScore: 3, awayScore: 2 },
+    { id: "1934-r16-8", stage: "Round of 16", date: "1934-05-27", homeTeam: "Hungary", awayTeam: "Egypt", homeCode: "HUN", awayCode: "EGY", homeScore: 4, awayScore: 2 },
+    { id: "1934-qf-1", stage: "Quarter-final", date: "1934-05-31", homeTeam: "Italy", awayTeam: "Spain", homeCode: "ITA", awayCode: "ESP", homeScore: 1, awayScore: 1, extra: "AET" },
+    { id: "1934-qf-1r", stage: "Quarter-final", date: "1934-06-01", homeTeam: "Italy", awayTeam: "Spain", homeCode: "ITA", awayCode: "ESP", homeScore: 1, awayScore: 0, extra: "Replay" },
+    { id: "1934-qf-2", stage: "Quarter-final", date: "1934-05-31", homeTeam: "Austria", awayTeam: "Hungary", homeCode: "AUT", awayCode: "HUN", homeScore: 2, awayScore: 1 },
+    { id: "1934-qf-3", stage: "Quarter-final", date: "1934-05-31", homeTeam: "Germany", awayTeam: "Sweden", homeCode: "GER", awayCode: "SWE", homeScore: 2, awayScore: 1 },
+    { id: "1934-qf-4", stage: "Quarter-final", date: "1934-05-31", homeTeam: "Czechoslovakia", awayTeam: "Switzerland", homeCode: "TCH", awayCode: "SUI", homeScore: 3, awayScore: 2 },
+    { id: "1934-sf-1", stage: "Semi-final", date: "1934-06-03", homeTeam: "Czechoslovakia", awayTeam: "Germany", homeCode: "TCH", awayCode: "GER", homeScore: 3, awayScore: 1 },
+    { id: "1934-sf-2", stage: "Semi-final", date: "1934-06-03", homeTeam: "Italy", awayTeam: "Austria", homeCode: "ITA", awayCode: "AUT", homeScore: 1, awayScore: 0 },
+    { id: "1934-3rd", stage: "Third place", date: "1934-06-07", homeTeam: "Germany", awayTeam: "Austria", homeCode: "GER", awayCode: "AUT", homeScore: 3, awayScore: 2 },
+    { id: "1934-final", stage: "Final", date: "1934-06-10", homeTeam: "Italy", awayTeam: "Czechoslovakia", homeCode: "ITA", awayCode: "TCH", homeScore: 2, awayScore: 1, extra: "AET" }
+  ],
+  bracket: [
+    { round: "Round of 16", matches: ["1934-r16-1", "1934-r16-2", "1934-r16-3", "1934-r16-4", "1934-r16-5", "1934-r16-6", "1934-r16-7", "1934-r16-8"] },
+    { round: "Quarter-final", matches: ["1934-qf-1r", "1934-qf-2", "1934-qf-3", "1934-qf-4"] },
+    { round: "Semi-final", matches: ["1934-sf-1", "1934-sf-2"] },
+    { round: "Final", matches: ["1934-final"] }
+  ]
+};
