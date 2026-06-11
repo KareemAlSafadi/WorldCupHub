@@ -14,7 +14,7 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 
 export default function App() {
   return (
-    <BrowserRouter basename="/world-cup-hub">
+    <BrowserRouter basename="/WorldCupHub">
       <Routes>
         <Route element={<Layout />}>
           <Route
