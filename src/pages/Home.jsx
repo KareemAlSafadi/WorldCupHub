@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Globe, Medal, Trophy } from '@phosphor-icons/react';
+import FlagBadge from '../components/FlagBadge';
 import TournamentCard from '../components/TournamentCard';
 import usePageTitle from '../lib/usePageTitle';
 import { getAllTournaments, getStats } from '../lib/data';
+import { useTodayMatches } from '../lib/liveScores';
 
 const DISPLAY = '"Cabinet Grotesk", system-ui, sans-serif';
 
@@ -12,6 +14,8 @@ export default function Home() {
   const featured = getAllTournaments().filter((t) =>
     [2026, 2022, 2018, 1930].includes(t.year)
   );
+  const todayMatches = useTodayMatches();
+  const todayLabel = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
 
   return (
     <div className="w-full overflow-x-hidden">
@@ -133,6 +137,43 @@ export default function Home() {
           </span>
         </div>
       </div>
+
+      {/* ── TODAY'S MATCHES ── */}
+      {todayMatches.length > 0 && (
+        <section className="pb-16 md:pb-24">
+          <div className="mb-6 flex items-end justify-between">
+            <div>
+              <div className="mb-2 flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-pitch animate-pulse-soft" />
+                <span className="font-mono text-[0.6rem] tracking-[0.2em] text-pitch/70">
+                  {todayLabel} · 2026 World Cup
+                </span>
+              </div>
+              <h2
+                className="font-black text-white"
+                style={{
+                  fontFamily: DISPLAY,
+                  fontSize: 'clamp(1.4rem, 2.2vw, 2rem)',
+                  letterSpacing: '-0.03em',
+                }}
+              >
+                Today's Matches
+              </h2>
+            </div>
+            <Link
+              to="/tournaments/2026"
+              className="text-sm text-white/40 transition-premium hover:text-white"
+            >
+              All fixtures →
+            </Link>
+          </div>
+          <div className="grid gap-3 grid-cols-2 md:grid-cols-4">
+            {todayMatches.map((match) => (
+              <TodayMatchCard key={match.id} match={match} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ── BENTO GRID ── */}
       <section className="py-20 md:py-32">
@@ -309,6 +350,60 @@ export default function Home() {
         </div>
       </section>
 
+    </div>
+  );
+}
+
+function TodayMatchCard({ match }) {
+  const upcoming = match.homeScore == null;
+  return (
+    <div
+      className={`relative overflow-hidden rounded-2xl p-4 ring-1 transition-premium ${
+        match.liveNow
+          ? 'bg-pitch/10 ring-pitch/35'
+          : 'bg-surface-raised ring-white/8'
+      }`}
+    >
+      {match.liveNow && (
+        <div className="absolute right-3 top-3 flex items-center gap-1">
+          <span className="h-1 w-1 rounded-full bg-red-400 animate-pulse-soft" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-red-400">Live</span>
+        </div>
+      )}
+      <div className="mb-3 text-[0.58rem] font-medium uppercase tracking-[0.12em] text-white/30">
+        {match.group ? `Group ${match.group}` : match.stage}
+      </div>
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex flex-1 flex-col items-center gap-1.5">
+          <FlagBadge code={match.homeCode} size="lg" />
+          <span className="text-center text-[0.65rem] font-medium leading-tight text-white/60">
+            {match.homeTeam}
+          </span>
+        </div>
+        <div className="flex flex-col items-center px-1">
+          {upcoming ? (
+            <span
+              className="font-black text-pitch"
+              style={{ fontFamily: DISPLAY, fontSize: '1.2rem', letterSpacing: '-0.04em' }}
+            >
+              VS
+            </span>
+          ) : (
+            <span
+              className="font-black text-white"
+              style={{ fontFamily: DISPLAY, fontSize: '1.4rem', letterSpacing: '-0.05em' }}
+            >
+              {match.homeScore}–{match.awayScore}
+            </span>
+          )}
+        </div>
+        <div className="flex flex-1 flex-col items-center gap-1.5">
+          <FlagBadge code={match.awayCode} size="lg" />
+          <span className="text-center text-[0.65rem] font-medium leading-tight text-white/60">
+            {match.awayTeam}
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

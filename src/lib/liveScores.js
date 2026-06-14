@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { GROUPS, computeStandings } from '../data/tournaments/wc2026.js';
+import { GROUPS, computeStandings, wc2026 } from '../data/tournaments/wc2026.js';
 
 const API_KEY = import.meta.env.VITE_FOOTBALL_API_KEY;
 const BASE = 'https://api.football-data.org/v4';
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+const CACHE_TTL = 60 * 1000; // 1 minute — matches how often we poll
 
 // football-data.org TLA → our FIFA code (where they differ)
 const TLA_MAP = { SAU: 'KSA', IRI: 'IRN' };
@@ -48,7 +48,7 @@ function buildScoreMap(apiMatches) {
 /**
  * Fetches live 2026 WC scores and patches the static tournament data.
  * Only fires when tournament.detailLevel === 'preview' and API key is set.
- * Falls back to static data silently on error.
+ * Polls every 60 seconds. Falls back to static data silently on error.
  */
 export function useLive2026(tournament) {
   const isPreview = tournament?.detailLevel === 'preview';
@@ -62,7 +62,7 @@ export function useLive2026(tournament) {
 
     let cancelled = false;
 
-    // All setState calls are inside .then/.catch/.finally — never synchronous
+    // Initial fetch with loading state
     Promise.resolve()
       .then(() => { if (!cancelled) setLoading(true); })
       .then(() => fetchApiMatches())
@@ -79,8 +79,79 @@ export function useLive2026(tournament) {
       .catch((err) => { if (!cancelled) setError(err); })
       .finally(() => { if (!cancelled) setLoading(false); });
 
-    return () => { cancelled = true; };
+    // Poll every 60 seconds to keep scores fresh during live matches
+    const interval = setInterval(() => {
+      fetchApiMatches()
+        .then((apiMatches) => {
+          if (cancelled) return;
+          const scoreMap = buildScoreMap(apiMatches);
+          const patched = tournament.matches.map((m) => {
+            const s = scoreMap[`${m.homeCode}-${m.awayCode}`];
+            return s ? { ...m, homeScore: s.homeScore, awayScore: s.awayScore, liveNow: s.liveNow } : m;
+          });
+          setLiveMatches(patched);
+          setLiveStandings(computeStandings(GROUPS, patched));
+        })
+        .catch(() => {});
+    }, 60_000);
+
+    return () => { cancelled = true; clearInterval(interval); };
   }, [isPreview, tournament]);
 
   return { liveMatches, liveStandings, loading, error };
+}
+
+/**
+ * Returns today's 2026 WC matches with live scores merged in.
+ * Updates every 60 seconds. Returns static data immediately while fetching.
+ */
+export function useTodayMatches() {
+  const today = new Date().toISOString().slice(0, 10);
+  const [todayMatches, setTodayMatches] = useState(() =>
+    wc2026.matches.filter((m) => m.date === today)
+  );
+
+  useEffect(() => {
+    if (!API_KEY) return;
+    let cancelled = false;
+
+    // Initial fetch
+    Promise.resolve()
+      .then(() => fetchApiMatches())
+      .then((apiMatches) => {
+        if (cancelled) return;
+        const scoreMap = buildScoreMap(apiMatches);
+        setTodayMatches(
+          wc2026.matches
+            .filter((m) => m.date === today)
+            .map((m) => {
+              const s = scoreMap[`${m.homeCode}-${m.awayCode}`];
+              return s ? { ...m, homeScore: s.homeScore, awayScore: s.awayScore, liveNow: s.liveNow } : m;
+            })
+        );
+      })
+      .catch(() => {});
+
+    // Poll every 60 seconds
+    const interval = setInterval(() => {
+      fetchApiMatches()
+        .then((apiMatches) => {
+          if (cancelled) return;
+          const scoreMap = buildScoreMap(apiMatches);
+          setTodayMatches(
+            wc2026.matches
+              .filter((m) => m.date === today)
+              .map((m) => {
+                const s = scoreMap[`${m.homeCode}-${m.awayCode}`];
+                return s ? { ...m, homeScore: s.homeScore, awayScore: s.awayScore, liveNow: s.liveNow } : m;
+              })
+          );
+        })
+        .catch(() => {});
+    }, 60_000);
+
+    return () => { cancelled = true; clearInterval(interval); };
+  }, [today]);
+
+  return todayMatches;
 }
