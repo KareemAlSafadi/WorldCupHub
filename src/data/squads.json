@@ -33,6 +33,27 @@
       { "name": "Manuel Ferreira", "number": null, "position": "FWD", "club": "Estudiantes" }
     ]
   },
+  "1958": {
+    "BRA": [
+      { "name": "Gilmar", "number": null, "position": "GK", "club": "Corinthians" },
+      { "name": "Castilho", "number": null, "position": "GK", "club": "Fluminense" },
+      { "name": "Carlos", "number": null, "position": "GK", "club": "Palmeiras" },
+      { "name": "Djalma Santos", "number": null, "position": "DEF", "club": "Portuguesa" },
+      { "name": "Nílton Santos", "number": null, "position": "DEF", "club": "Botafogo" },
+      { "name": "Bellini", "number": null, "position": "DEF", "club": "Vasco da Gama" },
+      { "name": "Orlando Peçanha", "number": null, "position": "DEF", "club": "Fluminense" },
+      { "name": "De Sordi", "number": null, "position": "DEF", "club": "São Paulo" },
+      { "name": "Didi", "number": null, "position": "MID", "club": "Fluminense" },
+      { "name": "Zito", "number": null, "position": "MID", "club": "Santos" },
+      { "name": "Mário Zagallo", "number": null, "position": "MID", "club": "Botafogo" },
+      { "name": "Dino Sani", "number": null, "position": "MID", "club": "Corinthians" },
+      { "name": "Pelé", "number": null, "position": "FWD", "club": "Santos" },
+      { "name": "Garrincha", "number": null, "position": "FWD", "club": "Botafogo" },
+      { "name": "Vavá", "number": null, "position": "FWD", "club": "Atlético Madrid" },
+      { "name": "José Altafini", "number": null, "position": "FWD", "club": "AC Milan" },
+      { "name": "Mazzola", "number": null, "position": "FWD", "club": "Santos" }
+    ]
+  },
   "1966": {
     "ENG": [
       { "name": "Gordon Banks", "number": null, "position": "GK", "club": "Leicester City" },
@@ -170,6 +191,27 @@
       { "name": "Leopoldo Luque", "number": null, "position": "FWD", "club": "River Plate" },
       { "name": "Daniel Bertoni", "number": null, "position": "FWD", "club": "Independiente" },
       { "name": "Rubén Galván", "number": null, "position": "MID", "club": "Independiente" }
+    ]
+  },
+  "1982": {
+    "ITA": [
+      { "name": "Dino Zoff", "number": 1, "position": "GK", "club": "Juventus" },
+      { "name": "Giovanni Galli", "number": 12, "position": "GK", "club": "Fiorentina" },
+      { "name": "Franco Tancredi", "number": 22, "position": "GK", "club": "AS Roma" },
+      { "name": "Claudio Gentile", "number": 5, "position": "DEF", "club": "Juventus" },
+      { "name": "Antonio Cabrini", "number": 3, "position": "DEF", "club": "Juventus" },
+      { "name": "Fulvio Collovati", "number": 6, "position": "DEF", "club": "AC Milan" },
+      { "name": "Gaetano Scirea", "number": 7, "position": "DEF", "club": "Juventus" },
+      { "name": "Mauro Bergomi", "number": 4, "position": "DEF", "club": "Internazionale" },
+      { "name": "Marco Tardelli", "number": 14, "position": "MID", "club": "Juventus" },
+      { "name": "Bruno Conti", "number": 11, "position": "MID", "club": "AS Roma" },
+      { "name": "Giancarlo Antognoni", "number": 10, "position": "MID", "club": "Fiorentina" },
+      { "name": "Giuseppe Dossena", "number": 16, "position": "MID", "club": "Torino" },
+      { "name": "Gabriele Oriali", "number": 8, "position": "MID", "club": "Internazionale" },
+      { "name": "Paolo Rossi", "number": 9, "position": "FWD", "club": "Juventus" },
+      { "name": "Alessandro Altobelli", "number": 20, "position": "FWD", "club": "Internazionale" },
+      { "name": "Francesco Graziani", "number": 21, "position": "FWD", "club": "Torino" },
+      { "name": "Roberto Bettega", "number": 18, "position": "FWD", "club": "Juventus" }
     ]
   },
   "1986": {
@@ -348,6 +390,27 @@
       { "name": "Alberto Gilardino", "number": 18, "position": "FWD", "club": "AC Milan" },
       { "name": "Filippo Inzaghi", "number": 17, "position": "FWD", "club": "AC Milan" },
       { "name": "Vincenzo Iaquinta", "number": 19, "position": "FWD", "club": "Udinese" }
+    ],
+    "GER": [
+      { "name": "Jens Lehmann", "number": 1, "position": "GK", "club": "Arsenal" },
+      { "name": "Oliver Kahn", "number": 12, "position": "GK", "club": "Bayern Munich" },
+      { "name": "Timo Hildebrand", "number": 22, "position": "GK", "club": "VfB Stuttgart" },
+      { "name": "Philipp Lahm", "number": 16, "position": "DEF", "club": "Bayern Munich" },
+      { "name": "Arne Friedrich", "number": 5, "position": "DEF", "club": "Hertha BSC" },
+      { "name": "Per Mertesacker", "number": 17, "position": "DEF", "club": "Hannover 96" },
+      { "name": "Christoph Metzelder", "number": 21, "position": "DEF", "club": "Borussia Dortmund" },
+      { "name": "Robert Huth", "number": 4, "position": "DEF", "club": "Chelsea" },
+      { "name": "Marcell Jansen", "number": 3, "position": "DEF", "club": "Borussia Mönchengladbach" },
+      { "name": "Michael Ballack", "number": 13, "position": "MID", "club": "Chelsea" },
+      { "name": "Bastian Schweinsteiger", "number": 7, "position": "MID", "club": "Bayern Munich" },
+      { "name": "Thomas Hitzlsperger", "number": 15, "position": "MID", "club": "Aston Villa" },
+      { "name": "Bernd Schneider", "number": 14, "position": "MID", "club": "Bayer Leverkusen" },
+      { "name": "Tim Borowski", "number": 8, "position": "MID", "club": "Werder Bremen" },
+      { "name": "Miroslav Klose", "number": 11, "position": "FWD", "club": "Werder Bremen" },
+      { "name": "Lukas Podolski", "number": 20, "position": "FWD", "club": "1. FC Köln" },
+      { "name": "Oliver Neuville", "number": 19, "position": "FWD", "club": "Borussia Mönchengladbach" },
+      { "name": "Kevin Kuranyi", "number": 9, "position": "FWD", "club": "Schalke 04" },
+      { "name": "David Odonkor", "number": 23, "position": "FWD", "club": "Borussia Dortmund" }
     ]
   },
   "2010": {
