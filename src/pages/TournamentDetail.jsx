@@ -9,6 +9,7 @@ import { TournamentTabSkeleton } from '../components/Skeleton';
 import StandingsTable from '../components/StandingsTable';
 import usePageTitle from '../lib/usePageTitle';
 import { getTournamentByYear } from '../lib/data';
+import { useLive2026 } from '../lib/liveScores';
 
 const TABS = ['Overview', 'Fixtures', 'Standings', 'Bracket'];
 const DISPLAY = '"Cabinet Grotesk", system-ui, sans-serif';
@@ -42,9 +43,14 @@ function TournamentView({ tournament }) {
   };
 
   const isPreview = tournament.detailLevel === 'preview';
-  const matches = tournament.matches || [];
+  const { liveMatches, liveStandings, loading: liveLoading } = useLive2026(tournament);
+  // liveLoading is only true for the 2026 preview while the API fetch is in flight
+
+  const matches = (isPreview && liveMatches) ? liveMatches : (tournament.matches || []);
+  const standings = (isPreview && liveStandings) ? liveStandings : tournament.standings;
+
   const hasMatches = matches.length > 0;
-  const hasStandings = !!tournament.standings && Object.keys(tournament.standings).length > 0;
+  const hasStandings = !!standings && Object.keys(standings).length > 0;
   const hasBracket = !!tournament.bracket?.length;
 
   return (
@@ -184,10 +190,10 @@ function TournamentView({ tournament }) {
         ))}
 
       {tab === 'Standings' &&
-        (tabLoading ? (
+        (tabLoading || (isPreview && liveLoading) ? (
           <TournamentTabSkeleton type="standings" />
         ) : hasStandings ? (
-          <StandingsTable standings={tournament.standings} />
+          <StandingsTable standings={standings} />
         ) : (
           <EmptyState
             title="No group stage"

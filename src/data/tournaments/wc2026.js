@@ -8,7 +8,7 @@
  * set, append their matches and add a `bracket` array (see wc2022 shape).
  */
 
-const GROUPS = {
+export const GROUPS = {
   A: [["Mexico", "MEX"], ["Czechia", "CZE"], ["South Africa", "RSA"], ["South Korea", "KOR"]],
   B: [["Canada", "CAN"], ["Bosnia and Herzegovina", "BIH"], ["Qatar", "QAT"], ["Switzerland", "SUI"]],
   C: [["Brazil", "BRA"], ["Haiti", "HAI"], ["Morocco", "MAR"], ["Scotland", "SCO"]],
@@ -104,7 +104,7 @@ const matches = [
 ];
 
 /** Derive group tables from played matches (3pts/win; points → GD → GF). */
-function computeStandings(groups, allMatches) {
+export function computeStandings(groups, allMatches) {
   const standings = {};
   for (const [group, teams] of Object.entries(groups)) {
     const rows = teams.map(([team, code]) => ({
