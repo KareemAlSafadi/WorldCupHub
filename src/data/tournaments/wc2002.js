@@ -68,15 +68,63 @@ const knockout = [
   { id: "2002-final", stage: "Final", date: "2002-06-30", homeTeam: "Brazil", awayTeam: "Germany", homeCode: "BRA", awayCode: "GER", homeScore: 2, awayScore: 0 },
 ];
 
-const groupHighlights = [
-  { id: "2002-g-a-1", stage: "Group", group: "A", date: "2002-05-31", homeTeam: "France", awayTeam: "Senegal", homeCode: "FRA", awayCode: "SEN", homeScore: 0, awayScore: 1 },
-  { id: "2002-g-b-1", stage: "Group", group: "B", date: "2002-06-02", homeTeam: "Paraguay", awayTeam: "South Africa", homeCode: "PAR", awayCode: "RSA", homeScore: 2, awayScore: 2 },
-  { id: "2002-g-c-1", stage: "Group", group: "C", date: "2002-06-03", homeTeam: "Brazil", awayTeam: "Turkey", homeCode: "BRA", awayCode: "TUR", homeScore: 2, awayScore: 1 },
-  { id: "2002-g-d-1", stage: "Group", group: "D", date: "2002-06-04", homeTeam: "South Korea", awayTeam: "Poland", homeCode: "KOR", awayCode: "POL", homeScore: 2, awayScore: 0 },
-  { id: "2002-g-e-1", stage: "Group", group: "E", date: "2002-06-05", homeTeam: "Germany", awayTeam: "Saudi Arabia", homeCode: "GER", awayCode: "KSA", homeScore: 8, awayScore: 0 },
-  { id: "2002-g-f-1", stage: "Group", group: "F", date: "2002-06-07", homeTeam: "Argentina", awayTeam: "England", homeCode: "ARG", awayCode: "ENG", homeScore: 0, awayScore: 1 },
-  { id: "2002-g-g-1", stage: "Group", group: "G", date: "2002-06-08", homeTeam: "Italy", awayTeam: "Ecuador", homeCode: "ITA", awayCode: "ECU", homeScore: 2, awayScore: 0 },
-  { id: "2002-g-h-1", stage: "Group", group: "H", date: "2002-06-09", homeTeam: "Japan", awayTeam: "Belgium", homeCode: "JPN", awayCode: "BEL", homeScore: 2, awayScore: 2 },
+const groupMatches = [
+  // Group A
+  { id: "2002-g-a-1", stage: "Group", group: "A", date: "2002-05-31", venue: "Seoul", homeTeam: "France", awayTeam: "Senegal", homeCode: "FRA", awayCode: "SEN", homeScore: 0, awayScore: 1 },
+  { id: "2002-g-a-2", stage: "Group", group: "A", date: "2002-06-01", venue: "Ulsan", homeTeam: "Denmark", awayTeam: "Uruguay", homeCode: "DEN", awayCode: "URU", homeScore: 2, awayScore: 1 },
+  { id: "2002-g-a-3", stage: "Group", group: "A", date: "2002-06-06", venue: "Incheon", homeTeam: "Denmark", awayTeam: "Senegal", homeCode: "DEN", awayCode: "SEN", homeScore: 1, awayScore: 1 },
+  { id: "2002-g-a-4", stage: "Group", group: "A", date: "2002-06-06", venue: "Busan", homeTeam: "France", awayTeam: "Uruguay", homeCode: "FRA", awayCode: "URU", homeScore: 0, awayScore: 0 },
+  { id: "2002-g-a-5", stage: "Group", group: "A", date: "2002-06-11", venue: "Daejeon", homeTeam: "Denmark", awayTeam: "France", homeCode: "DEN", awayCode: "FRA", homeScore: 2, awayScore: 0 },
+  { id: "2002-g-a-6", stage: "Group", group: "A", date: "2002-06-11", venue: "Suwon", homeTeam: "Senegal", awayTeam: "Uruguay", homeCode: "SEN", awayCode: "URU", homeScore: 3, awayScore: 3 },
+  // Group B
+  { id: "2002-g-b-1", stage: "Group", group: "B", date: "2002-06-02", venue: "Busan", homeTeam: "Paraguay", awayTeam: "South Africa", homeCode: "PAR", awayCode: "RSA", homeScore: 2, awayScore: 2 },
+  { id: "2002-g-b-2", stage: "Group", group: "B", date: "2002-06-02", venue: "Gwangju", homeTeam: "Spain", awayTeam: "Slovenia", homeCode: "ESP", awayCode: "SVN", homeScore: 3, awayScore: 1 },
+  { id: "2002-g-b-3", stage: "Group", group: "B", date: "2002-06-07", venue: "Jeonju", homeTeam: "Spain", awayTeam: "Paraguay", homeCode: "ESP", awayCode: "PAR", homeScore: 3, awayScore: 1 },
+  { id: "2002-g-b-4", stage: "Group", group: "B", date: "2002-06-08", venue: "Daegu", homeTeam: "South Africa", awayTeam: "Slovenia", homeCode: "RSA", awayCode: "SVN", homeScore: 1, awayScore: 0 },
+  { id: "2002-g-b-5", stage: "Group", group: "B", date: "2002-06-12", venue: "Seogwipo", homeTeam: "Spain", awayTeam: "South Africa", homeCode: "ESP", awayCode: "RSA", homeScore: 3, awayScore: 2 },
+  { id: "2002-g-b-6", stage: "Group", group: "B", date: "2002-06-12", venue: "Jeonju", homeTeam: "Paraguay", awayTeam: "Slovenia", homeCode: "PAR", awayCode: "SVN", homeScore: 3, awayScore: 1 },
+  // Group C
+  { id: "2002-g-c-1", stage: "Group", group: "C", date: "2002-06-03", venue: "Ulsan", homeTeam: "Brazil", awayTeam: "Turkey", homeCode: "BRA", awayCode: "TUR", homeScore: 2, awayScore: 1 },
+  { id: "2002-g-c-2", stage: "Group", group: "C", date: "2002-06-04", venue: "Gwangju", homeTeam: "China", awayTeam: "Costa Rica", homeCode: "CHN", awayCode: "CRC", homeScore: 0, awayScore: 2 },
+  { id: "2002-g-c-3", stage: "Group", group: "C", date: "2002-06-08", venue: "Seogwipo", homeTeam: "Brazil", awayTeam: "China", homeCode: "BRA", awayCode: "CHN", homeScore: 4, awayScore: 0 },
+  { id: "2002-g-c-4", stage: "Group", group: "C", date: "2002-06-09", venue: "Incheon", homeTeam: "Costa Rica", awayTeam: "Turkey", homeCode: "CRC", awayCode: "TUR", homeScore: 1, awayScore: 1 },
+  { id: "2002-g-c-5", stage: "Group", group: "C", date: "2002-06-13", venue: "Suwon", homeTeam: "Brazil", awayTeam: "Costa Rica", homeCode: "BRA", awayCode: "CRC", homeScore: 5, awayScore: 2 },
+  { id: "2002-g-c-6", stage: "Group", group: "C", date: "2002-06-13", venue: "Daegu", homeTeam: "Turkey", awayTeam: "China", homeCode: "TUR", awayCode: "CHN", homeScore: 3, awayScore: 0 },
+  // Group D
+  { id: "2002-g-d-1", stage: "Group", group: "D", date: "2002-06-04", venue: "Busan", homeTeam: "South Korea", awayTeam: "Poland", homeCode: "KOR", awayCode: "POL", homeScore: 2, awayScore: 0 },
+  { id: "2002-g-d-2", stage: "Group", group: "D", date: "2002-06-05", venue: "Seogwipo", homeTeam: "United States", awayTeam: "Portugal", homeCode: "USA", awayCode: "POR", homeScore: 3, awayScore: 2 },
+  { id: "2002-g-d-3", stage: "Group", group: "D", date: "2002-06-10", venue: "Daejeon", homeTeam: "South Korea", awayTeam: "United States", homeCode: "KOR", awayCode: "USA", homeScore: 1, awayScore: 1 },
+  { id: "2002-g-d-4", stage: "Group", group: "D", date: "2002-06-10", venue: "Jeonju", homeTeam: "Portugal", awayTeam: "Poland", homeCode: "POR", awayCode: "POL", homeScore: 4, awayScore: 0 },
+  { id: "2002-g-d-5", stage: "Group", group: "D", date: "2002-06-14", venue: "Incheon", homeTeam: "South Korea", awayTeam: "Portugal", homeCode: "KOR", awayCode: "POR", homeScore: 1, awayScore: 0 },
+  { id: "2002-g-d-6", stage: "Group", group: "D", date: "2002-06-14", venue: "Daegu", homeTeam: "Poland", awayTeam: "United States", homeCode: "POL", awayCode: "USA", homeScore: 3, awayScore: 1 },
+  // Group E
+  { id: "2002-g-e-1", stage: "Group", group: "E", date: "2002-06-05", venue: "Sapporo", homeTeam: "Germany", awayTeam: "Saudi Arabia", homeCode: "GER", awayCode: "KSA", homeScore: 8, awayScore: 0 },
+  { id: "2002-g-e-2", stage: "Group", group: "E", date: "2002-06-01", venue: "Niigata", homeTeam: "Ireland", awayTeam: "Cameroon", homeCode: "IRL", awayCode: "CMR", homeScore: 1, awayScore: 1 },
+  { id: "2002-g-e-3", stage: "Group", group: "E", date: "2002-06-11", venue: "Ibaraki", homeTeam: "Germany", awayTeam: "Ireland", homeCode: "GER", awayCode: "IRL", homeScore: 1, awayScore: 1 },
+  { id: "2002-g-e-4", stage: "Group", group: "E", date: "2002-06-10", venue: "Sapporo", homeTeam: "Cameroon", awayTeam: "Saudi Arabia", homeCode: "CMR", awayCode: "KSA", homeScore: 1, awayScore: 0 },
+  { id: "2002-g-e-5", stage: "Group", group: "E", date: "2002-06-15", venue: "Shizuoka", homeTeam: "Germany", awayTeam: "Cameroon", homeCode: "GER", awayCode: "CMR", homeScore: 2, awayScore: 0 },
+  { id: "2002-g-e-6", stage: "Group", group: "E", date: "2002-06-15", venue: "Yokohama", homeTeam: "Ireland", awayTeam: "Saudi Arabia", homeCode: "IRL", awayCode: "KSA", homeScore: 3, awayScore: 0 },
+  // Group F
+  { id: "2002-g-f-1", stage: "Group", group: "F", date: "2002-06-07", venue: "Sapporo", homeTeam: "Argentina", awayTeam: "England", homeCode: "ARG", awayCode: "ENG", homeScore: 0, awayScore: 1 },
+  { id: "2002-g-f-2", stage: "Group", group: "F", date: "2002-06-02", venue: "Osaka", homeTeam: "Nigeria", awayTeam: "Sweden", homeCode: "NGA", awayCode: "SWE", homeScore: 1, awayScore: 2 },
+  { id: "2002-g-f-3", stage: "Group", group: "F", date: "2002-06-12", venue: "Miyagi", homeTeam: "Argentina", awayTeam: "Nigeria", homeCode: "ARG", awayCode: "NGA", homeScore: 1, awayScore: 0 },
+  { id: "2002-g-f-4", stage: "Group", group: "F", date: "2002-06-07", venue: "Nara", homeTeam: "Sweden", awayTeam: "England", homeCode: "SWE", awayCode: "ENG", homeScore: 1, awayScore: 1 },
+  { id: "2002-g-f-5", stage: "Group", group: "F", date: "2002-06-12", venue: "Osaka", homeTeam: "Sweden", awayTeam: "Argentina", homeCode: "SWE", awayCode: "ARG", homeScore: 1, awayScore: 1 },
+  { id: "2002-g-f-6", stage: "Group", group: "F", date: "2002-06-12", venue: "Osaka", homeTeam: "England", awayTeam: "Nigeria", homeCode: "ENG", awayCode: "NGA", homeScore: 0, awayScore: 0 },
+  // Group G
+  { id: "2002-g-g-1", stage: "Group", group: "G", date: "2002-06-03", venue: "Niigata", homeTeam: "Mexico", awayTeam: "Croatia", homeCode: "MEX", awayCode: "CRO", homeScore: 1, awayScore: 0 },
+  { id: "2002-g-g-2", stage: "Group", group: "G", date: "2002-06-08", venue: "Osaka", homeTeam: "Italy", awayTeam: "Ecuador", homeCode: "ITA", awayCode: "ECU", homeScore: 2, awayScore: 0 },
+  { id: "2002-g-g-3", stage: "Group", group: "G", date: "2002-06-08", venue: "Miyagi", homeTeam: "Mexico", awayTeam: "Ecuador", homeCode: "MEX", awayCode: "ECU", homeScore: 2, awayScore: 1 },
+  { id: "2002-g-g-4", stage: "Group", group: "G", date: "2002-06-08", venue: "Ibaraki", homeTeam: "Italy", awayTeam: "Croatia", homeCode: "ITA", awayCode: "CRO", homeScore: 1, awayScore: 2 },
+  { id: "2002-g-g-5", stage: "Group", group: "G", date: "2002-06-13", venue: "Oita", homeTeam: "Italy", awayTeam: "Mexico", homeCode: "ITA", awayCode: "MEX", homeScore: 1, awayScore: 1 },
+  { id: "2002-g-g-6", stage: "Group", group: "G", date: "2002-06-13", venue: "Yokohama", homeTeam: "Croatia", awayTeam: "Ecuador", homeCode: "CRO", awayCode: "ECU", homeScore: 0, awayScore: 1 },
+  // Group H
+  { id: "2002-g-h-1", stage: "Group", group: "H", date: "2002-06-04", venue: "Saitama", homeTeam: "Japan", awayTeam: "Belgium", homeCode: "JPN", awayCode: "BEL", homeScore: 2, awayScore: 2 },
+  { id: "2002-g-h-2", stage: "Group", group: "H", date: "2002-06-05", venue: "Kobe", homeTeam: "Russia", awayTeam: "Tunisia", homeCode: "RUS", awayCode: "TUN", homeScore: 2, awayScore: 0 },
+  { id: "2002-g-h-3", stage: "Group", group: "H", date: "2002-06-09", venue: "Yokohama", homeTeam: "Japan", awayTeam: "Russia", homeCode: "JPN", awayCode: "RUS", homeScore: 1, awayScore: 0 },
+  { id: "2002-g-h-4", stage: "Group", group: "H", date: "2002-06-10", venue: "Oita", homeTeam: "Tunisia", awayTeam: "Belgium", homeCode: "TUN", awayCode: "BEL", homeScore: 1, awayScore: 1 },
+  { id: "2002-g-h-5", stage: "Group", group: "H", date: "2002-06-14", venue: "Miyagi", homeTeam: "Japan", awayTeam: "Tunisia", homeCode: "JPN", awayCode: "TUN", homeScore: 2, awayScore: 0 },
+  { id: "2002-g-h-6", stage: "Group", group: "H", date: "2002-06-14", venue: "Shizuoka", homeTeam: "Belgium", awayTeam: "Russia", homeCode: "BEL", awayCode: "RUS", homeScore: 3, awayScore: 2 },
 ];
 
 export const wc2002 = {
@@ -95,7 +143,7 @@ export const wc2002 = {
   fact: "Ronaldo scored twice in the final as Brazil won a record fifth title. Co-host South Korea reached the semi-finals.",
   detailLevel: "full",
   standings,
-  matches: [...groupHighlights, ...knockout],
+  matches: [...groupMatches, ...knockout],
   bracket: [
     { round: "Round of 16", matches: knockout.slice(0, 8).map((m) => m.id) },
     { round: "Quarter-final", matches: knockout.slice(8, 12).map((m) => m.id) },
