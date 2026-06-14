@@ -25,12 +25,12 @@ const GROUPS = {
 
 const matches = [
   // ── Matchday 1 ──
-  { id: "2026-g-a-1", stage: "Group", group: "A", date: "2026-06-11", venue: "Mexico City", homeTeam: "Mexico", awayTeam: "South Africa", homeCode: "MEX", awayCode: "RSA", homeScore: null, awayScore: null },
-  { id: "2026-g-a-2", stage: "Group", group: "A", date: "2026-06-11", venue: "Guadalajara", homeTeam: "South Korea", awayTeam: "Czechia", homeCode: "KOR", awayCode: "CZE", homeScore: null, awayScore: null },
-  { id: "2026-g-b-1", stage: "Group", group: "B", date: "2026-06-12", venue: "Toronto", homeTeam: "Canada", awayTeam: "Bosnia and Herzegovina", homeCode: "CAN", awayCode: "BIH", homeScore: null, awayScore: null },
-  { id: "2026-g-d-1", stage: "Group", group: "D", date: "2026-06-12", venue: "Los Angeles", homeTeam: "United States", awayTeam: "Paraguay", homeCode: "USA", awayCode: "PAR", homeScore: null, awayScore: null },
-  { id: "2026-g-b-2", stage: "Group", group: "B", date: "2026-06-13", venue: "San Francisco Bay", homeTeam: "Qatar", awayTeam: "Switzerland", homeCode: "QAT", awayCode: "SUI", homeScore: null, awayScore: null },
-  { id: "2026-g-c-1", stage: "Group", group: "C", date: "2026-06-13", venue: "New York/New Jersey", homeTeam: "Brazil", awayTeam: "Morocco", homeCode: "BRA", awayCode: "MAR", homeScore: null, awayScore: null },
+  { id: "2026-g-a-1", stage: "Group", group: "A", date: "2026-06-11", venue: "Mexico City", homeTeam: "Mexico", awayTeam: "South Africa", homeCode: "MEX", awayCode: "RSA", homeScore: 2, awayScore: 0 },
+  { id: "2026-g-a-2", stage: "Group", group: "A", date: "2026-06-11", venue: "Guadalajara", homeTeam: "South Korea", awayTeam: "Czechia", homeCode: "KOR", awayCode: "CZE", homeScore: 2, awayScore: 1 },
+  { id: "2026-g-b-1", stage: "Group", group: "B", date: "2026-06-12", venue: "Toronto", homeTeam: "Canada", awayTeam: "Bosnia and Herzegovina", homeCode: "CAN", awayCode: "BIH", homeScore: 1, awayScore: 1 },
+  { id: "2026-g-d-1", stage: "Group", group: "D", date: "2026-06-12", venue: "Los Angeles", homeTeam: "United States", awayTeam: "Paraguay", homeCode: "USA", awayCode: "PAR", homeScore: 4, awayScore: 1 },
+  { id: "2026-g-b-2", stage: "Group", group: "B", date: "2026-06-13", venue: "San Francisco Bay", homeTeam: "Qatar", awayTeam: "Switzerland", homeCode: "QAT", awayCode: "SUI", homeScore: 1, awayScore: 1 },
+  { id: "2026-g-c-1", stage: "Group", group: "C", date: "2026-06-13", venue: "New York/New Jersey", homeTeam: "Brazil", awayTeam: "Morocco", homeCode: "BRA", awayCode: "MAR", homeScore: 1, awayScore: 1 },
   { id: "2026-g-c-2", stage: "Group", group: "C", date: "2026-06-13", venue: "Boston", homeTeam: "Haiti", awayTeam: "Scotland", homeCode: "HAI", awayCode: "SCO", homeScore: null, awayScore: null },
   { id: "2026-g-d-2", stage: "Group", group: "D", date: "2026-06-13", venue: "Vancouver", homeTeam: "Australia", awayTeam: "Türkiye", homeCode: "AUS", awayCode: "TUR", homeScore: null, awayScore: null },
   { id: "2026-g-e-1", stage: "Group", group: "E", date: "2026-06-14", venue: "Houston", homeTeam: "Germany", awayTeam: "Curaçao", homeCode: "GER", awayCode: "CUW", homeScore: null, awayScore: null },
