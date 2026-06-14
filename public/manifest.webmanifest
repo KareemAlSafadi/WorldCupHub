@@ -1,0 +1,25 @@
+{
+  "name": "World Cup Hub",
+  "short_name": "WC Hub",
+  "description": "FIFA World Cup history — every edition from 1930 to 2026, with live 2026 scores.",
+  "start_url": "/WorldCupHub/",
+  "scope": "/WorldCupHub/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#0B0F14",
+  "background_color": "#0B0F14",
+  "icons": [
+    {
+      "src": "/WorldCupHub/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/WorldCupHub/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

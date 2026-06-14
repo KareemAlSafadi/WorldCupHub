@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0B0F14"/>
+  <!-- Pitch green ambient glow -->
+  <radialGradient id="glow1" cx="15%" cy="50%" r="55%">
+    <stop offset="0%" stop-color="#1FA463" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#1FA463" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <!-- Right ambient -->
+  <radialGradient id="glow2" cx="85%" cy="20%" r="40%">
+    <stop offset="0%" stop-color="#1FA463" stop-opacity="0.06"/>
+    <stop offset="100%" stop-color="#1FA463" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <!-- Large faint year watermark -->
+  <text x="940" y="560" font-family="system-ui, sans-serif" font-weight="900" font-size="340" fill="#1FA463" opacity="0.04" text-anchor="middle" letter-spacing="-20">2026</text>
+
+  <!-- Eyebrow -->
+  <text x="72" y="130" font-family="system-ui, sans-serif" font-weight="600" font-size="22" fill="#1FA463" opacity="0.7" letter-spacing="6">FIFA WORLD CUP HISTORY</text>
+
+  <!-- Main headline -->
+  <text x="68" y="270" font-family="system-ui, sans-serif" font-weight="900" font-size="110" fill="#FFFFFF" letter-spacing="-5">World Cup</text>
+  <text x="68" y="395" font-family="system-ui, sans-serif" font-weight="900" font-size="110" fill="#1FA463" letter-spacing="-5">Hub.</text>
+
+  <!-- Description -->
+  <text x="68" y="470" font-family="system-ui, sans-serif" font-weight="400" font-size="28" fill="#FFFFFF" opacity="0.45">Every edition from Uruguay 1930 to USA/Canada/Mexico 2026.</text>
+  <text x="68" y="508" font-family="system-ui, sans-serif" font-weight="400" font-size="28" fill="#FFFFFF" opacity="0.45">Live scores · History · Records · Head-to-head.</text>
+
+  <!-- URL -->
+  <text x="68" y="580" font-family="system-ui, monospace" font-weight="500" font-size="20" fill="#1FA463" opacity="0.5">kareemalsafadi.github.io/WorldCupHub</text>
+
+  <!-- Decorative line -->
+  <line x1="68" y1="155" x2="420" y2="155" stroke="#1FA463" stroke-width="2" opacity="0.25"/>
+</svg>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import FlagBadge from '../components/FlagBadge';
 import usePageTitle from '../lib/usePageTitle';
-import { getAllTimeScorers, getAllTournaments, getTeamSlugByName } from '../lib/data';
+import { getAllTimeScorers, getAllTournaments, getBiggestWins, getGoldenBootByYear, getTeamSlugByName } from '../lib/data';
 
 const DISPLAY = '"Cabinet Grotesk", system-ui, sans-serif';
 
@@ -22,7 +22,8 @@ export default function Records() {
     (a, b) => b.years.length - a.years.length || a.team.localeCompare(b.team)
   );
 
-  const scorers = tournaments.filter((t) => t.topScorer);
+  const goldenBoots = getGoldenBootByYear();
+  const biggestWins = getBiggestWins(10);
   const topChampion = titleBoard[0];
 
   return (
@@ -146,20 +147,37 @@ export default function Records() {
             className="mb-5 mt-12 font-black text-white/60"
             style={{ fontFamily: DISPLAY, fontSize: '0.95rem', letterSpacing: '-0.01em' }}
           >
-            Golden boot ledger
+            Golden boot by edition
           </h2>
           <div className="divide-y divide-white/[0.055] overflow-hidden rounded-2xl ring-1 ring-white/8">
-            {scorers.map((t) => (
-              <div key={t.year} className="flex items-center gap-4 bg-surface-raised/40 px-5 py-3">
-                <span
-                  className="font-black text-white shrink-0"
-                  style={{ fontFamily: DISPLAY, fontSize: '1.05rem', letterSpacing: '-0.03em' }}
-                >
-                  {t.year}
-                </span>
-                <span className="flex-1 text-sm text-white/55">{t.topScorer}</span>
-              </div>
-            ))}
+            {goldenBoots.map((t) => {
+              // Parse "Name (N goals)" string
+              const match = t.topScorer.match(/^(.+?)\s*\((\d+)\s*goals?\)$/i);
+              const playerName = match ? match[1].trim() : t.topScorer;
+              const goals = match ? match[2] : null;
+              return (
+                <div key={t.year} className="flex items-center gap-4 bg-surface-raised/40 px-5 py-3">
+                  <span
+                    className="w-12 shrink-0 font-black text-white/40"
+                    style={{ fontFamily: DISPLAY, fontSize: '0.9rem', letterSpacing: '-0.02em' }}
+                  >
+                    {t.year}
+                  </span>
+                  <span className="flex-1 text-sm text-white/70">{playerName}</span>
+                  {goals && (
+                    <span className="flex shrink-0 items-baseline gap-1">
+                      <span
+                        className="font-black text-pitch"
+                        style={{ fontFamily: DISPLAY, fontSize: '1.25rem', letterSpacing: '-0.04em' }}
+                      >
+                        {goals}
+                      </span>
+                      <span className="text-[0.55rem] uppercase tracking-wider text-white/30">G</span>
+                    </span>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </section>
 
@@ -230,6 +248,60 @@ export default function Records() {
           </div>
         </section>
       </div>
+
+      {/* Biggest wins */}
+      {biggestWins.length > 0 && (
+        <section className="mt-16">
+          <h2
+            className="mb-2 font-black text-white"
+            style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.5rem, 2.5vw, 2.2rem)', letterSpacing: '-0.04em' }}
+          >
+            Biggest wins in history.
+          </h2>
+          <p className="mb-6 text-sm text-white/35">The most emphatic victories in World Cup history.</p>
+          <div className="divide-y divide-white/[0.055] overflow-hidden rounded-2xl ring-1 ring-white/8">
+            {biggestWins.map((w, idx) => (
+              <div
+                key={`${w.year}-${w.winner}-${w.loser}`}
+                className="grid grid-cols-[auto_1fr_auto_1fr_auto] items-center gap-3 bg-surface-raised/40 px-5 py-4 transition-premium hover:bg-white/3 sm:gap-5"
+              >
+                <span
+                  className="w-5 shrink-0 font-mono text-xs text-white/20"
+                >
+                  {idx + 1}
+                </span>
+                <div className="flex items-center justify-end gap-2 sm:gap-3">
+                  <span className="hidden truncate text-right text-sm font-semibold text-white sm:block">
+                    {w.winner}
+                  </span>
+                  <FlagBadge code={w.winnerCode} />
+                </div>
+                <div className="flex min-w-[5rem] flex-col items-center">
+                  <span
+                    className="font-black text-white"
+                    style={{ fontFamily: DISPLAY, fontSize: '1.25rem', letterSpacing: '-0.04em' }}
+                  >
+                    {w.winnerScore}–{w.loserScore}
+                  </span>
+                  <span className="mt-0.5 text-[0.6rem] text-white/30">{w.year} · {w.stage}</span>
+                </div>
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <FlagBadge code={w.loserCode} />
+                  <span className="hidden truncate text-sm font-medium text-white/50 sm:block">
+                    {w.loser}
+                  </span>
+                </div>
+                <span
+                  className="shrink-0 font-black text-white/20"
+                  style={{ fontFamily: DISPLAY, fontSize: '1rem', letterSpacing: '-0.03em' }}
+                >
+                  +{w.margin}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

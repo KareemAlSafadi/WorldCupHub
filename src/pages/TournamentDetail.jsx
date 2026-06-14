@@ -5,13 +5,14 @@ import EmptyState from '../components/EmptyState';
 import FixturesList from '../components/FixturesList';
 import FlagBadge from '../components/FlagBadge';
 import KnockoutBracket from '../components/KnockoutBracket';
+import QualificationPanel from '../components/QualificationPanel';
 import { TournamentTabSkeleton } from '../components/Skeleton';
 import StandingsTable from '../components/StandingsTable';
 import usePageTitle from '../lib/usePageTitle';
 import { getTournamentByYear } from '../lib/data';
-import { useLive2026 } from '../lib/liveScores';
+import { useLive2026, useLiveScorers } from '../lib/liveScores';
 
-const TABS = ['Overview', 'Fixtures', 'Standings', 'Bracket'];
+const BASE_TABS = ['Overview', 'Fixtures', 'Standings', 'Bracket'];
 const DISPLAY = '"Cabinet Grotesk", system-ui, sans-serif';
 
 export default function TournamentDetail() {
@@ -44,7 +45,7 @@ function TournamentView({ tournament }) {
 
   const isPreview = tournament.detailLevel === 'preview';
   const { liveMatches, liveStandings, loading: liveLoading } = useLive2026(tournament);
-  // liveLoading is only true for the 2026 preview while the API fetch is in flight
+  const { scorers, loading: scorerLoading } = useLiveScorers();
 
   const matches = (isPreview && liveMatches) ? liveMatches : (tournament.matches || []);
   const standings = (isPreview && liveStandings) ? liveStandings : tournament.standings;
@@ -52,6 +53,10 @@ function TournamentView({ tournament }) {
   const hasMatches = matches.length > 0;
   const hasStandings = !!standings && Object.keys(standings).length > 0;
   const hasBracket = !!tournament.bracket?.length;
+
+  // Show Golden Boot tab on 2026 while loading or when scorers are available
+  const showGoldenBoot = isPreview && (scorerLoading || scorers.length > 0);
+  const TABS = showGoldenBoot ? [...BASE_TABS, 'Golden Boot'] : BASE_TABS;
 
   return (
     <div className="animate-fade-up">
@@ -207,16 +212,114 @@ function TournamentView({ tournament }) {
         ) : hasBracket ? (
           <KnockoutBracket bracket={tournament.bracket} matches={matches} />
         ) : isPreview ? (
-          <EmptyState
-            title="Bracket not yet formed"
-            description="The knockout bracket locks in after the group stage concludes. Check back when the round of 32 is set."
-          />
+          <div>
+            <div className="mb-8">
+              <p className="mb-1 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-pitch/70">
+                Road to the Round of 32
+              </p>
+              <h2
+                className="font-black text-white"
+                style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.3rem, 2vw, 1.7rem)', letterSpacing: '-0.03em' }}
+              >
+                Qualification Standings
+              </h2>
+              <p className="mt-2 text-sm text-white/40">
+                Top 2 from each group qualify automatically. The 8 best third-placed teams also advance to the Round of 32.
+              </p>
+            </div>
+            <QualificationPanel standings={standings} />
+          </div>
         ) : (
           <EmptyState
             title="Bracket unavailable"
             description="This edition had no knockout bracket — it was decided by a final group stage."
           />
         ))}
+
+      {tab === 'Golden Boot' && (
+        scorerLoading ? (
+          <TournamentTabSkeleton type="standings" />
+        ) : (
+          <GoldenBootLeaderboard scorers={scorers} />
+        )
+      )}
+    </div>
+  );
+}
+
+function GoldenBootLeaderboard({ scorers }) {
+  if (!scorers.length) return (
+    <EmptyState
+      title="Scorer data unavailable"
+      description="The Golden Boot leaderboard will appear once scoring data is available from the API."
+    />
+  );
+
+  const max = scorers[0]?.goals || 1;
+
+  return (
+    <div className="space-y-3">
+      <div className="mb-6 flex items-end justify-between">
+        <div>
+          <p className="mb-1 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-pitch/70">Live · 2026</p>
+          <h2
+            className="font-black text-white"
+            style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.3rem, 2vw, 1.7rem)', letterSpacing: '-0.03em' }}
+          >
+            Golden Boot Race
+          </h2>
+        </div>
+        <span className="font-mono text-[0.6rem] text-white/25 animate-pulse-soft">Updates every 60s</span>
+      </div>
+
+      <div className="overflow-hidden rounded-2xl ring-1 ring-white/8">
+        {scorers.map((s, idx) => (
+          <div
+            key={`${s.name}-${s.teamCode}`}
+            className="relative flex items-center gap-4 border-b border-white/[0.05] bg-surface-raised/40 px-5 py-4 last:border-0 transition-premium hover:bg-white/3"
+          >
+            {/* Goal bar behind row */}
+            <div
+              className="pointer-events-none absolute inset-y-0 left-0 bg-pitch/[0.06] transition-all duration-700"
+              style={{ width: `${(s.goals / max) * 100}%` }}
+            />
+            <span
+              className="relative w-6 shrink-0 font-mono text-sm text-white/25"
+            >
+              {idx + 1}
+            </span>
+            <FlagBadge code={s.teamCode} />
+            <div className="relative flex-1 min-w-0">
+              <p
+                className="truncate font-black text-white"
+                style={{ fontFamily: DISPLAY, fontSize: '1rem', letterSpacing: '-0.02em' }}
+              >
+                {s.name}
+              </p>
+              <p className="text-xs text-white/35">{s.teamName}</p>
+            </div>
+            <div className="relative flex items-baseline gap-3 shrink-0">
+              <div className="text-right">
+                <span
+                  className="font-black text-white"
+                  style={{ fontFamily: DISPLAY, fontSize: '1.6rem', letterSpacing: '-0.04em', lineHeight: 1 }}
+                >
+                  {s.goals}
+                </span>
+                <span className="ml-1 text-[0.6rem] font-semibold uppercase tracking-wider text-white/30">
+                  goals
+                </span>
+              </div>
+              {s.assists > 0 && (
+                <div className="text-right text-white/40">
+                  <span className="text-sm font-semibold">{s.assists}</span>
+                  <span className="ml-1 text-[0.55rem] uppercase tracking-wider">ast</span>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

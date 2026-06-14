@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import FlagBadge from './FlagBadge';
 
 const STAGE_ORDER = [
@@ -46,42 +47,93 @@ function ScoreDisplay({ match }) {
 }
 
 function MatchRow({ match, showDate }) {
+  const [expanded, setExpanded] = useState(false);
   const isLive = !!match.liveNow;
+  const hasDetail = match.venue || match.extra || match.pens || match.date;
+
   return (
-    <div
-      className={`grid grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 py-4 transition-premium hover:bg-white/3 md:px-6 ${
-        isLive ? 'bg-pitch/8' : 'bg-surface-raised/40'
-      }`}
-    >
-      <div className="flex items-center justify-end gap-3">
-        <span className="hidden text-right text-sm font-medium text-white sm:block">
-          {match.homeTeam}
-        </span>
-        <FlagBadge code={match.homeCode} />
-      </div>
-
-      <div className="flex min-w-[100px] flex-col items-center gap-1">
-        {isLive && (
-          <span className="mb-0.5 flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-red-400">
-            <span className="h-1 w-1 rounded-full bg-red-400 animate-pulse-soft" />
-            Live
+    <div className={isLive ? 'bg-pitch/8' : 'bg-surface-raised/40'}>
+      <button
+        type="button"
+        aria-expanded={expanded}
+        onClick={() => hasDetail && setExpanded((e) => !e)}
+        className={`grid w-full grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 py-4 text-left transition-premium md:px-6 ${
+          hasDetail ? 'cursor-pointer hover:bg-white/3' : 'cursor-default'
+        }`}
+      >
+        <div className="flex items-center justify-end gap-3">
+          <span className="hidden text-right text-sm font-medium text-white sm:block">
+            {match.homeTeam}
           </span>
-        )}
-        <ScoreDisplay match={match} />
-        <span className="text-[10px] text-white/40">
-          {showDate ? formatDate(match.date) : (match.group ? `Grp ${match.group}` : '')}
-        </span>
-        {match.venue && (
-          <span className="text-[10px] text-white/30">{match.venue}</span>
-        )}
-      </div>
+          <FlagBadge code={match.homeCode} />
+        </div>
 
-      <div className="flex items-center gap-3">
-        <FlagBadge code={match.awayCode} />
-        <span className="hidden text-sm font-medium text-white sm:block">
-          {match.awayTeam}
-        </span>
-      </div>
+        <div className="flex min-w-[100px] flex-col items-center gap-1">
+          {isLive && (
+            <span className="mb-0.5 flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-red-400">
+              <span className="h-1 w-1 rounded-full bg-red-400 animate-pulse-soft" />
+              Live
+            </span>
+          )}
+          <ScoreDisplay match={match} />
+          <span className="text-[10px] text-white/40">
+            {showDate ? formatDate(match.date) : (match.group ? `Grp ${match.group}` : '')}
+          </span>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <FlagBadge code={match.awayCode} />
+          <span className="hidden text-sm font-medium text-white sm:block">
+            {match.awayTeam}
+          </span>
+        </div>
+      </button>
+
+      {/* Expanded detail panel */}
+      {expanded && (
+        <div className="border-t border-white/[0.05] bg-black/20 px-5 py-3 md:px-6">
+          <dl className="flex flex-wrap gap-x-8 gap-y-1.5 text-xs">
+            {match.venue && (
+              <div className="flex gap-2">
+                <dt className="text-white/30">Venue</dt>
+                <dd className="font-medium text-white/65">{match.venue}</dd>
+              </div>
+            )}
+            {match.date && (
+              <div className="flex gap-2">
+                <dt className="text-white/30">Date</dt>
+                <dd className="font-medium text-white/65">{formatDate(match.date)}</dd>
+              </div>
+            )}
+            {match.stage && (
+              <div className="flex gap-2">
+                <dt className="text-white/30">Stage</dt>
+                <dd className="font-medium text-white/65">
+                  {match.stage}{match.group ? ` · Group ${match.group}` : ''}
+                </dd>
+              </div>
+            )}
+            {match.extra && (
+              <div className="flex gap-2">
+                <dt className="text-white/30">Extra time</dt>
+                <dd className="font-medium text-white/65">{match.extra}</dd>
+              </div>
+            )}
+            {match.pens && (
+              <div className="flex gap-2">
+                <dt className="text-white/30">Penalties</dt>
+                <dd className="font-medium text-pitch">{match.pens}</dd>
+              </div>
+            )}
+            {isLive && (
+              <div className="flex items-center gap-1 text-red-400">
+                <span className="h-1 w-1 rounded-full bg-red-400 animate-pulse-soft" />
+                <span className="font-semibold">In progress</span>
+              </div>
+            )}
+          </dl>
+        </div>
+      )}
     </div>
   );
 }

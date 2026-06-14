@@ -170,6 +170,42 @@ export function getAllTimeScorers() {
   return allTimeScorers;
 }
 
+/** Golden Boot winner for every completed edition (excludes in-progress tournaments). */
+export function getGoldenBootByYear() {
+  return tournaments
+    .filter((t) => t.topScorer && t.winner) // winner check excludes in-progress
+    .map((t) => ({ year: t.year, host: t.host, topScorer: t.topScorer }))
+    .sort((a, b) => b.year - a.year);
+}
+
+/** Returns the N largest-margin wins across all recorded matches. */
+export function getBiggestWins(limit = 8) {
+  const wins = [];
+  tournaments.forEach((t) => {
+    (t.matches || []).forEach((m) => {
+      if (m.homeScore == null || m.awayScore == null) return;
+      const margin = Math.abs(m.homeScore - m.awayScore);
+      if (margin < 3) return; // only substantial wins
+      const homeWin = m.homeScore > m.awayScore;
+      wins.push({
+        year: t.year,
+        stage: m.stage,
+        winner: homeWin ? m.homeTeam : m.awayTeam,
+        winnerCode: homeWin ? m.homeCode : m.awayCode,
+        loser: homeWin ? m.awayTeam : m.homeTeam,
+        loserCode: homeWin ? m.awayCode : m.homeCode,
+        winnerScore: homeWin ? m.homeScore : m.awayScore,
+        loserScore: homeWin ? m.awayScore : m.homeScore,
+        margin,
+        total: m.homeScore + m.awayScore,
+      });
+    });
+  });
+  return wins
+    .sort((a, b) => b.margin - a.margin || b.total - a.total)
+    .slice(0, limit);
+}
+
 /** All recorded matches between two teams (match lists are curated, not exhaustive). */
 export function getHeadToHead(slugA, slugB) {
   if (!slugA || !slugB || slugA === slugB) return [];

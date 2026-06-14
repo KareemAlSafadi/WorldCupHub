@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="#0B0F14"/>
+  <!-- Subtle pitch green glow -->
+  <radialGradient id="glow" cx="50%" cy="50%" r="60%">
+    <stop offset="0%" stop-color="#1FA463" stop-opacity="0.15"/>
+    <stop offset="100%" stop-color="#1FA463" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="512" height="512" rx="96" fill="url(#glow)"/>
+  <!-- Soccer ball (simplified geometric) -->
+  <!-- Main circle -->
+  <circle cx="256" cy="240" r="140" fill="none" stroke="#1FA463" stroke-width="14"/>
+  <!-- Pentagon patches -->
+  <polygon points="256,130 290,160 278,198 234,198 222,160" fill="#1FA463" opacity="0.9"/>
+  <polygon points="352,188 380,218 368,255 332,262 310,234" fill="#1FA463" opacity="0.7"/>
+  <polygon points="318,305 342,333 320,362 282,358 268,328" fill="#1FA463" opacity="0.7"/>
+  <polygon points="194,305 210,335 186,360 148,352 136,320" fill="#1FA463" opacity="0.7"/>
+  <polygon points="160,188 188,210 178,248 144,258 120,232" fill="#1FA463" opacity="0.7"/>
+  <!-- Hub text -->
+  <text x="256" y="432" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="900" font-size="72" fill="#1FA463" letter-spacing="-2">HUB</text>
+</svg>

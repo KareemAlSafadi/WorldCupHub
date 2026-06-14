@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { List, MagnifyingGlass, SoccerBall, X } from '@phosphor-icons/react';
 import SearchModal from './SearchModal';
+import { useLiveCount } from '../lib/liveScores';
 
 const links = [
   { to: '/', label: 'Home' },
@@ -14,6 +15,7 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const liveCount = useLiveCount();
 
   useEffect(() => {
     const handler = (e) => {
@@ -61,6 +63,16 @@ export default function Navbar() {
               </NavLink>
             ))}
           </div>
+
+          {liveCount > 0 && (
+            <Link
+              to="/tournaments/2026"
+              className="ml-1 flex items-center gap-1.5 rounded-full bg-red-500/10 px-3 py-2 text-[0.65rem] font-bold uppercase tracking-wider text-red-400 ring-1 ring-red-500/20 transition-premium hover:bg-red-500/15 active:scale-95"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-pulse-soft" />
+              {liveCount} Live
+            </Link>
+          )}
 
           <button
             type="button"
