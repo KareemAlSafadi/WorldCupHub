@@ -2,6 +2,7 @@ import tournamentsIndex from '../data/tournaments.json';
 import teamsData from '../data/teams.json';
 import allTimeScorers from '../data/allTimeScorers.json';
 import { fullTournaments } from '../data/tournamentDetails.js';
+import squadsData from '../data/squads.json';
 
 const NAME_TO_SLUG = {
   'West Germany': 'west-germany',
@@ -204,6 +205,113 @@ export function getBiggestWins(limit = 8) {
   return wins
     .sort((a, b) => b.margin - a.margin || b.total - a.total)
     .slice(0, limit);
+}
+
+/** All-time W/D/L/GF/GA record + biggest win & loss for a team slug. */
+export function getTeamMatchStats(slug) {
+  const team = getTeamBySlug(slug);
+  if (!team) return null;
+  const code = team.code;
+
+  let played = 0, wins = 0, draws = 0, losses = 0, goalsFor = 0, goalsAgainst = 0;
+  let biggestWin = null, biggestLoss = null;
+
+  tournaments.forEach((t) => {
+    (t.matches || []).forEach((m) => {
+      if (m.homeScore == null || m.awayScore == null) return;
+      const isHome = m.homeCode === code;
+      const isAway = m.awayCode === code;
+      if (!isHome && !isAway) return;
+
+      const gf = isHome ? m.homeScore : m.awayScore;
+      const ga = isHome ? m.awayScore : m.homeScore;
+      const oppCode = isHome ? m.awayCode : m.homeCode;
+      const oppName = isHome ? m.awayTeam : m.homeTeam;
+      const margin = gf - ga;
+
+      played++;
+      goalsFor += gf;
+      goalsAgainst += ga;
+      if (margin > 0) wins++;
+      else if (margin === 0) draws++;
+      else losses++;
+
+      if (margin > 0 && (!biggestWin || margin > biggestWin.margin || (margin === biggestWin.margin && gf > biggestWin.gf))) {
+        biggestWin = { year: t.year, stage: m.stage, gf, ga, margin, oppCode, oppName };
+      }
+      if (margin < 0 && (!biggestLoss || margin < biggestLoss.margin || (margin === biggestLoss.margin && ga > biggestLoss.ga))) {
+        biggestLoss = { year: t.year, stage: m.stage, gf, ga, margin, oppCode, oppName };
+      }
+    });
+  });
+
+  return {
+    played, wins, draws, losses,
+    goalsFor, goalsAgainst, gd: goalsFor - goalsAgainst,
+    winPct: played > 0 ? Math.round((wins / played) * 100) : 0,
+    biggestWin, biggestLoss,
+  };
+}
+
+/** Total goals per completed tournament edition, ascending by year. */
+export function getGoalsTimeline() {
+  return tournaments
+    .filter((t) => t.detailLevel !== 'preview' && (t.matches || []).length > 0)
+    .map((t) => {
+      const played = t.matches.filter((m) => m.homeScore != null && m.awayScore != null);
+      const totalGoals = played.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0);
+      return {
+        year: t.year,
+        host: t.host,
+        totalGoals,
+        matches: played.length,
+        avgPerGame: played.length > 0 ? +(totalGoals / played.length).toFixed(2) : 0,
+      };
+    })
+    .sort((a, b) => a.year - b.year);
+}
+
+/** Top 12 teams by penalty shootout appearances, with W/L record. */
+export function getPenaltyRecords() {
+  const records = {};
+
+  tournaments.forEach((t) => {
+    (t.matches || []).forEach((m) => {
+      if (!m.pens) return;
+      // pens format: "X-Y" where X is home pens, Y is away pens
+      const parts = m.pens.split('-').map(Number);
+      if (parts.length !== 2) return;
+      const [homePens, awayPens] = parts;
+      const homeWon = homePens > awayPens;
+
+      [m.homeCode, m.awayCode].forEach((code, idx) => {
+        if (!code) return;
+        if (!records[code]) {
+          records[code] = { code, name: idx === 0 ? m.homeTeam : m.awayTeam, won: 0, lost: 0 };
+        }
+        const won = idx === 0 ? homeWon : !homeWon;
+        if (won) records[code].won++;
+        else records[code].lost++;
+      });
+    });
+  });
+
+  return Object.values(records)
+    .sort((a, b) => (b.won + b.lost) - (a.won + a.lost) || b.won - a.won)
+    .slice(0, 12);
+}
+
+/** Players for a specific tournament edition and team code. Returns [] if no data. */
+export function getSquad(year, code) {
+  return squadsData[String(year)]?.[code] ?? [];
+}
+
+/** Years for which we have squad data for a given team code. */
+export function getTeamSquadYears(code) {
+  return Object.keys(squadsData)
+    .filter((year) => squadsData[year][code]?.length > 0)
+    .map(Number)
+    .sort((a, b) => b - a);
 }
 
 /** All recorded matches between two teams (match lists are curated, not exhaustive). */

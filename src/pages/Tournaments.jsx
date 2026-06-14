@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import FilterBar from '../components/FilterBar';
 import TournamentCard from '../components/TournamentCard';
 import usePageTitle from '../lib/usePageTitle';
+import useInView from '../lib/useInView';
 import { filterTournaments, getDecades } from '../lib/data';
 
 const DISPLAY = '"Cabinet Grotesk", system-ui, sans-serif';
@@ -61,12 +62,27 @@ export default function Tournaments() {
       {tournaments.length === 0 ? (
         <p className="py-16 text-center text-white/45">No tournaments match your search.</p>
       ) : (
-        <div className="stagger-children grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {tournaments.map((t) => (
-            <TournamentCard key={t.year} tournament={t} />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {tournaments.map((t, i) => (
+            <RevealCard key={t.year} index={i}>
+              <TournamentCard tournament={t} />
+            </RevealCard>
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+function RevealCard({ children, index }) {
+  const [ref, inView] = useInView();
+  return (
+    <div
+      ref={ref}
+      data-inview={inView ? 'true' : 'false'}
+      style={{ '--reveal-delay': `${Math.min(index * 55, 350)}ms` }}
+    >
+      {children}
     </div>
   );
 }

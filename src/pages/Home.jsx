@@ -3,6 +3,8 @@ import { ArrowUpRight, Globe, Medal, Trophy } from '@phosphor-icons/react';
 import FlagBadge from '../components/FlagBadge';
 import TournamentCard from '../components/TournamentCard';
 import usePageTitle from '../lib/usePageTitle';
+import useInView from '../lib/useInView';
+import useCountUp from '../lib/useCountUp';
 import { getAllTournaments, getStats } from '../lib/data';
 import { useTodayMatches } from '../lib/liveScores';
 
@@ -203,7 +205,7 @@ export default function Home() {
                   letterSpacing: '-0.05em',
                 }}
               >
-                {stats.editions}
+                <AnimatedStat value={stats.editions} />
               </div>
               <div className="mt-3 text-sm font-medium tracking-wide text-white/35">
                 Editions of the World Cup
@@ -225,7 +227,7 @@ export default function Home() {
                 letterSpacing: '-0.04em',
               }}
             >
-              {stats.mostTitlesCount}
+              <AnimatedStat value={stats.mostTitlesCount} />
             </div>
             <div className="mt-2 text-xs text-white/35">{stats.mostTitlesTeam} titles</div>
           </div>
@@ -406,4 +408,10 @@ function TodayMatchCard({ match }) {
       </div>
     </div>
   );
+}
+
+function AnimatedStat({ value }) {
+  const [ref, inView] = useInView({ threshold: 0.3 });
+  const display = useCountUp(value, { enabled: inView });
+  return <span ref={ref}>{display}</span>;
 }

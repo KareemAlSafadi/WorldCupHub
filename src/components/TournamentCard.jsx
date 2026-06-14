@@ -10,7 +10,7 @@ export default function TournamentCard({ tournament }) {
   return (
     <Link
       to={`/tournaments/${tournament.year}`}
-      className="group relative flex flex-col overflow-hidden rounded-2xl p-1.5 transition-premium active:scale-[0.99]"
+      className="group card-lift relative flex flex-col overflow-hidden rounded-2xl p-1.5 active:scale-[0.99]"
     >
       <div className="flex h-full flex-col rounded-[calc(1rem-0.375rem)] bg-surface-raised p-6 ring-1 ring-white/8 transition-premium group-hover:ring-pitch/30">
         <div className="mb-6 flex items-start justify-between">

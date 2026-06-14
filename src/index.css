@@ -86,11 +86,73 @@ body {
   animation: pulse-soft 1.6s ease-in-out infinite;
 }
 
+/* ── Scroll-reveal animations ── */
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-inview="false"] {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+[data-inview="true"] {
+  animation: slide-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+/* Card hover lift — applied to TournamentCard and TeamCard wrappers */
+.card-lift {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-lift:hover {
+  transform: translateY(-2px) scale(1.012);
+}
+
+/* Navbar link underline sweep */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--color-pitch);
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  width: 100%;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
   .stagger-children > *,
-  .animate-pulse-soft {
+  .animate-pulse-soft,
+  [data-inview="true"] {
     animation: none;
+  }
+
+  [data-inview="false"],
+  [data-inview="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .card-lift:hover {
+    transform: none;
   }
 
   html {

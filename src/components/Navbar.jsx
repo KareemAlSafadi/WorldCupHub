@@ -52,7 +52,7 @@ export default function Navbar() {
                 to={link.to}
                 end={link.to === '/'}
                 className={({ isActive }) =>
-                  `rounded-full px-4 py-2 text-sm font-medium transition-premium active:scale-95 ${
+                  `nav-link rounded-full px-4 py-2 text-sm font-medium transition-premium active:scale-95 ${
                     isActive
                       ? 'bg-pitch text-white'
                       : 'text-white/60 hover:bg-white/5 hover:text-white'

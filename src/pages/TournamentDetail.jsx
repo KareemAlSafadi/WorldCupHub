@@ -6,10 +6,11 @@ import FixturesList from '../components/FixturesList';
 import FlagBadge from '../components/FlagBadge';
 import KnockoutBracket from '../components/KnockoutBracket';
 import QualificationPanel from '../components/QualificationPanel';
+import SquadRoster from '../components/SquadRoster';
 import { TournamentTabSkeleton } from '../components/Skeleton';
 import StandingsTable from '../components/StandingsTable';
 import usePageTitle from '../lib/usePageTitle';
-import { getTournamentByYear } from '../lib/data';
+import { getTournamentByYear, getSquad } from '../lib/data';
 import { useLive2026, useLiveScorers } from '../lib/liveScores';
 
 const BASE_TABS = ['Overview', 'Fixtures', 'Standings', 'Bracket'];
@@ -56,7 +57,16 @@ function TournamentView({ tournament }) {
 
   // Show Golden Boot tab on 2026 while loading or when scorers are available
   const showGoldenBoot = isPreview && (scorerLoading || scorers.length > 0);
-  const TABS = showGoldenBoot ? [...BASE_TABS, 'Golden Boot'] : BASE_TABS;
+
+  // Collect unique team codes from matches to check squad availability
+  const teamCodes = [...new Set(matches.flatMap((m) => [m.homeCode, m.awayCode].filter(Boolean)))];
+  const hasSquads = teamCodes.some((code) => getSquad(tournament.year, code).length > 0);
+
+  const TABS = [
+    ...BASE_TABS,
+    ...(showGoldenBoot ? ['Golden Boot'] : []),
+    ...(hasSquads ? ['Squads'] : []),
+  ];
 
   return (
     <div className="animate-fade-up">
@@ -243,6 +253,10 @@ function TournamentView({ tournament }) {
           <GoldenBootLeaderboard scorers={scorers} />
         )
       )}
+
+      {tab === 'Squads' && (
+        <SquadsTab year={tournament.year} matches={matches} />
+      )}
     </div>
   );
 }
@@ -319,6 +333,88 @@ function GoldenBootLeaderboard({ scorers }) {
             </div>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function SquadsTab({ year, matches }) {
+  const [openCode, setOpenCode] = useState(null);
+
+  // Build unique teams list preserving order of first appearance
+  const seen = new Set();
+  const teams = [];
+  matches.forEach((m) => {
+    if (m.homeCode && !seen.has(m.homeCode)) {
+      seen.add(m.homeCode);
+      teams.push({ code: m.homeCode, name: m.homeTeam });
+    }
+    if (m.awayCode && !seen.has(m.awayCode)) {
+      seen.add(m.awayCode);
+      teams.push({ code: m.awayCode, name: m.awayTeam });
+    }
+  });
+
+  // Only show teams that have squad data
+  const teamsWithSquads = teams.filter((t) => getSquad(year, t.code).length > 0);
+
+  if (!teamsWithSquads.length) return (
+    <EmptyState title="No roster data" description="Squad data is not available for this edition." />
+  );
+
+  return (
+    <div>
+      <div className="mb-8">
+        <p className="mb-1 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-pitch/70">
+          {year} · World Cup
+        </p>
+        <h2
+          className="font-black text-white"
+          style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.3rem, 2vw, 1.7rem)', letterSpacing: '-0.03em' }}
+        >
+          Team Squads
+        </h2>
+        <p className="mt-2 text-sm text-white/40">
+          {teamsWithSquads.length} squad{teamsWithSquads.length !== 1 ? 's' : ''} available for this edition.
+        </p>
+      </div>
+
+      <div className="space-y-3">
+        {teamsWithSquads.map((team) => {
+          const isOpen = openCode === team.code;
+          const players = getSquad(year, team.code);
+          return (
+            <div key={team.code} className="overflow-hidden rounded-2xl ring-1 ring-white/8">
+              <button
+                type="button"
+                aria-expanded={isOpen}
+                onClick={() => setOpenCode(isOpen ? null : team.code)}
+                className="flex w-full items-center gap-4 bg-surface-raised/40 px-5 py-4 text-left transition-premium hover:bg-white/3"
+              >
+                <FlagBadge code={team.code} />
+                <span
+                  className="flex-1 font-black text-white"
+                  style={{ fontFamily: DISPLAY, fontSize: '1rem', letterSpacing: '-0.02em' }}
+                >
+                  {team.name}
+                </span>
+                <span className="text-xs text-white/30">{players.length} players</span>
+                <svg
+                  className={`h-4 w-4 shrink-0 text-white/30 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                  viewBox="0 0 16 16" fill="none"
+                >
+                  <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              {isOpen && (
+                <div className="border-t border-white/[0.05] bg-black/20 px-5 py-4">
+                  <SquadRoster players={players} />
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import FlagBadge from '../components/FlagBadge';
+import GoalsChart from '../components/GoalsChart';
 import usePageTitle from '../lib/usePageTitle';
-import { getAllTimeScorers, getAllTournaments, getBiggestWins, getGoldenBootByYear, getTeamSlugByName } from '../lib/data';
+import { getAllTimeScorers, getAllTournaments, getBiggestWins, getGoldenBootByYear, getGoalsTimeline, getPenaltyRecords, getTeamSlugByName } from '../lib/data';
 
 const DISPLAY = '"Cabinet Grotesk", system-ui, sans-serif';
 
@@ -24,6 +25,8 @@ export default function Records() {
 
   const goldenBoots = getGoldenBootByYear();
   const biggestWins = getBiggestWins(10);
+  const goalsTimeline = getGoalsTimeline();
+  const penaltyRecords = getPenaltyRecords();
   const topChampion = titleBoard[0];
 
   return (
@@ -251,7 +254,7 @@ export default function Records() {
 
       {/* Biggest wins */}
       {biggestWins.length > 0 && (
-        <section className="mt-16">
+        <section className="mt-16" id="biggest-wins">
           <h2
             className="mb-2 font-black text-white"
             style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.5rem, 2.5vw, 2.2rem)', letterSpacing: '-0.04em' }}
@@ -299,6 +302,93 @@ export default function Records() {
                 </span>
               </div>
             ))}
+          </div>
+        </section>
+      )}
+
+      {/* Goals per tournament */}
+      {goalsTimeline.length > 0 && (
+        <section className="mt-16">
+          <h2
+            className="mb-2 font-black text-white"
+            style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.5rem, 2.5vw, 2.2rem)', letterSpacing: '-0.04em' }}
+          >
+            Goals per tournament.
+          </h2>
+          <p className="mb-6 text-sm text-white/35">
+            Total goals scored in every World Cup from 1930 to 2022. Hover a bar to see the exact count.
+          </p>
+          <div className="overflow-hidden rounded-2xl bg-surface-raised/60 p-6 ring-1 ring-white/8">
+            <GoalsChart data={goalsTimeline} />
+            <div className="mt-4 flex items-center gap-6 border-t border-white/[0.05] pt-4 text-xs text-white/30">
+              <span>
+                Peak: <span className="text-pitch">{goalsTimeline.reduce((a, b) => b.totalGoals > a.totalGoals ? b : a).year}</span>
+                {' '}({goalsTimeline.reduce((a, b) => b.totalGoals > a.totalGoals ? b : a).totalGoals} goals)
+              </span>
+              <span>
+                Avg/game: <span className="text-white/50">
+                  {(goalsTimeline.reduce((s, d) => s + d.avgPerGame, 0) / goalsTimeline.length).toFixed(2)}
+                </span>
+              </span>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Penalty shootout records */}
+      {penaltyRecords.length > 0 && (
+        <section className="mt-16 mb-16">
+          <h2
+            className="mb-2 font-black text-white"
+            style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.5rem, 2.5vw, 2.2rem)', letterSpacing: '-0.04em' }}
+          >
+            Penalty shootout masters.
+          </h2>
+          <p className="mb-6 text-sm text-white/35">Teams with the most World Cup penalty shootout appearances, ranked by total played.</p>
+          <div className="divide-y divide-white/[0.055] overflow-hidden rounded-2xl ring-1 ring-white/8">
+            {penaltyRecords.map((r, idx) => {
+              const total = r.won + r.lost;
+              const winPct = total > 0 ? (r.won / total) * 100 : 0;
+              return (
+                <Link
+                  key={r.code}
+                  to={`/teams/${getTeamSlugByName(r.name)}`}
+                  className="grid grid-cols-[auto_auto_1fr_auto] items-center gap-4 bg-surface-raised/40 px-5 py-4 transition-premium hover:bg-white/3 sm:gap-5"
+                >
+                  <span
+                    className="w-5 font-mono text-xs text-white/20"
+                  >
+                    {idx + 1}
+                  </span>
+                  <FlagBadge code={r.code} />
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-semibold text-white">{r.name}</p>
+                    <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+                      <div
+                        className="h-full rounded-full bg-pitch transition-all duration-700"
+                        style={{ width: `${winPct}%` }}
+                      />
+                    </div>
+                  </div>
+                  <div className="shrink-0 text-right">
+                    <span
+                      className="font-black text-pitch"
+                      style={{ fontFamily: DISPLAY, fontSize: '1.1rem', letterSpacing: '-0.03em' }}
+                    >
+                      {r.won}
+                    </span>
+                    <span className="text-white/25 mx-1">–</span>
+                    <span
+                      className="font-black text-red-400/70"
+                      style={{ fontFamily: DISPLAY, fontSize: '1.1rem', letterSpacing: '-0.03em' }}
+                    >
+                      {r.lost}
+                    </span>
+                    <p className="text-[0.6rem] uppercase tracking-wider text-white/25">W–L</p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </section>
       )}

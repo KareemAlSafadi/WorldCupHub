@@ -8,7 +8,7 @@ export default function TeamCard({ team }) {
   return (
     <Link
       to={`/teams/${team.slug}`}
-      className="group flex items-center gap-4 rounded-2xl bg-surface-raised/60 px-5 py-4 ring-1 ring-white/8 transition-premium hover:bg-white/3 hover:ring-pitch/25 active:scale-[0.99]"
+      className="group card-lift flex items-center gap-4 rounded-2xl bg-surface-raised/60 px-5 py-4 ring-1 ring-white/8 transition-premium hover:bg-white/3 hover:ring-pitch/25 active:scale-[0.99]"
     >
       <FlagBadge code={team.code} size="lg" />
       <div className="min-w-0 flex-1">

@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import FilterBar from '../components/FilterBar';
 import TeamCard from '../components/TeamCard';
 import usePageTitle from '../lib/usePageTitle';
+import useInView from '../lib/useInView';
 import { filterTeams } from '../lib/data';
 
 const DISPLAY = '"Cabinet Grotesk", system-ui, sans-serif';
@@ -61,12 +62,27 @@ export default function Teams() {
       {teams.length === 0 ? (
         <p className="py-16 text-center text-white/45">No teams match your search.</p>
       ) : (
-        <div className="stagger-children grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {teams.map((team) => (
-            <TeamCard key={team.slug} team={team} />
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {teams.map((team, i) => (
+            <RevealCard key={team.slug} index={i}>
+              <TeamCard team={team} />
+            </RevealCard>
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+function RevealCard({ children, index }) {
+  const [ref, inView] = useInView();
+  return (
+    <div
+      ref={ref}
+      data-inview={inView ? 'true' : 'false'}
+      style={{ '--reveal-delay': `${Math.min(index * 30, 300)}ms` }}
+    >
+      {children}
     </div>
   );
 }
