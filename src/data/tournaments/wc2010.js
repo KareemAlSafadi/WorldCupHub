@@ -68,15 +68,63 @@ const knockout = [
   { id: "2010-final", stage: "Final", date: "2010-07-11", homeTeam: "Spain", awayTeam: "Netherlands", homeCode: "ESP", awayCode: "NED", homeScore: 1, awayScore: 0, extra: "ET" },
 ];
 
-const groupHighlights = [
-  { id: "2010-g-a-1", stage: "Group", group: "A", date: "2010-06-11", homeTeam: "South Africa", awayTeam: "Mexico", homeCode: "RSA", awayCode: "MEX", homeScore: 1, awayScore: 1 },
-  { id: "2010-g-b-1", stage: "Group", group: "B", date: "2010-06-12", homeTeam: "Argentina", awayTeam: "Nigeria", homeCode: "ARG", awayCode: "NGA", homeScore: 1, awayScore: 0 },
-  { id: "2010-g-c-1", stage: "Group", group: "C", date: "2010-06-12", homeTeam: "England", awayTeam: "United States", homeCode: "ENG", awayCode: "USA", homeScore: 1, awayScore: 1 },
-  { id: "2010-g-d-1", stage: "Group", group: "D", date: "2010-06-13", homeTeam: "Germany", awayTeam: "Australia", homeCode: "GER", awayCode: "AUS", homeScore: 4, awayScore: 0 },
-  { id: "2010-g-e-1", stage: "Group", group: "E", date: "2010-06-14", homeTeam: "Netherlands", awayTeam: "Denmark", homeCode: "NED", awayCode: "DEN", homeScore: 2, awayScore: 0 },
-  { id: "2010-g-f-1", stage: "Group", group: "F", date: "2010-06-14", homeTeam: "Italy", awayTeam: "Paraguay", homeCode: "ITA", awayCode: "PAR", homeScore: 1, awayScore: 1 },
-  { id: "2010-g-g-1", stage: "Group", group: "G", date: "2010-06-15", homeTeam: "Ivory Coast", awayTeam: "Portugal", homeCode: "CIV", awayCode: "POR", homeScore: 0, awayScore: 0 },
-  { id: "2010-g-h-1", stage: "Group", group: "H", date: "2010-06-16", homeTeam: "Spain", awayTeam: "Switzerland", homeCode: "ESP", awayCode: "SUI", homeScore: 0, awayScore: 1 },
+const groupMatches = [
+  // Group A
+  { id: "2010-g-a-1", stage: "Group", group: "A", date: "2010-06-11", venue: "Johannesburg", homeTeam: "South Africa", awayTeam: "Mexico", homeCode: "RSA", awayCode: "MEX", homeScore: 1, awayScore: 1 },
+  { id: "2010-g-a-2", stage: "Group", group: "A", date: "2010-06-11", venue: "Cape Town", homeTeam: "Uruguay", awayTeam: "France", homeCode: "URU", awayCode: "FRA", homeScore: 0, awayScore: 0 },
+  { id: "2010-g-a-3", stage: "Group", group: "A", date: "2010-06-16", venue: "Pretoria", homeTeam: "South Africa", awayTeam: "Uruguay", homeCode: "RSA", awayCode: "URU", homeScore: 0, awayScore: 3 },
+  { id: "2010-g-a-4", stage: "Group", group: "A", date: "2010-06-17", venue: "Polokwane", homeTeam: "France", awayTeam: "Mexico", homeCode: "FRA", awayCode: "MEX", homeScore: 0, awayScore: 2 },
+  { id: "2010-g-a-5", stage: "Group", group: "A", date: "2010-06-22", venue: "Rustenburg", homeTeam: "France", awayTeam: "South Africa", homeCode: "FRA", awayCode: "RSA", homeScore: 1, awayScore: 2 },
+  { id: "2010-g-a-6", stage: "Group", group: "A", date: "2010-06-22", venue: "Johannesburg", homeTeam: "Uruguay", awayTeam: "Mexico", homeCode: "URU", awayCode: "MEX", homeScore: 1, awayScore: 0 },
+  // Group B
+  { id: "2010-g-b-1", stage: "Group", group: "B", date: "2010-06-12", venue: "Johannesburg", homeTeam: "Argentina", awayTeam: "Nigeria", homeCode: "ARG", awayCode: "NGA", homeScore: 1, awayScore: 0 },
+  { id: "2010-g-b-2", stage: "Group", group: "B", date: "2010-06-12", venue: "Durban", homeTeam: "South Korea", awayTeam: "Greece", homeCode: "KOR", awayCode: "GRE", homeScore: 2, awayScore: 0 },
+  { id: "2010-g-b-3", stage: "Group", group: "B", date: "2010-06-17", venue: "Johannesburg", homeTeam: "Greece", awayTeam: "Nigeria", homeCode: "GRE", awayCode: "NGA", homeScore: 2, awayScore: 1 },
+  { id: "2010-g-b-4", stage: "Group", group: "B", date: "2010-06-17", venue: "Johannesburg", homeTeam: "Argentina", awayTeam: "South Korea", homeCode: "ARG", awayCode: "KOR", homeScore: 4, awayScore: 1 },
+  { id: "2010-g-b-5", stage: "Group", group: "B", date: "2010-06-22", venue: "Durban", homeTeam: "Nigeria", awayTeam: "South Korea", homeCode: "NGA", awayCode: "KOR", homeScore: 2, awayScore: 2 },
+  { id: "2010-g-b-6", stage: "Group", group: "B", date: "2010-06-22", venue: "Polokwane", homeTeam: "Greece", awayTeam: "Argentina", homeCode: "GRE", awayCode: "ARG", homeScore: 0, awayScore: 2 },
+  // Group C
+  { id: "2010-g-c-1", stage: "Group", group: "C", date: "2010-06-12", venue: "Rustenburg", homeTeam: "England", awayTeam: "United States", homeCode: "ENG", awayCode: "USA", homeScore: 1, awayScore: 1 },
+  { id: "2010-g-c-2", stage: "Group", group: "C", date: "2010-06-13", venue: "Johannesburg", homeTeam: "Algeria", awayTeam: "Slovenia", homeCode: "ALG", awayCode: "SVN", homeScore: 0, awayScore: 1 },
+  { id: "2010-g-c-3", stage: "Group", group: "C", date: "2010-06-18", venue: "Cape Town", homeTeam: "Slovenia", awayTeam: "United States", homeCode: "SVN", awayCode: "USA", homeScore: 2, awayScore: 2 },
+  { id: "2010-g-c-4", stage: "Group", group: "C", date: "2010-06-18", venue: "Polokwane", homeTeam: "England", awayTeam: "Algeria", homeCode: "ENG", awayCode: "ALG", homeScore: 0, awayScore: 0 },
+  { id: "2010-g-c-5", stage: "Group", group: "C", date: "2010-06-23", venue: "Pretoria", homeTeam: "Slovenia", awayTeam: "England", homeCode: "SVN", awayCode: "ENG", homeScore: 0, awayScore: 1 },
+  { id: "2010-g-c-6", stage: "Group", group: "C", date: "2010-06-23", venue: "Rustenburg", homeTeam: "United States", awayTeam: "Algeria", homeCode: "USA", awayCode: "ALG", homeScore: 1, awayScore: 0 },
+  // Group D
+  { id: "2010-g-d-1", stage: "Group", group: "D", date: "2010-06-13", venue: "Durban", homeTeam: "Germany", awayTeam: "Australia", homeCode: "GER", awayCode: "AUS", homeScore: 4, awayScore: 0 },
+  { id: "2010-g-d-2", stage: "Group", group: "D", date: "2010-06-13", venue: "Johannesburg", homeTeam: "Serbia", awayTeam: "Ghana", homeCode: "SRB", awayCode: "GHA", homeScore: 0, awayScore: 1 },
+  { id: "2010-g-d-3", stage: "Group", group: "D", date: "2010-06-18", venue: "Port Elizabeth", homeTeam: "Germany", awayTeam: "Serbia", homeCode: "GER", awayCode: "SRB", homeScore: 0, awayScore: 1 },
+  { id: "2010-g-d-4", stage: "Group", group: "D", date: "2010-06-19", venue: "Rustenburg", homeTeam: "Ghana", awayTeam: "Australia", homeCode: "GHA", awayCode: "AUS", homeScore: 1, awayScore: 1 },
+  { id: "2010-g-d-5", stage: "Group", group: "D", date: "2010-06-23", venue: "Johannesburg", homeTeam: "Ghana", awayTeam: "Germany", homeCode: "GHA", awayCode: "GER", homeScore: 0, awayScore: 1 },
+  { id: "2010-g-d-6", stage: "Group", group: "D", date: "2010-06-23", venue: "Nelspruit", homeTeam: "Australia", awayTeam: "Serbia", homeCode: "AUS", awayCode: "SRB", homeScore: 2, awayScore: 1 },
+  // Group E
+  { id: "2010-g-e-1", stage: "Group", group: "E", date: "2010-06-14", venue: "Johannesburg", homeTeam: "Netherlands", awayTeam: "Denmark", homeCode: "NED", awayCode: "DEN", homeScore: 2, awayScore: 0 },
+  { id: "2010-g-e-2", stage: "Group", group: "E", date: "2010-06-14", venue: "Durban", homeTeam: "Japan", awayTeam: "Cameroon", homeCode: "JPN", awayCode: "CMR", homeScore: 1, awayScore: 0 },
+  { id: "2010-g-e-3", stage: "Group", group: "E", date: "2010-06-19", venue: "Durban", homeTeam: "Netherlands", awayTeam: "Japan", homeCode: "NED", awayCode: "JPN", homeScore: 1, awayScore: 0 },
+  { id: "2010-g-e-4", stage: "Group", group: "E", date: "2010-06-19", venue: "Pretoria", homeTeam: "Cameroon", awayTeam: "Denmark", homeCode: "CMR", awayCode: "DEN", homeScore: 1, awayScore: 2 },
+  { id: "2010-g-e-5", stage: "Group", group: "E", date: "2010-06-24", venue: "Cape Town", homeTeam: "Denmark", awayTeam: "Japan", homeCode: "DEN", awayCode: "JPN", homeScore: 1, awayScore: 3 },
+  { id: "2010-g-e-6", stage: "Group", group: "E", date: "2010-06-24", venue: "Cape Town", homeTeam: "Cameroon", awayTeam: "Netherlands", homeCode: "CMR", awayCode: "NED", homeScore: 1, awayScore: 2 },
+  // Group F
+  { id: "2010-g-f-1", stage: "Group", group: "F", date: "2010-06-14", venue: "Cape Town", homeTeam: "Italy", awayTeam: "Paraguay", homeCode: "ITA", awayCode: "PAR", homeScore: 1, awayScore: 1 },
+  { id: "2010-g-f-2", stage: "Group", group: "F", date: "2010-06-15", venue: "Johannesburg", homeTeam: "New Zealand", awayTeam: "Slovakia", homeCode: "NZL", awayCode: "SVK", homeScore: 1, awayScore: 1 },
+  { id: "2010-g-f-3", stage: "Group", group: "F", date: "2010-06-20", venue: "Nelspruit", homeTeam: "Slovakia", awayTeam: "Paraguay", homeCode: "SVK", awayCode: "PAR", homeScore: 0, awayScore: 2 },
+  { id: "2010-g-f-4", stage: "Group", group: "F", date: "2010-06-20", venue: "Johannesburg", homeTeam: "Italy", awayTeam: "New Zealand", homeCode: "ITA", awayCode: "NZL", homeScore: 1, awayScore: 1 },
+  { id: "2010-g-f-5", stage: "Group", group: "F", date: "2010-06-24", venue: "Pretoria", homeTeam: "Slovakia", awayTeam: "Italy", homeCode: "SVK", awayCode: "ITA", homeScore: 3, awayScore: 2 },
+  { id: "2010-g-f-6", stage: "Group", group: "F", date: "2010-06-24", venue: "Rustenburg", homeTeam: "Paraguay", awayTeam: "New Zealand", homeCode: "PAR", awayCode: "NZL", homeScore: 0, awayScore: 0 },
+  // Group G
+  { id: "2010-g-g-1", stage: "Group", group: "G", date: "2010-06-15", venue: "Port Elizabeth", homeTeam: "Ivory Coast", awayTeam: "Portugal", homeCode: "CIV", awayCode: "POR", homeScore: 0, awayScore: 0 },
+  { id: "2010-g-g-2", stage: "Group", group: "G", date: "2010-06-15", venue: "Johannesburg", homeTeam: "Brazil", awayTeam: "North Korea", homeCode: "BRA", awayCode: "PRK", homeScore: 2, awayScore: 1 },
+  { id: "2010-g-g-3", stage: "Group", group: "G", date: "2010-06-20", venue: "Johannesburg", homeTeam: "Brazil", awayTeam: "Ivory Coast", homeCode: "BRA", awayCode: "CIV", homeScore: 3, awayScore: 1 },
+  { id: "2010-g-g-4", stage: "Group", group: "G", date: "2010-06-21", venue: "Cape Town", homeTeam: "Portugal", awayTeam: "North Korea", homeCode: "POR", awayCode: "PRK", homeScore: 7, awayScore: 0 },
+  { id: "2010-g-g-5", stage: "Group", group: "G", date: "2010-06-25", venue: "Durban", homeTeam: "Portugal", awayTeam: "Brazil", homeCode: "POR", awayCode: "BRA", homeScore: 0, awayScore: 0 },
+  { id: "2010-g-g-6", stage: "Group", group: "G", date: "2010-06-25", venue: "Nelspruit", homeTeam: "North Korea", awayTeam: "Ivory Coast", homeCode: "PRK", awayCode: "CIV", homeScore: 0, awayScore: 3 },
+  // Group H
+  { id: "2010-g-h-1", stage: "Group", group: "H", date: "2010-06-16", venue: "Durban", homeTeam: "Spain", awayTeam: "Switzerland", homeCode: "ESP", awayCode: "SUI", homeScore: 0, awayScore: 1 },
+  { id: "2010-g-h-2", stage: "Group", group: "H", date: "2010-06-16", venue: "Port Elizabeth", homeTeam: "Honduras", awayTeam: "Chile", homeCode: "HND", awayCode: "CHI", homeScore: 0, awayScore: 1 },
+  { id: "2010-g-h-3", stage: "Group", group: "H", date: "2010-06-21", venue: "Johannesburg", homeTeam: "Chile", awayTeam: "Switzerland", homeCode: "CHI", awayCode: "SUI", homeScore: 1, awayScore: 0 },
+  { id: "2010-g-h-4", stage: "Group", group: "H", date: "2010-06-21", venue: "Johannesburg", homeTeam: "Spain", awayTeam: "Honduras", homeCode: "ESP", awayCode: "HND", homeScore: 2, awayScore: 0 },
+  { id: "2010-g-h-5", stage: "Group", group: "H", date: "2010-06-25", venue: "Pretoria", homeTeam: "Chile", awayTeam: "Spain", homeCode: "CHI", awayCode: "ESP", homeScore: 1, awayScore: 2 },
+  { id: "2010-g-h-6", stage: "Group", group: "H", date: "2010-06-25", venue: "Johannesburg", homeTeam: "Switzerland", awayTeam: "Honduras", homeCode: "SUI", awayCode: "HND", homeScore: 0, awayScore: 0 },
 ];
 
 export const wc2010 = {
@@ -95,7 +143,7 @@ export const wc2010 = {
   fact: "Spain won their first World Cup with tiki-taka football, beating Netherlands 1-0 in a physical final.",
   detailLevel: "full",
   standings,
-  matches: [...groupHighlights, ...knockout],
+  matches: [...groupMatches, ...knockout],
   bracket: [
     { round: "Round of 16", matches: knockout.slice(0, 8).map((m) => m.id) },
     { round: "Quarter-final", matches: knockout.slice(8, 12).map((m) => m.id) },

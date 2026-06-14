@@ -1,15 +1,15 @@
 const standings = {
   A: [
     { team: "Brazil", code: "BRA", played: 3, won: 2, drawn: 0, lost: 1, gf: 6, ga: 3, gd: 3, points: 6 },
-    { team: "Morocco", code: "MAR", played: 3, won: 2, drawn: 0, lost: 1, gf: 5, ga: 5, gd: 0, points: 6 },
-    { team: "Norway", code: "NOR", played: 3, won: 1, drawn: 1, lost: 1, gf: 5, ga: 5, gd: 0, points: 4 },
+    { team: "Morocco", code: "MAR", played: 3, won: 1, drawn: 1, lost: 1, gf: 5, ga: 5, gd: 0, points: 4 },
+    { team: "Norway", code: "NOR", played: 3, won: 1, drawn: 1, lost: 1, gf: 5, ga: 4, gd: 1, points: 4 },
     { team: "Scotland", code: "SCO", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 6, gd: -4, points: 1 },
   ],
   B: [
     { team: "Italy", code: "ITA", played: 3, won: 2, drawn: 1, lost: 0, gf: 7, ga: 3, gd: 4, points: 7 },
-    { team: "Chile", code: "CHI", played: 3, won: 0, drawn: 3, lost: 0, gf: 5, ga: 5, gd: 0, points: 3 },
+    { team: "Chile", code: "CHI", played: 3, won: 0, drawn: 3, lost: 0, gf: 4, ga: 4, gd: 0, points: 3 },
     { team: "Austria", code: "AUT", played: 3, won: 0, drawn: 2, lost: 1, gf: 3, ga: 4, gd: -1, points: 2 },
-    { team: "Cameroon", code: "CMR", played: 3, won: 0, drawn: 2, lost: 1, gf: 2, ga: 4, gd: -2, points: 2 },
+    { team: "Cameroon", code: "CMR", played: 3, won: 0, drawn: 2, lost: 1, gf: 2, ga: 5, gd: -3, points: 2 },
   ],
   C: [
     { team: "France", code: "FRA", played: 3, won: 3, drawn: 0, lost: 0, gf: 9, ga: 1, gd: 8, points: 9 },
@@ -20,41 +20,92 @@ const standings = {
   D: [
     { team: "Nigeria", code: "NGA", played: 3, won: 2, drawn: 0, lost: 1, gf: 5, ga: 5, gd: 0, points: 6 },
     { team: "Paraguay", code: "PAR", played: 3, won: 1, drawn: 2, lost: 0, gf: 3, ga: 1, gd: 2, points: 5 },
-    { team: "Bulgaria", code: "BUL", played: 3, won: 1, drawn: 0, lost: 2, gf: 4, ga: 5, gd: -1, points: 3 },
-    { team: "Spain", code: "ESP", played: 3, won: 1, drawn: 0, lost: 2, gf: 8, ga: 4, gd: 4, points: 3 },
+    { team: "Spain", code: "ESP", played: 3, won: 1, drawn: 1, lost: 1, gf: 8, ga: 4, gd: 4, points: 4 },
+    { team: "Bulgaria", code: "BUL", played: 3, won: 0, drawn: 1, lost: 2, gf: 1, ga: 7, gd: -6, points: 1 },
   ],
   E: [
-    { team: "Germany", code: "GER", played: 3, won: 2, drawn: 1, lost: 0, gf: 6, ga: 2, gd: 4, points: 7 },
-    { team: "Mexico", code: "MEX", played: 3, won: 1, drawn: 1, lost: 1, gf: 4, ga: 3, gd: 1, points: 4 },
-    { team: "United States", code: "USA", played: 3, won: 0, drawn: 2, lost: 1, gf: 1, ga: 2, gd: -1, points: 2 },
-    { team: "Yugoslavia", code: "YUG", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 5, gd: -3, points: 1 },
+    { team: "Netherlands", code: "NED", played: 3, won: 1, drawn: 2, lost: 0, gf: 7, ga: 2, gd: 5, points: 5 },
+    { team: "Mexico", code: "MEX", played: 3, won: 1, drawn: 2, lost: 0, gf: 7, ga: 5, gd: 2, points: 5 },
+    { team: "Belgium", code: "BEL", played: 3, won: 0, drawn: 3, lost: 0, gf: 3, ga: 3, gd: 0, points: 3 },
+    { team: "South Korea", code: "KOR", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 9, gd: -7, points: 1 },
   ],
   F: [
-    { team: "Netherlands", code: "NED", played: 3, won: 1, drawn: 2, lost: 0, gf: 7, ga: 3, gd: 4, points: 5 },
-    { team: "Mexico", code: "MEX", played: 3, won: 1, drawn: 1, lost: 1, gf: 4, ga: 3, gd: 1, points: 4 },
-    { team: "Belgium", code: "BEL", played: 3, won: 0, drawn: 3, lost: 0, gf: 5, ga: 5, gd: 0, points: 3 },
-    { team: "South Korea", code: "KOR", played: 3, won: 0, drawn: 2, lost: 1, gf: 2, ga: 4, gd: -2, points: 2 },
+    { team: "Germany", code: "GER", played: 3, won: 2, drawn: 1, lost: 0, gf: 6, ga: 2, gd: 4, points: 7 },
+    { team: "Yugoslavia", code: "YUG", played: 3, won: 2, drawn: 0, lost: 1, gf: 4, ga: 2, gd: 2, points: 6 },
+    { team: "Iran", code: "IRN", played: 3, won: 1, drawn: 0, lost: 2, gf: 3, ga: 5, gd: -2, points: 3 },
+    { team: "United States", code: "USA", played: 3, won: 0, drawn: 1, lost: 2, gf: 1, ga: 5, gd: -4, points: 1 },
   ],
   G: [
     { team: "Romania", code: "ROU", played: 3, won: 2, drawn: 1, lost: 0, gf: 4, ga: 2, gd: 2, points: 7 },
-    { team: "England", code: "ENG", played: 3, won: 0, drawn: 3, lost: 0, gf: 2, ga: 2, gd: 0, points: 3 },
+    { team: "England", code: "ENG", played: 3, won: 2, drawn: 0, lost: 1, gf: 5, ga: 2, gd: 3, points: 6 },
     { team: "Colombia", code: "COL", played: 3, won: 1, drawn: 0, lost: 2, gf: 1, ga: 3, gd: -2, points: 3 },
-    { team: "Tunisia", code: "TUN", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 4, gd: -2, points: 1 },
+    { team: "Tunisia", code: "TUN", played: 3, won: 0, drawn: 1, lost: 2, gf: 1, ga: 4, gd: -3, points: 1 },
   ],
   H: [
     { team: "Argentina", code: "ARG", played: 3, won: 3, drawn: 0, lost: 0, gf: 7, ga: 0, gd: 7, points: 9 },
     { team: "Croatia", code: "CRO", played: 3, won: 2, drawn: 0, lost: 1, gf: 4, ga: 2, gd: 2, points: 6 },
-    { team: "Jamaica", code: "JAM", played: 3, won: 0, drawn: 1, lost: 2, gf: 3, ga: 9, gd: -6, points: 1 },
-    { team: "Japan", code: "JPN", played: 3, won: 0, drawn: 1, lost: 2, gf: 2, ga: 5, gd: -3, points: 1 },
+    { team: "Jamaica", code: "JAM", played: 3, won: 1, drawn: 0, lost: 2, gf: 3, ga: 9, gd: -6, points: 3 },
+    { team: "Japan", code: "JPN", played: 3, won: 0, drawn: 0, lost: 3, gf: 1, ga: 4, gd: -3, points: 0 },
   ],
 };
 
-// Fix Group F - Mexico shouldn't be duplicated from E. Correct 1998 Group F:
-standings.F = [
-  { team: "Netherlands", code: "NED", played: 3, won: 1, drawn: 2, lost: 0, gf: 7, ga: 3, gd: 4, points: 5 },
-  { team: "Mexico", code: "MEX", played: 3, won: 1, drawn: 1, lost: 1, gf: 4, ga: 3, gd: 1, points: 4 },
-  { team: "Belgium", code: "BEL", played: 3, won: 0, drawn: 3, lost: 0, gf: 5, ga: 5, gd: 0, points: 3 },
-  { team: "South Korea", code: "KOR", played: 3, won: 0, drawn: 2, lost: 1, gf: 2, ga: 4, gd: -2, points: 2 },
+const groupMatches = [
+  // Group A
+  { id: "1998-g-a-1", stage: "Group", group: "A", date: "1998-06-10", venue: "Saint-Denis", homeTeam: "Brazil", awayTeam: "Scotland", homeCode: "BRA", awayCode: "SCO", homeScore: 2, awayScore: 1 },
+  { id: "1998-g-a-2", stage: "Group", group: "A", date: "1998-06-10", venue: "Montpellier", homeTeam: "Morocco", awayTeam: "Norway", homeCode: "MAR", awayCode: "NOR", homeScore: 2, awayScore: 2 },
+  { id: "1998-g-a-3", stage: "Group", group: "A", date: "1998-06-16", venue: "Bordeaux", homeTeam: "Scotland", awayTeam: "Norway", homeCode: "SCO", awayCode: "NOR", homeScore: 1, awayScore: 1 },
+  { id: "1998-g-a-4", stage: "Group", group: "A", date: "1998-06-16", venue: "Saint-Denis", homeTeam: "Brazil", awayTeam: "Morocco", homeCode: "BRA", awayCode: "MAR", homeScore: 3, awayScore: 0 },
+  { id: "1998-g-a-5", stage: "Group", group: "A", date: "1998-06-23", venue: "Marseille", homeTeam: "Brazil", awayTeam: "Norway", homeCode: "BRA", awayCode: "NOR", homeScore: 1, awayScore: 2 },
+  { id: "1998-g-a-6", stage: "Group", group: "A", date: "1998-06-23", venue: "Saint-Etienne", homeTeam: "Morocco", awayTeam: "Scotland", homeCode: "MAR", awayCode: "SCO", homeScore: 3, awayScore: 0 },
+  // Group B
+  { id: "1998-g-b-1", stage: "Group", group: "B", date: "1998-06-11", venue: "Bordeaux", homeTeam: "Italy", awayTeam: "Chile", homeCode: "ITA", awayCode: "CHI", homeScore: 2, awayScore: 2 },
+  { id: "1998-g-b-2", stage: "Group", group: "B", date: "1998-06-11", venue: "Toulouse", homeTeam: "Cameroon", awayTeam: "Austria", homeCode: "CMR", awayCode: "AUT", homeScore: 1, awayScore: 1 },
+  { id: "1998-g-b-3", stage: "Group", group: "B", date: "1998-06-17", venue: "Saint-Denis", homeTeam: "Italy", awayTeam: "Cameroon", homeCode: "ITA", awayCode: "CMR", homeScore: 3, awayScore: 0 },
+  { id: "1998-g-b-4", stage: "Group", group: "B", date: "1998-06-17", venue: "Saint-Etienne", homeTeam: "Chile", awayTeam: "Austria", homeCode: "CHI", awayCode: "AUT", homeScore: 1, awayScore: 1 },
+  { id: "1998-g-b-5", stage: "Group", group: "B", date: "1998-06-23", venue: "Montpellier", homeTeam: "Italy", awayTeam: "Austria", homeCode: "ITA", awayCode: "AUT", homeScore: 2, awayScore: 1 },
+  { id: "1998-g-b-6", stage: "Group", group: "B", date: "1998-06-23", venue: "Nantes", homeTeam: "Chile", awayTeam: "Cameroon", homeCode: "CHI", awayCode: "CMR", homeScore: 1, awayScore: 1 },
+  // Group C
+  { id: "1998-g-c-1", stage: "Group", group: "C", date: "1998-06-12", venue: "Marseille", homeTeam: "Saudi Arabia", awayTeam: "Denmark", homeCode: "KSA", awayCode: "DEN", homeScore: 0, awayScore: 1 },
+  { id: "1998-g-c-2", stage: "Group", group: "C", date: "1998-06-12", venue: "Saint-Denis", homeTeam: "France", awayTeam: "South Africa", homeCode: "FRA", awayCode: "RSA", homeScore: 3, awayScore: 0 },
+  { id: "1998-g-c-3", stage: "Group", group: "C", date: "1998-06-18", venue: "Saint-Denis", homeTeam: "France", awayTeam: "Saudi Arabia", homeCode: "FRA", awayCode: "KSA", homeScore: 4, awayScore: 0 },
+  { id: "1998-g-c-4", stage: "Group", group: "C", date: "1998-06-18", venue: "Toulouse", homeTeam: "South Africa", awayTeam: "Denmark", homeCode: "RSA", awayCode: "DEN", homeScore: 1, awayScore: 1 },
+  { id: "1998-g-c-5", stage: "Group", group: "C", date: "1998-06-24", venue: "Lyon", homeTeam: "France", awayTeam: "Denmark", homeCode: "FRA", awayCode: "DEN", homeScore: 2, awayScore: 1 },
+  { id: "1998-g-c-6", stage: "Group", group: "C", date: "1998-06-24", venue: "Bordeaux", homeTeam: "South Africa", awayTeam: "Saudi Arabia", homeCode: "RSA", awayCode: "KSA", homeScore: 2, awayScore: 2 },
+  // Group D
+  { id: "1998-g-d-1", stage: "Group", group: "D", date: "1998-06-13", venue: "Nantes", homeTeam: "Spain", awayTeam: "Nigeria", homeCode: "ESP", awayCode: "NGA", homeScore: 2, awayScore: 3 },
+  { id: "1998-g-d-2", stage: "Group", group: "D", date: "1998-06-13", venue: "Toulouse", homeTeam: "Paraguay", awayTeam: "Bulgaria", homeCode: "PAR", awayCode: "BUL", homeScore: 0, awayScore: 0 },
+  { id: "1998-g-d-3", stage: "Group", group: "D", date: "1998-06-19", venue: "Marseille", homeTeam: "Spain", awayTeam: "Paraguay", homeCode: "ESP", awayCode: "PAR", homeScore: 0, awayScore: 0 },
+  { id: "1998-g-d-4", stage: "Group", group: "D", date: "1998-06-19", venue: "Saint-Etienne", homeTeam: "Nigeria", awayTeam: "Bulgaria", homeCode: "NGA", awayCode: "BUL", homeScore: 1, awayScore: 0 },
+  { id: "1998-g-d-5", stage: "Group", group: "D", date: "1998-06-24", venue: "Saint-Denis", homeTeam: "Nigeria", awayTeam: "Paraguay", homeCode: "NGA", awayCode: "PAR", homeScore: 1, awayScore: 3 },
+  { id: "1998-g-d-6", stage: "Group", group: "D", date: "1998-06-24", venue: "Lens", homeTeam: "Spain", awayTeam: "Bulgaria", homeCode: "ESP", awayCode: "BUL", homeScore: 6, awayScore: 1 },
+  // Group E
+  { id: "1998-g-e-1", stage: "Group", group: "E", date: "1998-06-13", venue: "Bordeaux", homeTeam: "Netherlands", awayTeam: "Belgium", homeCode: "NED", awayCode: "BEL", homeScore: 0, awayScore: 0 },
+  { id: "1998-g-e-2", stage: "Group", group: "E", date: "1998-06-13", venue: "Lyon", homeTeam: "Mexico", awayTeam: "South Korea", homeCode: "MEX", awayCode: "KOR", homeScore: 3, awayScore: 1 },
+  { id: "1998-g-e-3", stage: "Group", group: "E", date: "1998-06-20", venue: "Marseille", homeTeam: "Netherlands", awayTeam: "South Korea", homeCode: "NED", awayCode: "KOR", homeScore: 5, awayScore: 0 },
+  { id: "1998-g-e-4", stage: "Group", group: "E", date: "1998-06-20", venue: "Saint-Denis", homeTeam: "Belgium", awayTeam: "Mexico", homeCode: "BEL", awayCode: "MEX", homeScore: 2, awayScore: 2 },
+  { id: "1998-g-e-5", stage: "Group", group: "E", date: "1998-06-25", venue: "Saint-Etienne", homeTeam: "Netherlands", awayTeam: "Mexico", homeCode: "NED", awayCode: "MEX", homeScore: 2, awayScore: 2 },
+  { id: "1998-g-e-6", stage: "Group", group: "E", date: "1998-06-25", venue: "Saint-Denis", homeTeam: "Belgium", awayTeam: "South Korea", homeCode: "BEL", awayCode: "KOR", homeScore: 1, awayScore: 1 },
+  // Group F
+  { id: "1998-g-f-1", stage: "Group", group: "F", date: "1998-06-14", venue: "Lyon", homeTeam: "Yugoslavia", awayTeam: "Iran", homeCode: "YUG", awayCode: "IRN", homeScore: 1, awayScore: 0 },
+  { id: "1998-g-f-2", stage: "Group", group: "F", date: "1998-06-15", venue: "Saint-Denis", homeTeam: "Germany", awayTeam: "United States", homeCode: "GER", awayCode: "USA", homeScore: 2, awayScore: 0 },
+  { id: "1998-g-f-3", stage: "Group", group: "F", date: "1998-06-21", venue: "Lyon", homeTeam: "Germany", awayTeam: "Yugoslavia", homeCode: "GER", awayCode: "YUG", homeScore: 2, awayScore: 2 },
+  { id: "1998-g-f-4", stage: "Group", group: "F", date: "1998-06-21", venue: "Lyon", homeTeam: "Iran", awayTeam: "United States", homeCode: "IRN", awayCode: "USA", homeScore: 2, awayScore: 1 },
+  { id: "1998-g-f-5", stage: "Group", group: "F", date: "1998-06-25", venue: "Montpellier", homeTeam: "Germany", awayTeam: "Iran", homeCode: "GER", awayCode: "IRN", homeScore: 2, awayScore: 0 },
+  { id: "1998-g-f-6", stage: "Group", group: "F", date: "1998-06-25", venue: "Saint-Etienne", homeTeam: "United States", awayTeam: "Yugoslavia", homeCode: "USA", awayCode: "YUG", homeScore: 0, awayScore: 1 },
+  // Group G
+  { id: "1998-g-g-1", stage: "Group", group: "G", date: "1998-06-15", venue: "Lyon", homeTeam: "Romania", awayTeam: "Colombia", homeCode: "ROU", awayCode: "COL", homeScore: 1, awayScore: 0 },
+  { id: "1998-g-g-2", stage: "Group", group: "G", date: "1998-06-15", venue: "Marseille", homeTeam: "England", awayTeam: "Tunisia", homeCode: "ENG", awayCode: "TUN", homeScore: 2, awayScore: 0 },
+  { id: "1998-g-g-3", stage: "Group", group: "G", date: "1998-06-22", venue: "Lens", homeTeam: "Romania", awayTeam: "England", homeCode: "ROU", awayCode: "ENG", homeScore: 2, awayScore: 1 },
+  { id: "1998-g-g-4", stage: "Group", group: "G", date: "1998-06-22", venue: "Bordeaux", homeTeam: "Colombia", awayTeam: "Tunisia", homeCode: "COL", awayCode: "TUN", homeScore: 1, awayScore: 0 },
+  { id: "1998-g-g-5", stage: "Group", group: "G", date: "1998-06-26", venue: "Toulouse", homeTeam: "Romania", awayTeam: "Tunisia", homeCode: "ROU", awayCode: "TUN", homeScore: 1, awayScore: 1 },
+  { id: "1998-g-g-6", stage: "Group", group: "G", date: "1998-06-26", venue: "Lens", homeTeam: "England", awayTeam: "Colombia", homeCode: "ENG", awayCode: "COL", homeScore: 2, awayScore: 0 },
+  // Group H
+  { id: "1998-g-h-1", stage: "Group", group: "H", date: "1998-06-14", venue: "Tokyo", homeTeam: "Argentina", awayTeam: "Japan", homeCode: "ARG", awayCode: "JPN", homeScore: 1, awayScore: 0 },
+  { id: "1998-g-h-2", stage: "Group", group: "H", date: "1998-06-14", venue: "Nantes", homeTeam: "Jamaica", awayTeam: "Croatia", homeCode: "JAM", awayCode: "CRO", homeScore: 1, awayScore: 3 },
+  { id: "1998-g-h-3", stage: "Group", group: "H", date: "1998-06-21", venue: "Bordeaux", homeTeam: "Argentina", awayTeam: "Jamaica", homeCode: "ARG", awayCode: "JAM", homeScore: 5, awayScore: 0 },
+  { id: "1998-g-h-4", stage: "Group", group: "H", date: "1998-06-20", venue: "Nantes", homeTeam: "Japan", awayTeam: "Croatia", homeCode: "JPN", awayCode: "CRO", homeScore: 0, awayScore: 1 },
+  { id: "1998-g-h-5", stage: "Group", group: "H", date: "1998-06-26", venue: "Paris", homeTeam: "Argentina", awayTeam: "Croatia", homeCode: "ARG", awayCode: "CRO", homeScore: 1, awayScore: 0 },
+  { id: "1998-g-h-6", stage: "Group", group: "H", date: "1998-06-26", venue: "Lyon", homeTeam: "Japan", awayTeam: "Jamaica", homeCode: "JPN", awayCode: "JAM", homeScore: 1, awayScore: 2 },
 ];
 
 const knockout = [
@@ -65,7 +116,7 @@ const knockout = [
   { id: "1998-r16-5", stage: "Round of 16", date: "1998-06-29", homeTeam: "Netherlands", awayTeam: "Yugoslavia", homeCode: "NED", awayCode: "YUG", homeScore: 2, awayScore: 1 },
   { id: "1998-r16-6", stage: "Round of 16", date: "1998-06-30", homeTeam: "Argentina", awayTeam: "England", homeCode: "ARG", awayCode: "ENG", homeScore: 2, awayScore: 2, pens: "4-3" },
   { id: "1998-r16-7", stage: "Round of 16", date: "1998-06-30", homeTeam: "Italy", awayTeam: "Norway", homeCode: "ITA", awayCode: "NOR", homeScore: 1, awayScore: 0 },
-  { id: "1998-r16-8", stage: "Round of 16", date: "1998-06-30", homeTeam: "Croatia", awayTeam: "Romania", homeCode: "CRO", awayCode: "ROU", homeScore: 1, awayScore: 0 },
+  { id: "1998-r16-8", stage: "Round of 16", date: "1998-07-01", homeTeam: "Croatia", awayTeam: "Romania", homeCode: "CRO", awayCode: "ROU", homeScore: 1, awayScore: 0 },
   { id: "1998-qf-1", stage: "Quarter-final", date: "1998-07-03", homeTeam: "France", awayTeam: "Italy", homeCode: "FRA", awayCode: "ITA", homeScore: 0, awayScore: 0, pens: "4-3" },
   { id: "1998-qf-2", stage: "Quarter-final", date: "1998-07-03", homeTeam: "Brazil", awayTeam: "Denmark", homeCode: "BRA", awayCode: "DEN", homeScore: 3, awayScore: 2 },
   { id: "1998-qf-3", stage: "Quarter-final", date: "1998-07-04", homeTeam: "Netherlands", awayTeam: "Argentina", homeCode: "NED", awayCode: "ARG", homeScore: 2, awayScore: 1 },
@@ -74,17 +125,6 @@ const knockout = [
   { id: "1998-sf-2", stage: "Semi-final", date: "1998-07-08", homeTeam: "France", awayTeam: "Croatia", homeCode: "FRA", awayCode: "CRO", homeScore: 2, awayScore: 1 },
   { id: "1998-3rd", stage: "Third place", date: "1998-07-11", homeTeam: "Netherlands", awayTeam: "Croatia", homeCode: "NED", awayCode: "CRO", homeScore: 2, awayScore: 1 },
   { id: "1998-final", stage: "Final", date: "1998-07-12", homeTeam: "France", awayTeam: "Brazil", homeCode: "FRA", awayCode: "BRA", homeScore: 3, awayScore: 0 },
-];
-
-const groupHighlights = [
-  { id: "1998-g-a-1", stage: "Group", group: "A", date: "1998-06-10", homeTeam: "Brazil", awayTeam: "Scotland", homeCode: "BRA", awayCode: "SCO", homeScore: 2, awayScore: 1 },
-  { id: "1998-g-b-1", stage: "Group", group: "B", date: "1998-06-11", homeTeam: "Cameroon", awayTeam: "Austria", homeCode: "CMR", awayCode: "AUT", homeScore: 1, awayScore: 1 },
-  { id: "1998-g-c-1", stage: "Group", group: "C", date: "1998-06-11", homeTeam: "Saudi Arabia", awayTeam: "Denmark", homeCode: "KSA", awayCode: "DEN", homeScore: 0, awayScore: 1 },
-  { id: "1998-g-d-1", stage: "Group", group: "D", date: "1998-06-12", homeTeam: "Spain", awayTeam: "Nigeria", homeCode: "ESP", awayCode: "NGA", homeScore: 2, awayScore: 3 },
-  { id: "1998-g-e-1", stage: "Group", group: "E", date: "1998-06-15", homeTeam: "Germany", awayTeam: "United States", homeCode: "GER", awayCode: "USA", homeScore: 2, awayScore: 0 },
-  { id: "1998-g-f-1", stage: "Group", group: "F", date: "1998-06-15", homeTeam: "Netherlands", awayTeam: "Belgium", homeCode: "NED", awayCode: "BEL", homeScore: 0, awayScore: 0 },
-  { id: "1998-g-g-1", stage: "Group", group: "G", date: "1998-06-15", homeTeam: "Romania", awayTeam: "Colombia", homeCode: "ROU", awayCode: "COL", homeScore: 1, awayScore: 0 },
-  { id: "1998-g-h-1", stage: "Group", group: "H", date: "1998-06-10", homeTeam: "Argentina", awayTeam: "Japan", homeCode: "ARG", awayCode: "JPN", homeScore: 1, awayScore: 0 },
 ];
 
 export const wc1998 = {
@@ -103,7 +143,7 @@ export const wc1998 = {
   fact: "Zinedine Zidane scored twice with his head in a 3-0 final win over Brazil on home soil.",
   detailLevel: "full",
   standings,
-  matches: [...groupHighlights, ...knockout],
+  matches: [...groupMatches, ...knockout],
   bracket: [
     { round: "Round of 16", matches: knockout.slice(0, 8).map((m) => m.id) },
     { round: "Quarter-final", matches: knockout.slice(8, 12).map((m) => m.id) },

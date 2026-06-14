@@ -68,15 +68,63 @@ const knockout = [
   { id: "2006-final", stage: "Final", date: "2006-07-09", homeTeam: "Italy", awayTeam: "France", homeCode: "ITA", awayCode: "FRA", homeScore: 1, awayScore: 1, pens: "5-3" },
 ];
 
-const groupHighlights = [
-  { id: "2006-g-a-1", stage: "Group", group: "A", date: "2006-06-09", homeTeam: "Germany", awayTeam: "Costa Rica", homeCode: "GER", awayCode: "CRC", homeScore: 4, awayScore: 2 },
-  { id: "2006-g-b-1", stage: "Group", group: "B", date: "2006-06-10", homeTeam: "England", awayTeam: "Paraguay", homeCode: "ENG", awayCode: "PAR", homeScore: 1, awayScore: 0 },
-  { id: "2006-g-c-1", stage: "Group", group: "C", date: "2006-06-10", homeTeam: "Argentina", awayTeam: "Ivory Coast", homeCode: "ARG", awayCode: "CIV", homeScore: 2, awayScore: 1 },
-  { id: "2006-g-d-1", stage: "Group", group: "D", date: "2006-06-11", homeTeam: "Mexico", awayTeam: "Iran", homeCode: "MEX", awayCode: "IRN", homeScore: 3, awayScore: 1 },
-  { id: "2006-g-e-1", stage: "Group", group: "E", date: "2006-06-12", homeTeam: "Italy", awayTeam: "Ghana", homeCode: "ITA", awayCode: "GHA", homeScore: 2, awayScore: 0 },
-  { id: "2006-g-f-1", stage: "Group", group: "F", date: "2006-06-13", homeTeam: "Brazil", awayTeam: "Croatia", homeCode: "BRA", awayCode: "CRO", homeScore: 1, awayScore: 0 },
-  { id: "2006-g-g-1", stage: "Group", group: "G", date: "2006-06-13", homeTeam: "France", awayTeam: "Switzerland", homeCode: "FRA", awayCode: "SUI", homeScore: 0, awayScore: 0 },
-  { id: "2006-g-h-1", stage: "Group", group: "H", date: "2006-06-14", homeTeam: "Spain", awayTeam: "Ukraine", homeCode: "ESP", awayCode: "UKR", homeScore: 4, awayScore: 0 },
+const groupMatches = [
+  // Group A
+  { id: "2006-g-a-1", stage: "Group", group: "A", date: "2006-06-09", venue: "Munich", homeTeam: "Germany", awayTeam: "Costa Rica", homeCode: "GER", awayCode: "CRC", homeScore: 4, awayScore: 2 },
+  { id: "2006-g-a-2", stage: "Group", group: "A", date: "2006-06-09", venue: "Gelsenkirchen", homeTeam: "Poland", awayTeam: "Ecuador", homeCode: "POL", awayCode: "ECU", homeScore: 0, awayScore: 2 },
+  { id: "2006-g-a-3", stage: "Group", group: "A", date: "2006-06-14", venue: "Dortmund", homeTeam: "Germany", awayTeam: "Poland", homeCode: "GER", awayCode: "POL", homeScore: 1, awayScore: 0 },
+  { id: "2006-g-a-4", stage: "Group", group: "A", date: "2006-06-15", venue: "Hamburg", homeTeam: "Ecuador", awayTeam: "Costa Rica", homeCode: "ECU", awayCode: "CRC", homeScore: 3, awayScore: 0 },
+  { id: "2006-g-a-5", stage: "Group", group: "A", date: "2006-06-20", venue: "Berlin", homeTeam: "Ecuador", awayTeam: "Germany", homeCode: "ECU", awayCode: "GER", homeScore: 0, awayScore: 3 },
+  { id: "2006-g-a-6", stage: "Group", group: "A", date: "2006-06-20", venue: "Hanover", homeTeam: "Costa Rica", awayTeam: "Poland", homeCode: "CRC", awayCode: "POL", homeScore: 1, awayScore: 2 },
+  // Group B
+  { id: "2006-g-b-1", stage: "Group", group: "B", date: "2006-06-10", venue: "Frankfurt", homeTeam: "England", awayTeam: "Paraguay", homeCode: "ENG", awayCode: "PAR", homeScore: 1, awayScore: 0 },
+  { id: "2006-g-b-2", stage: "Group", group: "B", date: "2006-06-10", venue: "Dortmund", homeTeam: "Trinidad and Tobago", awayTeam: "Sweden", homeCode: "TRI", awayCode: "SWE", homeScore: 0, awayScore: 0 },
+  { id: "2006-g-b-3", stage: "Group", group: "B", date: "2006-06-15", venue: "Nuremberg", homeTeam: "England", awayTeam: "Trinidad and Tobago", homeCode: "ENG", awayCode: "TRI", homeScore: 2, awayScore: 0 },
+  { id: "2006-g-b-4", stage: "Group", group: "B", date: "2006-06-15", venue: "Berlin", homeTeam: "Sweden", awayTeam: "Paraguay", homeCode: "SWE", awayCode: "PAR", homeScore: 1, awayScore: 0 },
+  { id: "2006-g-b-5", stage: "Group", group: "B", date: "2006-06-20", venue: "Cologne", homeTeam: "Sweden", awayTeam: "England", homeCode: "SWE", awayCode: "ENG", homeScore: 2, awayScore: 2 },
+  { id: "2006-g-b-6", stage: "Group", group: "B", date: "2006-06-20", venue: "Kaiserslautern", homeTeam: "Paraguay", awayTeam: "Trinidad and Tobago", homeCode: "PAR", awayCode: "TRI", homeScore: 2, awayScore: 0 },
+  // Group C
+  { id: "2006-g-c-1", stage: "Group", group: "C", date: "2006-06-10", venue: "Hamburg", homeTeam: "Argentina", awayTeam: "Ivory Coast", homeCode: "ARG", awayCode: "CIV", homeScore: 2, awayScore: 1 },
+  { id: "2006-g-c-2", stage: "Group", group: "C", date: "2006-06-11", venue: "Leipzig", homeTeam: "Serbia", awayTeam: "Netherlands", homeCode: "SRB", awayCode: "NED", homeScore: 0, awayScore: 1 },
+  { id: "2006-g-c-3", stage: "Group", group: "C", date: "2006-06-16", venue: "Gelsenkirchen", homeTeam: "Argentina", awayTeam: "Serbia", homeCode: "ARG", awayCode: "SRB", homeScore: 6, awayScore: 0 },
+  { id: "2006-g-c-4", stage: "Group", group: "C", date: "2006-06-16", venue: "Stuttgart", homeTeam: "Netherlands", awayTeam: "Ivory Coast", homeCode: "NED", awayCode: "CIV", homeScore: 2, awayScore: 1 },
+  { id: "2006-g-c-5", stage: "Group", group: "C", date: "2006-06-21", venue: "Frankfurt", homeTeam: "Netherlands", awayTeam: "Argentina", homeCode: "NED", awayCode: "ARG", homeScore: 0, awayScore: 0 },
+  { id: "2006-g-c-6", stage: "Group", group: "C", date: "2006-06-21", venue: "Hamburg", homeTeam: "Ivory Coast", awayTeam: "Serbia", homeCode: "CIV", awayCode: "SRB", homeScore: 3, awayScore: 2 },
+  // Group D
+  { id: "2006-g-d-1", stage: "Group", group: "D", date: "2006-06-11", venue: "Nuremberg", homeTeam: "Mexico", awayTeam: "Iran", homeCode: "MEX", awayCode: "IRN", homeScore: 3, awayScore: 1 },
+  { id: "2006-g-d-2", stage: "Group", group: "D", date: "2006-06-11", venue: "Cologne", homeTeam: "Angola", awayTeam: "Portugal", homeCode: "ANG", awayCode: "POR", homeScore: 0, awayScore: 1 },
+  { id: "2006-g-d-3", stage: "Group", group: "D", date: "2006-06-16", venue: "Hanover", homeTeam: "Portugal", awayTeam: "Iran", homeCode: "POR", awayCode: "IRN", homeScore: 2, awayScore: 0 },
+  { id: "2006-g-d-4", stage: "Group", group: "D", date: "2006-06-16", venue: "Hanover", homeTeam: "Mexico", awayTeam: "Angola", homeCode: "MEX", awayCode: "ANG", homeScore: 0, awayScore: 0 },
+  { id: "2006-g-d-5", stage: "Group", group: "D", date: "2006-06-21", venue: "Gelsenkirchen", homeTeam: "Portugal", awayTeam: "Mexico", homeCode: "POR", awayCode: "MEX", homeScore: 2, awayScore: 1 },
+  { id: "2006-g-d-6", stage: "Group", group: "D", date: "2006-06-21", venue: "Leipzig", homeTeam: "Iran", awayTeam: "Angola", homeCode: "IRN", awayCode: "ANG", homeScore: 1, awayScore: 1 },
+  // Group E
+  { id: "2006-g-e-1", stage: "Group", group: "E", date: "2006-06-12", venue: "Hanover", homeTeam: "Italy", awayTeam: "Ghana", homeCode: "ITA", awayCode: "GHA", homeScore: 2, awayScore: 0 },
+  { id: "2006-g-e-2", stage: "Group", group: "E", date: "2006-06-12", venue: "Kaiserslautern", homeTeam: "United States", awayTeam: "Czech Republic", homeCode: "USA", awayCode: "CZE", homeScore: 0, awayScore: 3 },
+  { id: "2006-g-e-3", stage: "Group", group: "E", date: "2006-06-17", venue: "Hamburg", homeTeam: "Czech Republic", awayTeam: "Ghana", homeCode: "CZE", awayCode: "GHA", homeScore: 0, awayScore: 2 },
+  { id: "2006-g-e-4", stage: "Group", group: "E", date: "2006-06-17", venue: "Kaiserslautern", homeTeam: "Italy", awayTeam: "United States", homeCode: "ITA", awayCode: "USA", homeScore: 1, awayScore: 1 },
+  { id: "2006-g-e-5", stage: "Group", group: "E", date: "2006-06-22", venue: "Cologne", homeTeam: "Czech Republic", awayTeam: "Italy", homeCode: "CZE", awayCode: "ITA", homeScore: 0, awayScore: 2 },
+  { id: "2006-g-e-6", stage: "Group", group: "E", date: "2006-06-22", venue: "Nuremberg", homeTeam: "Ghana", awayTeam: "United States", homeCode: "GHA", awayCode: "USA", homeScore: 2, awayScore: 1 },
+  // Group F
+  { id: "2006-g-f-1", stage: "Group", group: "F", date: "2006-06-13", venue: "Berlin", homeTeam: "Brazil", awayTeam: "Croatia", homeCode: "BRA", awayCode: "CRO", homeScore: 1, awayScore: 0 },
+  { id: "2006-g-f-2", stage: "Group", group: "F", date: "2006-06-12", venue: "Kaiserslautern", homeTeam: "Japan", awayTeam: "Australia", homeCode: "JPN", awayCode: "AUS", homeScore: 1, awayScore: 3 },
+  { id: "2006-g-f-3", stage: "Group", group: "F", date: "2006-06-18", venue: "Munich", homeTeam: "Brazil", awayTeam: "Australia", homeCode: "BRA", awayCode: "AUS", homeScore: 2, awayScore: 0 },
+  { id: "2006-g-f-4", stage: "Group", group: "F", date: "2006-06-18", venue: "Nuremberg", homeTeam: "Japan", awayTeam: "Croatia", homeCode: "JPN", awayCode: "CRO", homeScore: 0, awayScore: 0 },
+  { id: "2006-g-f-5", stage: "Group", group: "F", date: "2006-06-22", venue: "Dortmund", homeTeam: "Australia", awayTeam: "Croatia", homeCode: "AUS", awayCode: "CRO", homeScore: 2, awayScore: 2 },
+  { id: "2006-g-f-6", stage: "Group", group: "F", date: "2006-06-22", venue: "Dortmund", homeTeam: "Brazil", awayTeam: "Japan", homeCode: "BRA", awayCode: "JPN", homeScore: 4, awayScore: 1 },
+  // Group G
+  { id: "2006-g-g-1", stage: "Group", group: "G", date: "2006-06-13", venue: "Stuttgart", homeTeam: "France", awayTeam: "Switzerland", homeCode: "FRA", awayCode: "SUI", homeScore: 0, awayScore: 0 },
+  { id: "2006-g-g-2", stage: "Group", group: "G", date: "2006-06-13", venue: "Frankfurt", homeTeam: "South Korea", awayTeam: "Togo", homeCode: "KOR", awayCode: "TOG", homeScore: 2, awayScore: 1 },
+  { id: "2006-g-g-3", stage: "Group", group: "G", date: "2006-06-18", venue: "Leipzig", homeTeam: "France", awayTeam: "South Korea", homeCode: "FRA", awayCode: "KOR", homeScore: 1, awayScore: 1 },
+  { id: "2006-g-g-4", stage: "Group", group: "G", date: "2006-06-19", venue: "Cologne", homeTeam: "Togo", awayTeam: "Switzerland", homeCode: "TOG", awayCode: "SUI", homeScore: 0, awayScore: 2 },
+  { id: "2006-g-g-5", stage: "Group", group: "G", date: "2006-06-23", venue: "Hanover", homeTeam: "Togo", awayTeam: "France", homeCode: "TOG", awayCode: "FRA", homeScore: 0, awayScore: 2 },
+  { id: "2006-g-g-6", stage: "Group", group: "G", date: "2006-06-23", venue: "Munich", homeTeam: "Switzerland", awayTeam: "South Korea", homeCode: "SUI", awayCode: "KOR", homeScore: 2, awayScore: 0 },
+  // Group H
+  { id: "2006-g-h-1", stage: "Group", group: "H", date: "2006-06-14", venue: "Leipzig", homeTeam: "Spain", awayTeam: "Ukraine", homeCode: "ESP", awayCode: "UKR", homeScore: 4, awayScore: 0 },
+  { id: "2006-g-h-2", stage: "Group", group: "H", date: "2006-06-14", venue: "Munich", homeTeam: "Tunisia", awayTeam: "Saudi Arabia", homeCode: "TUN", awayCode: "KSA", homeScore: 2, awayScore: 2 },
+  { id: "2006-g-h-3", stage: "Group", group: "H", date: "2006-06-19", venue: "Stuttgart", homeTeam: "Spain", awayTeam: "Tunisia", homeCode: "ESP", awayCode: "TUN", homeScore: 3, awayScore: 1 },
+  { id: "2006-g-h-4", stage: "Group", group: "H", date: "2006-06-19", venue: "Hamburg", homeTeam: "Saudi Arabia", awayTeam: "Ukraine", homeCode: "KSA", awayCode: "UKR", homeScore: 0, awayScore: 4 },
+  { id: "2006-g-h-5", stage: "Group", group: "H", date: "2006-06-23", venue: "Gelsenkirchen", homeTeam: "Saudi Arabia", awayTeam: "Spain", homeCode: "KSA", awayCode: "ESP", homeScore: 0, awayScore: 1 },
+  { id: "2006-g-h-6", stage: "Group", group: "H", date: "2006-06-23", venue: "Berlin", homeTeam: "Ukraine", awayTeam: "Tunisia", homeCode: "UKR", awayCode: "TUN", homeScore: 1, awayScore: 0 },
 ];
 
 export const wc2006 = {
@@ -95,7 +143,7 @@ export const wc2006 = {
   fact: "Italy won on penalties after Zidane was sent off for headbutting Materazzi in the final.",
   detailLevel: "full",
   standings,
-  matches: [...groupHighlights, ...knockout],
+  matches: [...groupMatches, ...knockout],
   bracket: [
     { round: "Round of 16", matches: knockout.slice(0, 8).map((m) => m.id) },
     { round: "Quarter-final", matches: knockout.slice(8, 12).map((m) => m.id) },
