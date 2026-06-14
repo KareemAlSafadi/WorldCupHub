@@ -49,6 +49,65 @@ const standings = {
   ],
 };
 
+const groupMatches = [
+  // ── Group A ──
+  { id: "2014-g-a-1", stage: "Group", group: "A", date: "2014-06-12", venue: "São Paulo", homeTeam: "Brazil", awayTeam: "Croatia", homeCode: "BRA", awayCode: "CRO", homeScore: 3, awayScore: 1 },
+  { id: "2014-g-a-2", stage: "Group", group: "A", date: "2014-06-13", venue: "Natal", homeTeam: "Mexico", awayTeam: "Cameroon", homeCode: "MEX", awayCode: "CMR", homeScore: 1, awayScore: 0 },
+  { id: "2014-g-a-3", stage: "Group", group: "A", date: "2014-06-17", venue: "Fortaleza", homeTeam: "Brazil", awayTeam: "Mexico", homeCode: "BRA", awayCode: "MEX", homeScore: 0, awayScore: 0 },
+  { id: "2014-g-a-4", stage: "Group", group: "A", date: "2014-06-18", venue: "Manaus", homeTeam: "Croatia", awayTeam: "Cameroon", homeCode: "CRO", awayCode: "CMR", homeScore: 4, awayScore: 0 },
+  { id: "2014-g-a-5", stage: "Group", group: "A", date: "2014-06-23", venue: "Recife", homeTeam: "Cameroon", awayTeam: "Brazil", homeCode: "CMR", awayCode: "BRA", homeScore: 1, awayScore: 4 },
+  { id: "2014-g-a-6", stage: "Group", group: "A", date: "2014-06-23", venue: "Brasília", homeTeam: "Croatia", awayTeam: "Mexico", homeCode: "CRO", awayCode: "MEX", homeScore: 1, awayScore: 3 },
+  // ── Group B ──
+  { id: "2014-g-b-1", stage: "Group", group: "B", date: "2014-06-13", venue: "Salvador", homeTeam: "Spain", awayTeam: "Netherlands", homeCode: "ESP", awayCode: "NED", homeScore: 1, awayScore: 5 },
+  { id: "2014-g-b-2", stage: "Group", group: "B", date: "2014-06-13", venue: "Cuiabá", homeTeam: "Chile", awayTeam: "Australia", homeCode: "CHI", awayCode: "AUS", homeScore: 3, awayScore: 1 },
+  { id: "2014-g-b-3", stage: "Group", group: "B", date: "2014-06-18", venue: "Rio de Janeiro", homeTeam: "Spain", awayTeam: "Chile", homeCode: "ESP", awayCode: "CHI", homeScore: 0, awayScore: 2 },
+  { id: "2014-g-b-4", stage: "Group", group: "B", date: "2014-06-18", venue: "Porto Alegre", homeTeam: "Netherlands", awayTeam: "Australia", homeCode: "NED", awayCode: "AUS", homeScore: 3, awayScore: 2 },
+  { id: "2014-g-b-5", stage: "Group", group: "B", date: "2014-06-23", venue: "São Paulo", homeTeam: "Netherlands", awayTeam: "Chile", homeCode: "NED", awayCode: "CHI", homeScore: 2, awayScore: 0 },
+  { id: "2014-g-b-6", stage: "Group", group: "B", date: "2014-06-23", venue: "Curitiba", homeTeam: "Spain", awayTeam: "Australia", homeCode: "ESP", awayCode: "AUS", homeScore: 3, awayScore: 0 },
+  // ── Group C ──
+  { id: "2014-g-c-1", stage: "Group", group: "C", date: "2014-06-14", venue: "Belo Horizonte", homeTeam: "Colombia", awayTeam: "Greece", homeCode: "COL", awayCode: "GRE", homeScore: 3, awayScore: 0 },
+  { id: "2014-g-c-2", stage: "Group", group: "C", date: "2014-06-14", venue: "Recife", homeTeam: "Ivory Coast", awayTeam: "Japan", homeCode: "CIV", awayCode: "JPN", homeScore: 2, awayScore: 1 },
+  { id: "2014-g-c-3", stage: "Group", group: "C", date: "2014-06-19", venue: "Brasília", homeTeam: "Colombia", awayTeam: "Ivory Coast", homeCode: "COL", awayCode: "CIV", homeScore: 2, awayScore: 1 },
+  { id: "2014-g-c-4", stage: "Group", group: "C", date: "2014-06-19", venue: "Natal", homeTeam: "Japan", awayTeam: "Greece", homeCode: "JPN", awayCode: "GRE", homeScore: 0, awayScore: 0 },
+  { id: "2014-g-c-5", stage: "Group", group: "C", date: "2014-06-24", venue: "Cuiabá", homeTeam: "Japan", awayTeam: "Colombia", homeCode: "JPN", awayCode: "COL", homeScore: 1, awayScore: 4 },
+  { id: "2014-g-c-6", stage: "Group", group: "C", date: "2014-06-24", venue: "Fortaleza", homeTeam: "Greece", awayTeam: "Ivory Coast", homeCode: "GRE", awayCode: "CIV", homeScore: 2, awayScore: 1 },
+  // ── Group D ──
+  { id: "2014-g-d-1", stage: "Group", group: "D", date: "2014-06-14", venue: "Manaus", homeTeam: "England", awayTeam: "Italy", homeCode: "ENG", awayCode: "ITA", homeScore: 1, awayScore: 2 },
+  { id: "2014-g-d-2", stage: "Group", group: "D", date: "2014-06-14", venue: "Fortaleza", homeTeam: "Uruguay", awayTeam: "Costa Rica", homeCode: "URU", awayCode: "CRC", homeScore: 1, awayScore: 3 },
+  { id: "2014-g-d-3", stage: "Group", group: "D", date: "2014-06-19", venue: "São Paulo", homeTeam: "Uruguay", awayTeam: "England", homeCode: "URU", awayCode: "ENG", homeScore: 2, awayScore: 1 },
+  { id: "2014-g-d-4", stage: "Group", group: "D", date: "2014-06-20", venue: "Recife", homeTeam: "Italy", awayTeam: "Costa Rica", homeCode: "ITA", awayCode: "CRC", homeScore: 0, awayScore: 1 },
+  { id: "2014-g-d-5", stage: "Group", group: "D", date: "2014-06-24", venue: "Natal", homeTeam: "Italy", awayTeam: "Uruguay", homeCode: "ITA", awayCode: "URU", homeScore: 0, awayScore: 1 },
+  { id: "2014-g-d-6", stage: "Group", group: "D", date: "2014-06-24", venue: "Belo Horizonte", homeTeam: "Costa Rica", awayTeam: "England", homeCode: "CRC", awayCode: "ENG", homeScore: 0, awayScore: 0 },
+  // ── Group E ──
+  { id: "2014-g-e-1", stage: "Group", group: "E", date: "2014-06-15", venue: "Brasília", homeTeam: "Switzerland", awayTeam: "Ecuador", homeCode: "SUI", awayCode: "ECU", homeScore: 2, awayScore: 1 },
+  { id: "2014-g-e-2", stage: "Group", group: "E", date: "2014-06-15", venue: "Porto Alegre", homeTeam: "France", awayTeam: "Honduras", homeCode: "FRA", awayCode: "HND", homeScore: 3, awayScore: 0 },
+  { id: "2014-g-e-3", stage: "Group", group: "E", date: "2014-06-20", venue: "Salvador", homeTeam: "France", awayTeam: "Switzerland", homeCode: "FRA", awayCode: "SUI", homeScore: 5, awayScore: 2 },
+  { id: "2014-g-e-4", stage: "Group", group: "E", date: "2014-06-20", venue: "Curitiba", homeTeam: "Honduras", awayTeam: "Ecuador", homeCode: "HND", awayCode: "ECU", homeScore: 1, awayScore: 2 },
+  { id: "2014-g-e-5", stage: "Group", group: "E", date: "2014-06-25", venue: "Rio de Janeiro", homeTeam: "France", awayTeam: "Ecuador", homeCode: "FRA", awayCode: "ECU", homeScore: 0, awayScore: 0 },
+  { id: "2014-g-e-6", stage: "Group", group: "E", date: "2014-06-25", venue: "Manaus", homeTeam: "Switzerland", awayTeam: "Honduras", homeCode: "SUI", awayCode: "HND", homeScore: 3, awayScore: 0 },
+  // ── Group F ──
+  { id: "2014-g-f-1", stage: "Group", group: "F", date: "2014-06-15", venue: "Rio de Janeiro", homeTeam: "Argentina", awayTeam: "Bosnia", homeCode: "ARG", awayCode: "BIH", homeScore: 2, awayScore: 1 },
+  { id: "2014-g-f-2", stage: "Group", group: "F", date: "2014-06-16", venue: "Curitiba", homeTeam: "Iran", awayTeam: "Nigeria", homeCode: "IRN", awayCode: "NGA", homeScore: 0, awayScore: 0 },
+  { id: "2014-g-f-3", stage: "Group", group: "F", date: "2014-06-21", venue: "Belo Horizonte", homeTeam: "Argentina", awayTeam: "Iran", homeCode: "ARG", awayCode: "IRN", homeScore: 1, awayScore: 0 },
+  { id: "2014-g-f-4", stage: "Group", group: "F", date: "2014-06-21", venue: "Cuiabá", homeTeam: "Nigeria", awayTeam: "Bosnia", homeCode: "NGA", awayCode: "BIH", homeScore: 1, awayScore: 0 },
+  { id: "2014-g-f-5", stage: "Group", group: "F", date: "2014-06-25", venue: "Salvador", homeTeam: "Bosnia", awayTeam: "Iran", homeCode: "BIH", awayCode: "IRN", homeScore: 3, awayScore: 1 },
+  { id: "2014-g-f-6", stage: "Group", group: "F", date: "2014-06-25", venue: "Porto Alegre", homeTeam: "Argentina", awayTeam: "Nigeria", homeCode: "ARG", awayCode: "NGA", homeScore: 3, awayScore: 2 },
+  // ── Group G ──
+  { id: "2014-g-g-1", stage: "Group", group: "G", date: "2014-06-16", venue: "Salvador", homeTeam: "Germany", awayTeam: "Portugal", homeCode: "GER", awayCode: "POR", homeScore: 4, awayScore: 0 },
+  { id: "2014-g-g-2", stage: "Group", group: "G", date: "2014-06-16", venue: "Natal", homeTeam: "Ghana", awayTeam: "United States", homeCode: "GHA", awayCode: "USA", homeScore: 1, awayScore: 2 },
+  { id: "2014-g-g-3", stage: "Group", group: "G", date: "2014-06-21", venue: "Fortaleza", homeTeam: "Germany", awayTeam: "Ghana", homeCode: "GER", awayCode: "GHA", homeScore: 2, awayScore: 2 },
+  { id: "2014-g-g-4", stage: "Group", group: "G", date: "2014-06-22", venue: "Manaus", homeTeam: "United States", awayTeam: "Portugal", homeCode: "USA", awayCode: "POR", homeScore: 2, awayScore: 2 },
+  { id: "2014-g-g-5", stage: "Group", group: "G", date: "2014-06-26", venue: "Brasília", homeTeam: "Ghana", awayTeam: "Portugal", homeCode: "GHA", awayCode: "POR", homeScore: 1, awayScore: 2 },
+  { id: "2014-g-g-6", stage: "Group", group: "G", date: "2014-06-26", venue: "Recife", homeTeam: "United States", awayTeam: "Germany", homeCode: "USA", awayCode: "GER", homeScore: 0, awayScore: 1 },
+  // ── Group H ──
+  { id: "2014-g-h-1", stage: "Group", group: "H", date: "2014-06-17", venue: "Belo Horizonte", homeTeam: "Belgium", awayTeam: "Algeria", homeCode: "BEL", awayCode: "ALG", homeScore: 2, awayScore: 1 },
+  { id: "2014-g-h-2", stage: "Group", group: "H", date: "2014-06-17", venue: "São Paulo", homeTeam: "Russia", awayTeam: "South Korea", homeCode: "RUS", awayCode: "KOR", homeScore: 1, awayScore: 1 },
+  { id: "2014-g-h-3", stage: "Group", group: "H", date: "2014-06-22", venue: "Rio de Janeiro", homeTeam: "Belgium", awayTeam: "Russia", homeCode: "BEL", awayCode: "RUS", homeScore: 1, awayScore: 0 },
+  { id: "2014-g-h-4", stage: "Group", group: "H", date: "2014-06-22", venue: "Porto Alegre", homeTeam: "Algeria", awayTeam: "South Korea", homeCode: "ALG", awayCode: "KOR", homeScore: 4, awayScore: 2 },
+  { id: "2014-g-h-5", stage: "Group", group: "H", date: "2014-06-26", venue: "Curitiba", homeTeam: "Algeria", awayTeam: "Russia", homeCode: "ALG", awayCode: "RUS", homeScore: 1, awayScore: 1 },
+  { id: "2014-g-h-6", stage: "Group", group: "H", date: "2014-06-26", venue: "São Paulo", homeTeam: "South Korea", awayTeam: "Belgium", homeCode: "KOR", awayCode: "BEL", homeScore: 0, awayScore: 1 },
+];
+
 const knockout = [
   { id: "2014-r16-1", stage: "Round of 16", date: "2014-06-28", homeTeam: "Brazil", awayTeam: "Chile", homeCode: "BRA", awayCode: "CHI", homeScore: 1, awayScore: 1, pens: "3-2" },
   { id: "2014-r16-2", stage: "Round of 16", date: "2014-06-28", homeTeam: "Colombia", awayTeam: "Uruguay", homeCode: "COL", awayCode: "URU", homeScore: 2, awayScore: 0 },
@@ -68,17 +127,6 @@ const knockout = [
   { id: "2014-final", stage: "Final", date: "2014-07-13", homeTeam: "Germany", awayTeam: "Argentina", homeCode: "GER", awayCode: "ARG", homeScore: 1, awayScore: 0, extra: "ET" },
 ];
 
-const groupHighlights = [
-  { id: "2014-g-a-1", stage: "Group", group: "A", date: "2014-06-12", homeTeam: "Brazil", awayTeam: "Croatia", homeCode: "BRA", awayCode: "CRO", homeScore: 3, awayScore: 1 },
-  { id: "2014-g-b-1", stage: "Group", group: "B", date: "2014-06-13", homeTeam: "Spain", awayTeam: "Netherlands", homeCode: "ESP", awayCode: "NED", homeScore: 1, awayScore: 5 },
-  { id: "2014-g-c-1", stage: "Group", group: "C", date: "2014-06-14", homeTeam: "Colombia", awayTeam: "Greece", homeCode: "COL", awayCode: "GRE", homeScore: 3, awayScore: 0 },
-  { id: "2014-g-d-1", stage: "Group", group: "D", date: "2014-06-14", homeTeam: "England", awayTeam: "Italy", homeCode: "ENG", awayCode: "ITA", homeScore: 1, awayScore: 2 },
-  { id: "2014-g-e-1", stage: "Group", group: "E", date: "2014-06-15", homeTeam: "Switzerland", awayTeam: "Ecuador", homeCode: "SUI", awayCode: "ECU", homeScore: 2, awayScore: 1 },
-  { id: "2014-g-f-1", stage: "Group", group: "F", date: "2014-06-15", homeTeam: "Argentina", awayTeam: "Bosnia", homeCode: "ARG", awayCode: "BIH", homeScore: 2, awayScore: 1 },
-  { id: "2014-g-g-1", stage: "Group", group: "G", date: "2014-06-16", homeTeam: "Germany", awayTeam: "Portugal", homeCode: "GER", awayCode: "POR", homeScore: 4, awayScore: 0 },
-  { id: "2014-g-h-1", stage: "Group", group: "H", date: "2014-06-17", homeTeam: "Belgium", awayTeam: "Algeria", homeCode: "BEL", awayCode: "ALG", homeScore: 2, awayScore: 1 },
-];
-
 export const wc2014 = {
   year: 2014,
   host: "Brazil",
@@ -90,12 +138,12 @@ export const wc2014 = {
   topScorer: "James Rodriguez (6 goals)",
   teamsCount: 32,
   format: "32 teams, 8 groups of 4, knockout",
-  cities: ["Rio de Janeiro", "Sao Paulo", "Brasilia", "Belo Horizonte", "Fortaleza"],
+  cities: ["Rio de Janeiro", "São Paulo", "Brasília", "Belo Horizonte", "Fortaleza", "Salvador", "Recife", "Natal", "Manaus", "Cuiabá", "Porto Alegre", "Curitiba"],
   attendance: "3.43 million",
-  fact: "Germany's 7-1 semi-final win over hosts Brazil is one of the most shocking results in World Cup history.",
+  fact: "Germany's 7-1 semi-final win over hosts Brazil is one of the most shocking results in World Cup history. Robben's Netherlands demolished Spain 5-1. James Rodríguez's bicycle kick vs Uruguay won Goal of the Tournament.",
   detailLevel: "full",
   standings,
-  matches: [...groupHighlights, ...knockout],
+  matches: [...groupMatches, ...knockout],
   bracket: [
     { round: "Round of 16", matches: knockout.slice(0, 8).map((m) => m.id) },
     { round: "Quarter-final", matches: knockout.slice(8, 12).map((m) => m.id) },
