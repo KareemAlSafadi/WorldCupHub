@@ -3,6 +3,7 @@ import teamsData from '../data/teams.json';
 import allTimeScorers from '../data/allTimeScorers.json';
 import { fullTournaments } from '../data/tournamentDetails.js';
 import squadsData from '../data/squads.json';
+import teamRecordsData from '../data/teamRecords.json';
 
 const NAME_TO_SLUG = {
   'West Germany': 'west-germany',
@@ -177,6 +178,11 @@ export function getGoldenBootByYear() {
     .filter((t) => t.topScorer && t.winner) // winner check excludes in-progress
     .map((t) => ({ year: t.year, host: t.host, topScorer: t.topScorer }))
     .sort((a, b) => b.year - a.year);
+}
+
+/** Team-level records: all-time top scorer, most capped, captains list. */
+export function getTeamRecord(code) {
+  return teamRecordsData[code] || null;
 }
 
 /** Returns the N largest-margin wins across all recorded matches. */

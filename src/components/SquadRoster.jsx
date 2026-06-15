@@ -25,7 +25,12 @@ export default function SquadRoster({ players }) {
                       {player.number}
                     </span>
                   )}
-                  <span className="flex-1 text-sm font-medium text-white">{player.name}</span>
+                  <span className="flex-1 text-sm font-medium text-white">
+                    {player.name}
+                    {player.captain && (
+                      <span className="ml-1.5 rounded px-1 py-0.5 text-[0.55rem] font-bold uppercase tracking-wider bg-pitch/20 text-pitch align-middle">C</span>
+                    )}
+                  </span>
                   {player.club && (
                     <span className="hidden shrink-0 text-right text-xs text-white/35 sm:block">
                       {player.club}

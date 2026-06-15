@@ -1,0 +1,465 @@
+{
+  "ARG": {
+    "allTimeTopScorer": { "name": "Lionel Messi", "goals": 13, "span": "2006–2022" },
+    "mostCapped": { "name": "Lionel Messi", "caps": 26, "span": "2006–2022" },
+    "captains": [
+      { "name": "Lionel Messi", "years": [2014, 2018, 2022, 2026] },
+      { "name": "Diego Maradona", "years": [1982, 1986, 1990] },
+      { "name": "Daniel Passarella", "years": [1978] },
+      { "name": "Manuel Ferreira", "years": [1930] }
+    ],
+    "coaches": [
+      { "name": "Lionel Scaloni", "years": [2022, 2026] },
+      { "name": "Jorge Sampaoli", "years": [2018] },
+      { "name": "Alejandro Sabella", "years": [2014] },
+      { "name": "Diego Maradona", "years": [2010] },
+      { "name": "José Pékerman", "years": [2006] },
+      { "name": "Marcelo Bielsa", "years": [2002] },
+      { "name": "Daniel Passarella", "years": [1998] },
+      { "name": "Alfio Basile", "years": [1994] },
+      { "name": "Carlos Bilardo", "years": [1986, 1990] },
+      { "name": "César Luis Menotti", "years": [1978, 1982] },
+      { "name": "Juan José Tramutola", "years": [1930] }
+    ]
+  },
+  "BRA": {
+    "allTimeTopScorer": { "name": "Ronaldo", "goals": 15, "span": "1994–2006" },
+    "mostCapped": { "name": "Cafu", "caps": 20, "span": "1994–2006" },
+    "captains": [
+      { "name": "Thiago Silva", "years": [2014, 2022] },
+      { "name": "Cafu", "years": [2002, 2006] },
+      { "name": "Dunga", "years": [1994, 1998] },
+      { "name": "Carlos Alberto Torres", "years": [1970] },
+      { "name": "Bellini", "years": [1958] }
+    ],
+    "coaches": [
+      { "name": "Dorival Júnior", "years": [2026] },
+      { "name": "Tite", "years": [2018, 2022] },
+      { "name": "Luiz Felipe Scolari", "years": [2002, 2014] },
+      { "name": "Dunga", "years": [2010] },
+      { "name": "Carlos Alberto Parreira", "years": [1994, 2006] },
+      { "name": "Mário Zagallo", "years": [1970, 1974, 1998] },
+      { "name": "Telê Santana", "years": [1982, 1986] },
+      { "name": "Cláudio Coutinho", "years": [1978] },
+      { "name": "Aymorê Moreira", "years": [1962] },
+      { "name": "Vicente Feola", "years": [1958, 1966] }
+    ]
+  },
+  "GER": {
+    "allTimeTopScorer": { "name": "Miroslav Klose", "goals": 16, "span": "2002–2014" },
+    "mostCapped": { "name": "Lothar Matthäus", "caps": 25, "span": "1982–1998" },
+    "captains": [
+      { "name": "Manuel Neuer", "years": [2018, 2022, 2026] },
+      { "name": "Philipp Lahm", "years": [2010, 2014] },
+      { "name": "Michael Ballack", "years": [2002, 2006] },
+      { "name": "Lothar Matthäus", "years": [1994, 1998] },
+      { "name": "Fritz Walter", "years": [1954, 1958] }
+    ],
+    "coaches": [
+      { "name": "Julian Nagelsmann", "years": [2026] },
+      { "name": "Hansi Flick", "years": [2022] },
+      { "name": "Joachim Löw", "years": [2010, 2014, 2018] },
+      { "name": "Jürgen Klinsmann", "years": [2006] },
+      { "name": "Rudi Völler", "years": [2002] },
+      { "name": "Berti Vogts", "years": [1994, 1998] }
+    ]
+  },
+  "FRG": {
+    "allTimeTopScorer": { "name": "Gerd Müller", "goals": 14, "span": "1970–1974" },
+    "mostCapped": { "name": "Uwe Seeler", "caps": 21, "span": "1958–1970" },
+    "captains": [
+      { "name": "Lothar Matthäus", "years": [1986, 1990] },
+      { "name": "Franz Beckenbauer", "years": [1970, 1974] },
+      { "name": "Uwe Seeler", "years": [1966] },
+      { "name": "Fritz Walter", "years": [1954, 1958] }
+    ],
+    "coaches": [
+      { "name": "Franz Beckenbauer", "years": [1986, 1990] },
+      { "name": "Jupp Derwall", "years": [1978, 1982] },
+      { "name": "Helmut Schön", "years": [1966, 1970, 1974] },
+      { "name": "Sepp Herberger", "years": [1954, 1958, 1962] }
+    ]
+  },
+  "FRA": {
+    "allTimeTopScorer": { "name": "Kylian Mbappé", "goals": 12, "span": "2018–2022" },
+    "mostCapped": { "name": "Hugo Lloris", "caps": 18, "span": "2010–2022" },
+    "captains": [
+      { "name": "Kylian Mbappé", "years": [2026] },
+      { "name": "Hugo Lloris", "years": [2014, 2018, 2022] },
+      { "name": "Zinedine Zidane", "years": [2006] },
+      { "name": "Didier Deschamps", "years": [1998] },
+      { "name": "Michel Platini", "years": [1982, 1986] }
+    ],
+    "coaches": [
+      { "name": "Didier Deschamps", "years": [2014, 2018, 2022, 2026] },
+      { "name": "Raymond Domenech", "years": [2006, 2010] },
+      { "name": "Roger Lemerre", "years": [2002] },
+      { "name": "Aimé Jacquet", "years": [1998] },
+      { "name": "Henri Michel", "years": [1986] },
+      { "name": "Michel Hidalgo", "years": [1978, 1982] }
+    ]
+  },
+  "ITA": {
+    "allTimeTopScorer": { "name": "Roberto Baggio / Christian Vieri / Paolo Rossi", "goals": 9, "span": "1934–2006" },
+    "mostCapped": { "name": "Paolo Maldini", "caps": 16, "span": "1990–2002" },
+    "captains": [
+      { "name": "Gianluigi Buffon", "years": [2010, 2014] },
+      { "name": "Fabio Cannavaro", "years": [2002, 2006] },
+      { "name": "Franco Baresi", "years": [1994] },
+      { "name": "Dino Zoff", "years": [1982] },
+      { "name": "Giacinto Facchetti", "years": [1970, 1974] },
+      { "name": "Giuseppe Meazza", "years": [1934, 1938] }
+    ],
+    "coaches": [
+      { "name": "Cesare Prandelli", "years": [2014] },
+      { "name": "Marcello Lippi", "years": [2006, 2010] },
+      { "name": "Giovanni Trapattoni", "years": [2002] },
+      { "name": "Cesare Maldini", "years": [1998] },
+      { "name": "Arrigo Sacchi", "years": [1994] },
+      { "name": "Azeglio Vicini", "years": [1990] },
+      { "name": "Enzo Bearzot", "years": [1978, 1982, 1986] },
+      { "name": "Ferruccio Valcareggi", "years": [1970, 1974] },
+      { "name": "Vittorio Pozzo", "years": [1934, 1938] }
+    ]
+  },
+  "ENG": {
+    "allTimeTopScorer": { "name": "Gary Lineker", "goals": 10, "span": "1986–1990" },
+    "mostCapped": { "name": "Peter Shilton", "caps": 17, "span": "1982–1990" },
+    "captains": [
+      { "name": "Harry Kane", "years": [2018, 2022, 2026] },
+      { "name": "Steven Gerrard", "years": [2010, 2014] },
+      { "name": "David Beckham", "years": [2006] },
+      { "name": "Alan Shearer", "years": [1998] },
+      { "name": "Terry Butcher", "years": [1990] },
+      { "name": "Bryan Robson", "years": [1982, 1986] },
+      { "name": "Bobby Moore", "years": [1966, 1970] }
+    ],
+    "coaches": [
+      { "name": "Gareth Southgate", "years": [2018, 2022, 2026] },
+      { "name": "Roy Hodgson", "years": [2014] },
+      { "name": "Fabio Capello", "years": [2010] },
+      { "name": "Sven-Göran Eriksson", "years": [2002, 2006] },
+      { "name": "Glenn Hoddle", "years": [1998] },
+      { "name": "Bobby Robson", "years": [1986, 1990] },
+      { "name": "Ron Greenwood", "years": [1982] },
+      { "name": "Alf Ramsey", "years": [1966, 1970] }
+    ]
+  },
+  "ESP": {
+    "allTimeTopScorer": { "name": "David Villa", "goals": 9, "span": "2006–2014" },
+    "mostCapped": { "name": "Iker Casillas", "caps": 19, "span": "2002–2018" },
+    "captains": [
+      { "name": "Álvaro Morata", "years": [2026] },
+      { "name": "Sergio Ramos", "years": [2018, 2022] },
+      { "name": "Iker Casillas", "years": [2010, 2014] },
+      { "name": "Raúl", "years": [2002, 2006] }
+    ],
+    "coaches": [
+      { "name": "Luis de la Fuente", "years": [2026] },
+      { "name": "Luis Enrique", "years": [2022] },
+      { "name": "Fernando Hierro", "years": [2018] },
+      { "name": "Vicente del Bosque", "years": [2010, 2014] },
+      { "name": "Luis Aragonés", "years": [2006] },
+      { "name": "José Antonio Camacho", "years": [2002] },
+      { "name": "Javier Clemente", "years": [1994, 1998] }
+    ]
+  },
+  "NED": {
+    "allTimeTopScorer": { "name": "Rob Rensenbrink / Dennis Bergkamp", "goals": 6, "span": "1974–2014" },
+    "mostCapped": { "name": "Arjen Robben", "caps": 20, "span": "2002–2014" },
+    "captains": [
+      { "name": "Robin van Persie", "years": [2014] },
+      { "name": "Giovanni van Bronckhorst", "years": [2006, 2010] },
+      { "name": "Frank de Boer", "years": [2002] },
+      { "name": "Johan Cruyff", "years": [1974] }
+    ],
+    "coaches": [
+      { "name": "Louis van Gaal", "years": [2014, 2022] },
+      { "name": "Bert van Marwijk", "years": [2010] },
+      { "name": "Marco van Basten", "years": [2006] },
+      { "name": "Guus Hiddink", "years": [1998, 2002] },
+      { "name": "Dick Advocaat", "years": [1994] },
+      { "name": "Leo Beenhakker", "years": [1990] },
+      { "name": "Rinus Michels", "years": [1974] }
+    ]
+  },
+  "POR": {
+    "allTimeTopScorer": { "name": "Eusébio", "goals": 9, "span": "1966" },
+    "mostCapped": { "name": "Cristiano Ronaldo", "caps": 20, "span": "2006–2026" },
+    "captains": [
+      { "name": "Cristiano Ronaldo", "years": [2006, 2010, 2014, 2018, 2022, 2026] },
+      { "name": "Luís Figo", "years": [2002] },
+      { "name": "Eusébio", "years": [1966] }
+    ],
+    "coaches": [
+      { "name": "Roberto Martínez", "years": [2026] },
+      { "name": "Fernando Santos", "years": [2018, 2022] },
+      { "name": "Paulo Bento", "years": [2014] },
+      { "name": "Carlos Queiroz", "years": [2010] },
+      { "name": "Luiz Felipe Scolari", "years": [2006] },
+      { "name": "António Oliveira", "years": [2002] },
+      { "name": "Otto Glória", "years": [1966] }
+    ]
+  },
+  "URU": {
+    "allTimeTopScorer": { "name": "Diego Forlán", "goals": 6, "span": "2002–2014" },
+    "mostCapped": { "name": "Diego Forlán", "caps": 15, "span": "2002–2014" },
+    "captains": [
+      { "name": "Diego Godín", "years": [2018] },
+      { "name": "Diego Forlán", "years": [2010] },
+      { "name": "Obdulio Varela", "years": [1950, 1954] },
+      { "name": "José Nasazzi", "years": [1930] }
+    ],
+    "coaches": [
+      { "name": "Diego Alonso", "years": [2022] },
+      { "name": "Óscar Tabárez", "years": [2006, 2010, 2014, 2018] },
+      { "name": "Juan López", "years": [1950, 1954] },
+      { "name": "Alberto Suppici", "years": [1930] }
+    ]
+  },
+  "MEX": {
+    "allTimeTopScorer": { "name": "Javier Hernández", "goals": 8, "span": "2010–2018" },
+    "mostCapped": { "name": "Rafael Márquez", "caps": 19, "span": "2002–2018" },
+    "captains": [
+      { "name": "Andrés Guardado", "years": [2018, 2022] },
+      { "name": "Rafael Márquez", "years": [2006, 2010, 2014] },
+      { "name": "Cuauhtémoc Blanco", "years": [2002] }
+    ],
+    "coaches": [
+      { "name": "Javier Aguirre", "years": [2002, 2010, 2026] },
+      { "name": "Juan Carlos Osorio", "years": [2018] },
+      { "name": "Gerardo Martino", "years": [2022] },
+      { "name": "Miguel Herrera", "years": [2014] },
+      { "name": "Ricardo La Volpe", "years": [2006] },
+      { "name": "Manuel Lapuente", "years": [1998] },
+      { "name": "Bora Milutinović", "years": [1994] }
+    ]
+  },
+  "CRO": {
+    "allTimeTopScorer": { "name": "Davor Šuker", "goals": 8, "span": "1998–2002" },
+    "mostCapped": { "name": "Luka Modrić", "caps": 24, "span": "2006–2022" },
+    "captains": [
+      { "name": "Luka Modrić", "years": [2014, 2018, 2022, 2026] },
+      { "name": "Darijo Srna", "years": [2006, 2010] },
+      { "name": "Davor Šuker", "years": [1998] }
+    ],
+    "coaches": [
+      { "name": "Zlatko Dalić", "years": [2018, 2022, 2026] },
+      { "name": "Niko Kovač", "years": [2014] },
+      { "name": "Slaven Bilić", "years": [2006, 2010] },
+      { "name": "Zlatko Kranjčar", "years": [2002] },
+      { "name": "Miroslav Blažević", "years": [1998] }
+    ]
+  },
+  "BEL": {
+    "allTimeTopScorer": { "name": "Romelu Lukaku", "goals": 9, "span": "2014–2022" },
+    "mostCapped": { "name": "Jan Vertonghen", "caps": 14, "span": "2010–2022" },
+    "captains": [
+      { "name": "Eden Hazard", "years": [2018] },
+      { "name": "Vincent Kompany", "years": [2014] },
+      { "name": "Axel Witsel", "years": [2022] }
+    ],
+    "coaches": [
+      { "name": "Domenico Tedesco", "years": [2026] },
+      { "name": "Roberto Martínez", "years": [2018, 2022] },
+      { "name": "Marc Wilmots", "years": [2014] },
+      { "name": "Georges Leekens", "years": [2002] }
+    ]
+  },
+  "POL": {
+    "allTimeTopScorer": { "name": "Grzegorz Lato", "goals": 10, "span": "1974–1982" },
+    "mostCapped": { "name": "Zbigniew Boniek", "caps": 14, "span": "1978–1986" },
+    "captains": [
+      { "name": "Robert Lewandowski", "years": [2018, 2022, 2026] },
+      { "name": "Zbigniew Boniek", "years": [1978, 1982, 1986] },
+      { "name": "Grzegorz Lato", "years": [1974] }
+    ],
+    "coaches": [
+      { "name": "Michał Probierz", "years": [2026] },
+      { "name": "Czesław Michniewicz", "years": [2022] },
+      { "name": "Adam Nawałka", "years": [2018] },
+      { "name": "Kazimierz Górski", "years": [1974] },
+      { "name": "Jacek Gmoch", "years": [1978] },
+      { "name": "Antoni Piechniczek", "years": [1982, 1986] }
+    ]
+  },
+  "HUN": {
+    "allTimeTopScorer": { "name": "Sándor Kocsis", "goals": 11, "span": "1954" },
+    "mostCapped": { "name": "Gyula Grosics", "caps": 11, "span": "1954–1966" },
+    "captains": [
+      { "name": "Ferenc Puskás", "years": [1954, 1958] }
+    ],
+    "coaches": [
+      { "name": "Gusztáv Sebes", "years": [1954] },
+      { "name": "Lajos Baróti", "years": [1958, 1962, 1966] }
+    ]
+  },
+  "TCH": {
+    "allTimeTopScorer": { "name": "Oldřich Nejedlý", "goals": 7, "span": "1934–1938" },
+    "mostCapped": { "name": "Frantisek Planicka", "caps": 9, "span": "1934–1938" },
+    "captains": [
+      { "name": "Frantisek Planicka", "years": [1934, 1938] }
+    ],
+    "coaches": [
+      { "name": "Karel Petrů", "years": [1934, 1938] }
+    ]
+  },
+  "MAR": {
+    "allTimeTopScorer": { "name": "Youssef En-Nesyri", "goals": 5, "span": "2018–2022" },
+    "mostCapped": { "name": "Romain Saïss", "caps": 11, "span": "2018–2026" },
+    "captains": [
+      { "name": "Romain Saïss", "years": [2022, 2026] }
+    ],
+    "coaches": [
+      { "name": "Walid Regragui", "years": [2022, 2026] },
+      { "name": "Hervé Renard", "years": [2018] }
+    ]
+  },
+  "KOR": {
+    "allTimeTopScorer": { "name": "Ahn Jung-hwan / Park Ji-sung", "goals": 3, "span": "2002–2014" },
+    "mostCapped": { "name": "Hong Myung-bo", "caps": 14, "span": "1990–2002" },
+    "captains": [
+      { "name": "Son Heung-min", "years": [2018, 2022, 2026] },
+      { "name": "Park Ji-sung", "years": [2010, 2014] },
+      { "name": "Hong Myung-bo", "years": [1994, 1998, 2002] }
+    ],
+    "coaches": [
+      { "name": "Hong Myung-bo", "years": [2014, 2026] },
+      { "name": "Paulo Bento", "years": [2022] },
+      { "name": "Shin Tae-yong", "years": [2018] },
+      { "name": "Huh Jung-moo", "years": [2010] },
+      { "name": "Dick Advocaat", "years": [2006] },
+      { "name": "Guus Hiddink", "years": [2002] }
+    ]
+  },
+  "JPN": {
+    "allTimeTopScorer": { "name": "Shinji Okazaki / Keisuke Honda", "goals": 3, "span": "2002–2014" },
+    "mostCapped": { "name": "Yasuhito Endo", "caps": 13, "span": "2002–2014" },
+    "captains": [
+      { "name": "Maya Yoshida", "years": [2018, 2022] },
+      { "name": "Makoto Hasebe", "years": [2014] },
+      { "name": "Yasuhito Endo", "years": [2010] }
+    ],
+    "coaches": [
+      { "name": "Hajime Moriyasu", "years": [2022, 2026] },
+      { "name": "Akira Nishino", "years": [2018] },
+      { "name": "Alberto Zaccheroni", "years": [2014] },
+      { "name": "Takeshi Okada", "years": [1998, 2010] },
+      { "name": "Zico", "years": [2006] },
+      { "name": "Philippe Troussier", "years": [2002] }
+    ]
+  },
+  "SEN": {
+    "allTimeTopScorer": { "name": "Sadio Mané", "goals": 2, "span": "2002–2022" },
+    "mostCapped": { "name": "Kalidou Koulibaly", "caps": 6, "span": "2018–2022" },
+    "captains": [
+      { "name": "Kalidou Koulibaly", "years": [2022] },
+      { "name": "El Hadji Diouf", "years": [2002] }
+    ],
+    "coaches": [
+      { "name": "Aliou Cissé", "years": [2022, 2026] },
+      { "name": "Bruno Metsu", "years": [2002] }
+    ]
+  },
+  "IRN": {
+    "allTimeTopScorer": { "name": "Ali Daei", "goals": 4, "span": "1978–1998" },
+    "mostCapped": { "name": "Andranik Teymourian", "caps": 9, "span": "2006–2014" },
+    "captains": [
+      { "name": "Mehdi Taremi", "years": [2022, 2026] },
+      { "name": "Masoud Shojaei", "years": [2018] }
+    ],
+    "coaches": [
+      { "name": "Carlos Queiroz", "years": [2014, 2018, 2022] }
+    ]
+  },
+  "GHA": {
+    "allTimeTopScorer": { "name": "Asamoah Gyan", "goals": 6, "span": "2006–2014" },
+    "mostCapped": { "name": "Asamoah Gyan", "caps": 12, "span": "2006–2014" },
+    "captains": [
+      { "name": "André Ayew", "years": [2022, 2026] },
+      { "name": "Asamoah Gyan", "years": [2010, 2014] }
+    ],
+    "coaches": [
+      { "name": "Chris Hughton", "years": [2022] },
+      { "name": "Kwesi Appiah", "years": [2014] },
+      { "name": "Milovan Rajevac", "years": [2010] },
+      { "name": "Ratomir Dujković", "years": [2006] }
+    ]
+  },
+  "CMR": {
+    "allTimeTopScorer": { "name": "Roger Milla", "goals": 5, "span": "1982–1994" },
+    "mostCapped": { "name": "Rigobert Song", "caps": 17, "span": "1994–2010" },
+    "captains": [
+      { "name": "Vincent Aboubakar", "years": [2022] },
+      { "name": "Samuel Eto'o", "years": [2010, 2014] },
+      { "name": "Rigobert Song", "years": [1998, 2002, 2006] }
+    ],
+    "coaches": [
+      { "name": "Rigobert Song", "years": [2022] },
+      { "name": "Clarence Seedorf", "years": [2018] },
+      { "name": "Volker Finke", "years": [2014] },
+      { "name": "Paul Le Guen", "years": [2010] }
+    ]
+  },
+  "AUS": {
+    "allTimeTopScorer": { "name": "Tim Cahill", "goals": 5, "span": "2006–2014" },
+    "mostCapped": { "name": "Tim Cahill", "caps": 13, "span": "2006–2018" },
+    "captains": [
+      { "name": "Mathew Ryan", "years": [2022, 2026] },
+      { "name": "Mile Jedinak", "years": [2014, 2018] },
+      { "name": "Mark Schwarzer", "years": [2006, 2010] }
+    ],
+    "coaches": [
+      { "name": "Graham Arnold", "years": [2022, 2026] },
+      { "name": "Bert van Marwijk", "years": [2018] },
+      { "name": "Ange Postecoglou", "years": [2014] },
+      { "name": "Pim Verbeek", "years": [2010] },
+      { "name": "Guus Hiddink", "years": [2006] }
+    ]
+  },
+  "SWI": {
+    "allTimeTopScorer": { "name": "Alexander Frei", "goals": 3, "span": "2006–2010" },
+    "mostCapped": { "name": "Stéphan Lichtsteiner", "caps": 13, "span": "2006–2018" },
+    "captains": [
+      { "name": "Granit Xhaka", "years": [2018, 2022, 2026] }
+    ],
+    "coaches": [
+      { "name": "Murat Yakin", "years": [2022, 2026] },
+      { "name": "Vladimir Petković", "years": [2018] },
+      { "name": "Ottmar Hitzfeld", "years": [2006, 2010, 2014] }
+    ]
+  },
+  "DEN": {
+    "allTimeTopScorer": { "name": "Jon Dahl Tomasson", "goals": 5, "span": "1998–2002" },
+    "mostCapped": { "name": "Peter Schmeichel", "caps": 9, "span": "1986–1998" },
+    "captains": [
+      { "name": "Simon Kjær", "years": [2018, 2022, 2026] },
+      { "name": "Jon Dahl Tomasson", "years": [1998, 2002] },
+      { "name": "Peter Schmeichel", "years": [1998] }
+    ],
+    "coaches": [
+      { "name": "Kasper Hjulmand", "years": [2022, 2026] },
+      { "name": "Åge Hareide", "years": [2018] },
+      { "name": "Morten Olsen", "years": [2002, 2010] },
+      { "name": "Bo Johansson", "years": [1998] },
+      { "name": "Sepp Piontek", "years": [1986] }
+    ]
+  },
+  "USA": {
+    "allTimeTopScorer": { "name": "Landon Donovan", "goals": 5, "span": "2002–2014" },
+    "mostCapped": { "name": "Cobi Jones", "caps": 12, "span": "1994–2002" },
+    "captains": [
+      { "name": "Tyler Adams", "years": [2022, 2026] },
+      { "name": "Clint Dempsey", "years": [2010, 2014] },
+      { "name": "Brian McBride", "years": [2002, 2006] }
+    ],
+    "coaches": [
+      { "name": "Gregg Berhalter", "years": [2022, 2026] },
+      { "name": "Jürgen Klinsmann", "years": [2014] },
+      { "name": "Bob Bradley", "years": [2010] },
+      { "name": "Bruce Arena", "years": [2002, 2006] },
+      { "name": "Steve Sampson", "years": [1998] },
+      { "name": "Bora Milutinović", "years": [1990, 1994] }
+    ]
+  }
+}

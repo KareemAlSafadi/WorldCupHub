@@ -5,7 +5,7 @@ import EmptyState from '../components/EmptyState';
 import FlagBadge from '../components/FlagBadge';
 import SquadRoster from '../components/SquadRoster';
 import usePageTitle from '../lib/usePageTitle';
-import { getTeamBySlug, getSquad, getTeamSquadYears, getTeamMatchStats } from '../lib/data';
+import { getTeamBySlug, getSquad, getTeamSquadYears, getTeamMatchStats, getTeamRecord } from '../lib/data';
 
 const DISPLAY = '"Cabinet Grotesk", system-ui, sans-serif';
 
@@ -141,6 +141,7 @@ export default function TeamDetail() {
         )}
       </section>
 
+      <TeamRecordsSection code={team.code} />
       <TeamSquadsSection code={team.code} />
     </div>
   );
@@ -230,6 +231,90 @@ function MatchRecordSection({ slug }) {
                 <span className="text-sm text-white/55">vs {biggestLoss.oppName}</span>
               </div>
               <p className="mt-2 text-xs text-white/30">{biggestLoss.year} · {biggestLoss.stage}</p>
+            </div>
+          )}
+        </div>
+      )}
+    </section>
+  );
+}
+
+function TeamRecordsSection({ code }) {
+  const record = getTeamRecord(code);
+  if (!record) return null;
+
+  const { allTimeTopScorer, mostCapped, captains, coaches } = record;
+
+  return (
+    <section className="mt-12 mb-12">
+      <h2
+        className="mb-6 font-black text-white/70"
+        style={{ fontFamily: DISPLAY, fontSize: '0.95rem', letterSpacing: '-0.01em' }}
+      >
+        Team records
+      </h2>
+
+      <div className="grid gap-3 sm:grid-cols-2 mb-6">
+        {allTimeTopScorer && (
+          <div className="rounded-2xl bg-surface-raised p-5 ring-1 ring-white/8">
+            <p className="mb-2 text-[0.58rem] font-semibold uppercase tracking-[0.15em] text-pitch/70">All-time top scorer</p>
+            <p
+              className="font-black text-white leading-none"
+              style={{ fontFamily: DISPLAY, fontSize: '1.25rem', letterSpacing: '-0.03em' }}
+            >
+              {allTimeTopScorer.name}
+            </p>
+            <p className="mt-1.5 text-xs text-white/40">
+              {allTimeTopScorer.goals} goals · {allTimeTopScorer.span}
+            </p>
+          </div>
+        )}
+        {mostCapped && (
+          <div className="rounded-2xl bg-surface-raised p-5 ring-1 ring-white/8">
+            <p className="mb-2 text-[0.58rem] font-semibold uppercase tracking-[0.15em] text-pitch/70">Most appearances</p>
+            <p
+              className="font-black text-white leading-none"
+              style={{ fontFamily: DISPLAY, fontSize: '1.25rem', letterSpacing: '-0.03em' }}
+            >
+              {mostCapped.name}
+            </p>
+            <p className="mt-1.5 text-xs text-white/40">
+              {mostCapped.caps} games · {mostCapped.span}
+            </p>
+          </div>
+        )}
+      </div>
+
+      {(captains?.length > 0 || coaches?.length > 0) && (
+        <div className="grid gap-3 sm:grid-cols-2">
+          {captains?.length > 0 && (
+            <div className="rounded-2xl bg-surface-raised/60 ring-1 ring-white/8 overflow-hidden">
+              <div className="px-5 py-3 border-b border-white/[0.06]">
+                <p className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-white/35">World Cup captains</p>
+              </div>
+              <div className="divide-y divide-white/[0.045]">
+                {captains.map((c) => (
+                  <div key={c.name} className="flex items-center justify-between px-5 py-3">
+                    <span className="text-sm font-medium text-white">{c.name}</span>
+                    <span className="text-xs text-white/35 font-mono">{c.years.join(', ')}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {coaches?.length > 0 && (
+            <div className="rounded-2xl bg-surface-raised/60 ring-1 ring-white/8 overflow-hidden">
+              <div className="px-5 py-3 border-b border-white/[0.06]">
+                <p className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-white/35">World Cup coaches</p>
+              </div>
+              <div className="divide-y divide-white/[0.045]">
+                {coaches.map((c) => (
+                  <div key={c.name} className="flex items-center justify-between px-5 py-3">
+                    <span className="text-sm font-medium text-white">{c.name}</span>
+                    <span className="text-xs text-white/35 font-mono">{c.years.join(', ')}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>

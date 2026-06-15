@@ -152,6 +152,7 @@ function TournamentView({ tournament }) {
       </div>
 
       {tab === 'Overview' && !tabLoading && (
+        <>
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-5">
             <div className="rounded-2xl bg-surface-raised p-6 ring-1 ring-white/8">
@@ -165,9 +166,12 @@ function TournamentView({ tournament }) {
             </div>
 
             {tournament.runnerUp && (
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className={`grid gap-3 ${tournament.thirdPlace ? 'sm:grid-cols-3' : 'sm:grid-cols-2'}`}>
                 <InfoTile label="Winner" value={tournament.winner} code={tournament.winnerCode} />
                 <InfoTile label="Runner-up" value={tournament.runnerUp} code={tournament.runnerUpCode} />
+                {tournament.thirdPlace && (
+                  <InfoTile label="Third place" value={tournament.thirdPlace} code={tournament.thirdPlaceCode} />
+                )}
               </div>
             )}
           </div>
@@ -190,6 +194,9 @@ function TournamentView({ tournament }) {
             )}
           </div>
         </div>
+
+        <TournamentAwards tournament={tournament} />
+        </>
       )}
 
       {tab === 'Fixtures' &&
@@ -439,6 +446,69 @@ function MetaRow({ icon: Icon, label, value }) {
       <div>
         <p className="text-[0.6rem] uppercase tracking-[0.15em] text-white/35">{label}</p>
         <p className="text-sm text-white/65 mt-0.5">{value}</p>
+      </div>
+    </div>
+  );
+}
+
+const AWARD_ICONS = {
+  goldenBall: '🏆',
+  silverBall: '🥈',
+  bronzeBall: '🥉',
+  goldenGlove: '🧤',
+  goldenBootAward: '👟',
+  bestYoungPlayer: '⭐',
+};
+
+const AWARD_LABELS = {
+  goldenBall: 'Golden Ball',
+  silverBall: 'Silver Ball',
+  bronzeBall: 'Bronze Ball',
+  goldenGlove: 'Golden Glove',
+  goldenBootAward: 'Golden Boot',
+  bestYoungPlayer: 'Best Young Player',
+};
+
+function TournamentAwards({ tournament }) {
+  const awards = ['goldenBall', 'silverBall', 'bronzeBall', 'goldenGlove', 'goldenBootAward', 'bestYoungPlayer'];
+  const active = awards.filter((k) => tournament[k]);
+  if (!active.length) return null;
+
+  return (
+    <div className="mt-6">
+      <h2
+        className="mb-4 font-black text-white/70"
+        style={{ fontFamily: DISPLAY, fontSize: '0.95rem', letterSpacing: '-0.01em' }}
+      >
+        Tournament awards
+      </h2>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {active.map((key) => {
+          const award = tournament[key];
+          const extra =
+            key === 'goldenBootAward' && award.goals
+              ? `${award.goals} goals`
+              : key === 'goldenGlove' && award.cleanSheets != null
+              ? `${award.cleanSheets} clean sheet${award.cleanSheets !== 1 ? 's' : ''}`
+              : null;
+          return (
+            <div key={key} className="flex items-center gap-4 rounded-2xl bg-surface-raised/60 p-4 ring-1 ring-white/8">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-overlay text-xl">
+                {AWARD_ICONS[key]}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[0.58rem] font-semibold uppercase tracking-[0.15em] text-white/30">
+                  {AWARD_LABELS[key]}
+                </p>
+                <div className="mt-0.5 flex items-center gap-2">
+                  {award.code && <FlagBadge code={award.code} size="sm" />}
+                  <p className="truncate text-sm font-semibold text-white">{award.name}</p>
+                </div>
+                {extra && <p className="mt-0.5 text-xs text-pitch/80">{extra}</p>}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
