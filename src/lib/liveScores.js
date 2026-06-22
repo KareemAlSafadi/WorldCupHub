@@ -6,10 +6,16 @@ const BASE = 'https://api.football-data.org/v4';
 const CACHE_TTL = 60 * 1000; // 1 minute
 
 // football-data.org TLA → our FIFA code (where they differ)
-const TLA_MAP = { SAU: 'KSA', IRI: 'IRN' };
+const TLA_MAP = {
+  SAU: 'KSA',  // Saudi Arabia
+  IRI: 'IRN',  // Iran
+  RSA: 'RSA',  // South Africa (same, just explicit)
+  CRC: 'CRC',  // Costa Rica (same)
+  USA: 'USA',  // United States (same)
+};
 const normTla = (tla) => TLA_MAP[tla] || tla;
 
-// Matches cache (shared by useLive2026, useTodayMatches, useLiveCount)
+// Shared matches cache
 let _cache = null;
 let _cacheAt = 0;
 
@@ -58,19 +64,31 @@ function buildScoreMap(apiMatches) {
     if (!home || !away) continue;
     const finished = m.status === 'FINISHED';
     const live = m.status === 'IN_PLAY' || m.status === 'PAUSED';
+    // During PAUSED (halftime), fullTime may be null — fall back to halfTime score
+    const homeScore = finished || live
+      ? (m.score?.fullTime?.home ?? m.score?.halfTime?.home ?? null)
+      : null;
+    const awayScore = finished || live
+      ? (m.score?.fullTime?.away ?? m.score?.halfTime?.away ?? null)
+      : null;
     map[`${home}-${away}`] = {
-      homeScore: finished || live ? (m.score?.fullTime?.home ?? null) : null,
-      awayScore: finished || live ? (m.score?.fullTime?.away ?? null) : null,
+      homeScore,
+      awayScore,
       liveNow: live,
+      minute: live ? (m.minute ?? null) : null,
     };
   }
   return map;
 }
 
+function countLive(apiMatches) {
+  return apiMatches.filter((m) => m.status === 'IN_PLAY' || m.status === 'PAUSED').length;
+}
+
 /**
  * Fetches live 2026 WC scores and patches the static tournament data.
  * Only fires when tournament.detailLevel === 'preview' and API key is set.
- * Polls every 60 seconds. Falls back to static data silently on error.
+ * Polls every 30s during live matches, 60s otherwise. Falls back silently on error.
  */
 export function useLive2026(tournament) {
   const isPreview = tournament?.detailLevel === 'preview';
@@ -83,39 +101,46 @@ export function useLive2026(tournament) {
     if (!isPreview || !API_KEY) return;
 
     let cancelled = false;
+    let timer;
 
-    Promise.resolve()
-      .then(() => { if (!cancelled) setLoading(true); })
-      .then(() => fetchApiMatches())
-      .then((apiMatches) => {
-        if (cancelled) return;
-        const scoreMap = buildScoreMap(apiMatches);
-        const patched = tournament.matches.map((m) => {
-          const s = scoreMap[`${m.homeCode}-${m.awayCode}`];
-          return s ? { ...m, homeScore: s.homeScore, awayScore: s.awayScore, liveNow: s.liveNow } : m;
-        });
-        setLiveMatches(patched);
-        setLiveStandings(computeStandings(GROUPS, patched));
-      })
-      .catch((err) => { if (!cancelled) setError(err); })
-      .finally(() => { if (!cancelled) setLoading(false); });
+    const applyMatches = (apiMatches) => {
+      const scoreMap = buildScoreMap(apiMatches);
+      const patched = tournament.matches.map((m) => {
+        const s = scoreMap[`${m.homeCode}-${m.awayCode}`];
+        return s ? { ...m, homeScore: s.homeScore, awayScore: s.awayScore, liveNow: s.liveNow, minute: s.minute } : m;
+      });
+      setLiveMatches(patched);
+      setLiveStandings(computeStandings(GROUPS, patched));
+      return apiMatches;
+    };
 
-    const interval = setInterval(() => {
+    const poll = () => {
       fetchApiMatches()
         .then((apiMatches) => {
           if (cancelled) return;
-          const scoreMap = buildScoreMap(apiMatches);
-          const patched = tournament.matches.map((m) => {
-            const s = scoreMap[`${m.homeCode}-${m.awayCode}`];
-            return s ? { ...m, homeScore: s.homeScore, awayScore: s.awayScore, liveNow: s.liveNow } : m;
-          });
-          setLiveMatches(patched);
-          setLiveStandings(computeStandings(GROUPS, patched));
+          applyMatches(apiMatches);
+          timer = setTimeout(poll, countLive(apiMatches) > 0 ? 30_000 : 60_000);
         })
-        .catch(() => {});
-    }, 60_000);
+        .catch(() => {
+          if (!cancelled) timer = setTimeout(poll, 60_000);
+        });
+    };
 
-    return () => { cancelled = true; clearInterval(interval); };
+    setLoading(true);
+    fetchApiMatches()
+      .then((apiMatches) => {
+        if (cancelled) return;
+        applyMatches(apiMatches);
+        timer = setTimeout(poll, countLive(apiMatches) > 0 ? 30_000 : 60_000);
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => { cancelled = true; clearTimeout(timer); };
   }, [isPreview, tournament]);
 
   return { liveMatches, liveStandings, loading, error };
@@ -123,7 +148,7 @@ export function useLive2026(tournament) {
 
 /**
  * Returns today's 2026 WC matches with live scores merged in.
- * Updates every 60 seconds. Returns static data immediately while fetching.
+ * Polls every 30s during live matches, 60s otherwise. Returns static data while fetching.
  */
 export function useTodayMatches() {
   const today = new Date().toISOString().slice(0, 10);
@@ -134,41 +159,42 @@ export function useTodayMatches() {
   useEffect(() => {
     if (!API_KEY) return;
     let cancelled = false;
+    let timer;
 
-    Promise.resolve()
-      .then(() => fetchApiMatches())
-      .then((apiMatches) => {
-        if (cancelled) return;
-        const scoreMap = buildScoreMap(apiMatches);
-        setTodayMatches(
-          wc2026.matches
-            .filter((m) => m.date === today)
-            .map((m) => {
-              const s = scoreMap[`${m.homeCode}-${m.awayCode}`];
-              return s ? { ...m, homeScore: s.homeScore, awayScore: s.awayScore, liveNow: s.liveNow } : m;
-            })
-        );
-      })
-      .catch(() => {});
+    const applyTodayMatches = (apiMatches) => {
+      const scoreMap = buildScoreMap(apiMatches);
+      setTodayMatches(
+        wc2026.matches
+          .filter((m) => m.date === today)
+          .map((m) => {
+            const s = scoreMap[`${m.homeCode}-${m.awayCode}`];
+            return s ? { ...m, homeScore: s.homeScore, awayScore: s.awayScore, liveNow: s.liveNow, minute: s.minute } : m;
+          })
+      );
+      return apiMatches;
+    };
 
-    const interval = setInterval(() => {
+    const poll = () => {
       fetchApiMatches()
         .then((apiMatches) => {
           if (cancelled) return;
-          const scoreMap = buildScoreMap(apiMatches);
-          setTodayMatches(
-            wc2026.matches
-              .filter((m) => m.date === today)
-              .map((m) => {
-                const s = scoreMap[`${m.homeCode}-${m.awayCode}`];
-                return s ? { ...m, homeScore: s.homeScore, awayScore: s.awayScore, liveNow: s.liveNow } : m;
-              })
-          );
+          applyTodayMatches(apiMatches);
+          timer = setTimeout(poll, countLive(apiMatches) > 0 ? 30_000 : 60_000);
         })
-        .catch(() => {});
-    }, 60_000);
+        .catch(() => {
+          if (!cancelled) timer = setTimeout(poll, 60_000);
+        });
+    };
 
-    return () => { cancelled = true; clearInterval(interval); };
+    fetchApiMatches()
+      .then((apiMatches) => {
+        if (cancelled) return;
+        applyTodayMatches(apiMatches);
+        timer = setTimeout(poll, countLive(apiMatches) > 0 ? 30_000 : 60_000);
+      })
+      .catch(() => {});
+
+    return () => { cancelled = true; clearTimeout(timer); };
   }, [today]);
 
   return todayMatches;
@@ -176,7 +202,7 @@ export function useTodayMatches() {
 
 /**
  * Returns the number of currently live matches (IN_PLAY or PAUSED).
- * Polls every 60 seconds. Returns 0 when API key is missing or on error.
+ * Polls adaptively. Returns 0 when API key is missing or on error.
  */
 export function useLiveCount() {
   const [count, setCount] = useState(0);
@@ -184,25 +210,31 @@ export function useLiveCount() {
   useEffect(() => {
     if (!API_KEY) return;
     let cancelled = false;
+    let timer;
 
-    Promise.resolve()
-      .then(() => fetchApiMatches())
-      .then((apiMatches) => {
-        if (cancelled) return;
-        setCount(apiMatches.filter((m) => m.status === 'IN_PLAY' || m.status === 'PAUSED').length);
-      })
-      .catch(() => {});
-
-    const interval = setInterval(() => {
+    const poll = () => {
       fetchApiMatches()
         .then((apiMatches) => {
           if (cancelled) return;
-          setCount(apiMatches.filter((m) => m.status === 'IN_PLAY' || m.status === 'PAUSED').length);
+          const live = countLive(apiMatches);
+          setCount(live);
+          timer = setTimeout(poll, live > 0 ? 30_000 : 60_000);
         })
-        .catch(() => {});
-    }, 60_000);
+        .catch(() => {
+          if (!cancelled) timer = setTimeout(poll, 60_000);
+        });
+    };
 
-    return () => { cancelled = true; clearInterval(interval); };
+    fetchApiMatches()
+      .then((apiMatches) => {
+        if (cancelled) return;
+        const live = countLive(apiMatches);
+        setCount(live);
+        timer = setTimeout(poll, live > 0 ? 30_000 : 60_000);
+      })
+      .catch(() => {});
+
+    return () => { cancelled = true; clearTimeout(timer); };
   }, []);
 
   return count;
@@ -210,8 +242,7 @@ export function useLiveCount() {
 
 /**
  * Fetches the live 2026 Golden Boot top-scorer leaderboard.
- * Returns { scorers: [], loading } — scorers is [] on error (free-tier silent fallback).
- * Polls every 60 seconds.
+ * Returns { scorers: [], loading }. Polls every 60s.
  */
 export function useLiveScorers() {
   const [scorers, setScorers] = useState([]);
@@ -220,6 +251,7 @@ export function useLiveScorers() {
   useEffect(() => {
     if (!API_KEY) return;
     let cancelled = false;
+    let timer;
 
     const mapScorers = (raw) =>
       raw.map((s) => ({
@@ -231,24 +263,28 @@ export function useLiveScorers() {
         penalties: s.penalties ?? 0,
       }));
 
-    Promise.resolve()
-      .then(() => fetchApiScorers())
+    const poll = () => {
+      fetchApiScorers()
+        .then((raw) => {
+          if (!cancelled) { setScorers(mapScorers(raw)); timer = setTimeout(poll, 60_000); }
+        })
+        .catch(() => {
+          if (!cancelled) timer = setTimeout(poll, 60_000);
+        });
+    };
+
+    fetchApiScorers()
       .then((raw) => {
         if (cancelled) return;
         setScorers(mapScorers(raw));
         setLoading(false);
+        timer = setTimeout(poll, 60_000);
       })
       .catch(() => {
         if (!cancelled) { setScorers([]); setLoading(false); }
       });
 
-    const interval = setInterval(() => {
-      fetchApiScorers()
-        .then((raw) => { if (!cancelled) setScorers(mapScorers(raw)); })
-        .catch(() => {});
-    }, 60_000);
-
-    return () => { cancelled = true; clearInterval(interval); };
+    return () => { cancelled = true; clearTimeout(timer); };
   }, []);
 
   return { scorers, loading };
