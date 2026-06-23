@@ -23,10 +23,28 @@ function ScoreDisplay({ match }) {
   const upcoming = match.homeScore == null || match.awayScore == null;
 
   if (upcoming) {
-    return <span className="font-bold text-pitch animate-pulse-soft">vs</span>;
+    return (
+      <span className="text-center">
+        <span className={`font-bold animate-pulse-soft ${match.liveNow ? 'text-red-400' : 'text-pitch'}`}>vs</span>
+        {match.liveNow && match.minute != null && (
+          <span className="mt-0.5 block text-[10px] text-red-400/60">{match.minute}&apos;</span>
+        )}
+      </span>
+    );
   }
 
   const score = `${match.homeScore} - ${match.awayScore}`;
+
+  if (match.liveNow) {
+    return (
+      <span className="text-center">
+        <span className="font-bold text-white">{score}</span>
+        {match.minute != null && (
+          <span className="mt-0.5 block text-[10px] text-red-400/70">{match.minute}&apos;</span>
+        )}
+      </span>
+    );
+  }
   if (match.pens) {
     return (
       <span className="text-center">
@@ -126,9 +144,12 @@ function MatchRow({ match, showDate }) {
               </div>
             )}
             {isLive && (
-              <div className="flex items-center gap-1 text-red-400">
+              <div className="flex items-center gap-2 text-red-400">
                 <span className="h-1 w-1 rounded-full bg-red-400 animate-pulse-soft" />
                 <span className="font-semibold">In progress</span>
+                {match.minute != null && (
+                  <span className="font-mono text-xs">{match.minute}&apos;</span>
+                )}
               </div>
             )}
           </dl>
