@@ -1,0 +1,38 @@
+name: Update Live Scores
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data
+
+      - name: Fetch scores from football-data.org
+        env:
+          API_KEY: ${{ secrets.VITE_FOOTBALL_API_KEY }}
+        run: |
+          curl -sf --retry 2 \
+            "https://api.football-data.org/v4/competitions/WC/matches?season=2026" \
+            -H "X-Auth-Token: $API_KEY" -o matches_tmp.json \
+            && mv matches_tmp.json matches.json || echo "matches fetch failed, keeping existing"
+
+          curl -sf --retry 2 \
+            "https://api.football-data.org/v4/competitions/WC/scorers?season=2026" \
+            -H "X-Auth-Token: $API_KEY" -o scorers_tmp.json \
+            && mv scorers_tmp.json scorers.json || echo "scorers fetch failed, keeping existing"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add matches.json scorers.json
+          git diff --cached --quiet || (git commit -m "scores: $(date -u +'%H:%MZ')" && git push)

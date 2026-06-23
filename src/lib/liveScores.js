@@ -1,57 +1,41 @@
 import { useEffect, useState } from 'react';
 import { GROUPS, computeStandings, wc2026 } from '../data/tournaments/wc2026.js';
 
-const API_KEY = import.meta.env.VITE_FOOTBALL_API_KEY;
-const BASE = 'https://api.football-data.org/v4';
-const CACHE_TTL = 60 * 1000; // 1 minute
+// Scores are fetched server-side by GitHub Actions every 5 minutes and stored
+// in the data branch. We read from there to avoid CORS restrictions on the
+// football-data.org free tier (which only allows http://localhost).
+const DATA_URL = 'https://raw.githubusercontent.com/kareemalsafadi/WorldCupHub/data';
+const CACHE_TTL = 60 * 1000;
 
 // football-data.org TLA → our FIFA code (where they differ)
-const TLA_MAP = {
-  SAU: 'KSA',  // Saudi Arabia
-  IRI: 'IRN',  // Iran
-  RSA: 'RSA',  // South Africa (same, just explicit)
-  CRC: 'CRC',  // Costa Rica (same)
-  USA: 'USA',  // United States (same)
-};
+const TLA_MAP = { SAU: 'KSA', IRI: 'IRN' };
 const normTla = (tla) => TLA_MAP[tla] || tla;
 
-// Shared matches cache
 let _cache = null;
 let _cacheAt = 0;
-
-// Scorers cache
 let _scorerCache = null;
 let _scorerCacheAt = 0;
 
-function fetchApiMatches() {
+function fetchMatches() {
   if (_cache && Date.now() - _cacheAt < CACHE_TTL) return Promise.resolve(_cache);
-  return fetch(`${BASE}/competitions/WC/matches?season=2026`, {
-    headers: { 'X-Auth-Token': API_KEY },
-  })
+  return fetch(`${DATA_URL}/matches.json`)
     .then((res) => {
-      if (!res.ok) throw new Error(`football-data HTTP ${res.status}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res.json();
     })
-    .then((data) => {
-      console.log('[LiveScores] API response:', data);
-      const matches = data.matches || [];
-      _cache = matches;
+    .then(({ matches }) => {
+      const result = matches || [];
+      _cache = result;
       _cacheAt = Date.now();
-      return matches;
-    })
-    .catch((err) => {
-      console.error('[LiveScores] fetch failed:', err.message);
-      throw err;
+      return result;
     });
 }
 
-function fetchApiScorers() {
+function fetchScorers() {
   if (_scorerCache && Date.now() - _scorerCacheAt < CACHE_TTL) return Promise.resolve(_scorerCache);
-  return fetch(`${BASE}/competitions/WC/scorers?season=2026`, {
-    headers: { 'X-Auth-Token': API_KEY },
-  })
+  return fetch(`${DATA_URL}/scorers.json`)
     .then((res) => {
-      if (!res.ok) throw new Error(`football-data ${res.status}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res.json();
     })
     .then(({ scorers }) => {
@@ -91,11 +75,6 @@ function countLive(apiMatches) {
   return apiMatches.filter((m) => m.status === 'IN_PLAY' || m.status === 'PAUSED').length;
 }
 
-/**
- * Fetches live 2026 WC scores and patches the static tournament data.
- * Only fires when tournament.detailLevel === 'preview' and API key is set.
- * Polls every 30s during live matches, 60s otherwise. Falls back silently on error.
- */
 export function useLive2026(tournament) {
   const isPreview = tournament?.detailLevel === 'preview';
   const [liveMatches, setLiveMatches] = useState(null);
@@ -104,7 +83,7 @@ export function useLive2026(tournament) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!isPreview || !API_KEY) return;
+    if (!isPreview) return;
 
     let cancelled = false;
     let timer;
@@ -121,7 +100,7 @@ export function useLive2026(tournament) {
     };
 
     const poll = () => {
-      fetchApiMatches()
+      fetchMatches()
         .then((apiMatches) => {
           if (cancelled) return;
           applyMatches(apiMatches);
@@ -133,7 +112,7 @@ export function useLive2026(tournament) {
     };
 
     setLoading(true);
-    fetchApiMatches()
+    fetchMatches()
       .then((apiMatches) => {
         if (cancelled) return;
         applyMatches(apiMatches);
@@ -152,10 +131,6 @@ export function useLive2026(tournament) {
   return { liveMatches, liveStandings, loading, error };
 }
 
-/**
- * Returns today's 2026 WC matches with live scores merged in.
- * Polls every 30s during live matches, 60s otherwise. Returns static data while fetching.
- */
 export function useTodayMatches() {
   const today = new Date().toISOString().slice(0, 10);
   const [todayMatches, setTodayMatches] = useState(() =>
@@ -163,7 +138,6 @@ export function useTodayMatches() {
   );
 
   useEffect(() => {
-    if (!API_KEY) return;
     let cancelled = false;
     let timer;
 
@@ -181,7 +155,7 @@ export function useTodayMatches() {
     };
 
     const poll = () => {
-      fetchApiMatches()
+      fetchMatches()
         .then((apiMatches) => {
           if (cancelled) return;
           applyTodayMatches(apiMatches);
@@ -192,7 +166,7 @@ export function useTodayMatches() {
         });
     };
 
-    fetchApiMatches()
+    fetchMatches()
       .then((apiMatches) => {
         if (cancelled) return;
         applyTodayMatches(apiMatches);
@@ -206,20 +180,15 @@ export function useTodayMatches() {
   return todayMatches;
 }
 
-/**
- * Returns the number of currently live matches (IN_PLAY or PAUSED).
- * Polls adaptively. Returns 0 when API key is missing or on error.
- */
 export function useLiveCount() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!API_KEY) return;
     let cancelled = false;
     let timer;
 
     const poll = () => {
-      fetchApiMatches()
+      fetchMatches()
         .then((apiMatches) => {
           if (cancelled) return;
           const live = countLive(apiMatches);
@@ -231,7 +200,7 @@ export function useLiveCount() {
         });
     };
 
-    fetchApiMatches()
+    fetchMatches()
       .then((apiMatches) => {
         if (cancelled) return;
         const live = countLive(apiMatches);
@@ -246,16 +215,11 @@ export function useLiveCount() {
   return count;
 }
 
-/**
- * Fetches the live 2026 Golden Boot top-scorer leaderboard.
- * Returns { scorers: [], loading }. Polls every 60s.
- */
 export function useLiveScorers() {
   const [scorers, setScorers] = useState([]);
-  const [loading, setLoading] = useState(!!API_KEY);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!API_KEY) return;
     let cancelled = false;
     let timer;
 
@@ -270,7 +234,7 @@ export function useLiveScorers() {
       }));
 
     const poll = () => {
-      fetchApiScorers()
+      fetchScorers()
         .then((raw) => {
           if (!cancelled) { setScorers(mapScorers(raw)); timer = setTimeout(poll, 60_000); }
         })
@@ -279,7 +243,7 @@ export function useLiveScorers() {
         });
     };
 
-    fetchApiScorers()
+    fetchScorers()
       .then((raw) => {
         if (cancelled) return;
         setScorers(mapScorers(raw));
