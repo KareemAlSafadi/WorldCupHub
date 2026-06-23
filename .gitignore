@@ -23,5 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+# Environment variables (never commit secrets)
+.env
+.env.local
+.env.*.local
+
 # Claude Code local config
 .claude/
