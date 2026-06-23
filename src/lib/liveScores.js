@@ -29,13 +29,19 @@ function fetchApiMatches() {
     headers: { 'X-Auth-Token': API_KEY },
   })
     .then((res) => {
-      if (!res.ok) throw new Error(`football-data ${res.status}`);
+      if (!res.ok) throw new Error(`football-data HTTP ${res.status}`);
       return res.json();
     })
-    .then(({ matches }) => {
+    .then((data) => {
+      console.log('[LiveScores] API response:', data);
+      const matches = data.matches || [];
       _cache = matches;
       _cacheAt = Date.now();
       return matches;
+    })
+    .catch((err) => {
+      console.error('[LiveScores] fetch failed:', err.message);
+      throw err;
     });
 }
 
