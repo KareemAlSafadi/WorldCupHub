@@ -8,7 +8,7 @@ const DATA_URL = 'https://raw.githubusercontent.com/kareemalsafadi/WorldCupHub/d
 const CACHE_TTL = 60 * 1000;
 
 // football-data.org TLA → our FIFA code (where they differ)
-const TLA_MAP = { SAU: 'KSA', IRI: 'IRN' };
+const TLA_MAP = { SAU: 'KSA', IRI: 'IRN', URY: 'URU' };
 const normTla = (tla) => TLA_MAP[tla] || tla;
 
 let _cache = null;
@@ -79,7 +79,7 @@ export function useLive2026(tournament) {
   const isPreview = tournament?.detailLevel === 'preview';
   const [liveMatches, setLiveMatches] = useState(null);
   const [liveStandings, setLiveStandings] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(isPreview);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -111,7 +111,6 @@ export function useLive2026(tournament) {
         });
     };
 
-    setLoading(true);
     fetchMatches()
       .then((apiMatches) => {
         if (cancelled) return;
@@ -136,6 +135,7 @@ export function useTodayMatches() {
   const [todayMatches, setTodayMatches] = useState(() =>
     wc2026.matches.filter((m) => m.date === today)
   );
+  const [lastUpdated, setLastUpdated] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -151,6 +151,7 @@ export function useTodayMatches() {
             return s ? { ...m, homeScore: s.homeScore, awayScore: s.awayScore, liveNow: s.liveNow, minute: s.minute } : m;
           })
       );
+      setLastUpdated(Date.now());
       return apiMatches;
     };
 
@@ -177,7 +178,7 @@ export function useTodayMatches() {
     return () => { cancelled = true; clearTimeout(timer); };
   }, [today]);
 
-  return todayMatches;
+  return { matches: todayMatches, lastUpdated };
 }
 
 export function useLiveCount() {

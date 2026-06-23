@@ -1,0 +1,30 @@
+name: Sync Static Scores
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch data branch
+        run: git fetch origin data
+
+      - name: Run sync script
+        run: node scripts/sync-wc2026.mjs
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/tournaments/wc2026.js
+          git diff --cached --quiet || (git commit -m "sync: bake live scores into static data $(date -u +'%Y-%m-%d')" && git push)
